@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gramaseva — Rural & Urban Worker Connect</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#09090e;--surface:#090e0c;--ink:#e8e6f0;--muted:#6a6878;--dim:#2e2c3a;--accent:#00d4aa;--accent-soft:#00d4aa18;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 64px;background:rgba(9,9,14,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--dim);}
+.nav-back{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s;}
+.nav-back:hover{color:var(--accent);}
+.nav-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 80px;max-width:1000px;margin:0 auto;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::after{content:'';display:inline-block;width:40px;height:1px;background:var(--accent);opacity:.5;}
+.hero-title{font-family:'Instrument Serif',serif;font-size:clamp(60px,10vw,140px);font-weight:400;line-height:.88;letter-spacing:-4px;color:var(--ink);margin-bottom:12px;}
+.hero-title em{font-style:italic;color:var(--accent);}
+.hero-subtitle{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:48px;}
+.hero-strip{display:flex;align-items:flex-start;gap:80px;border-top:1px solid var(--dim);padding-top:32px;}
+.hero-desc{flex:1;font-size:16px;color:var(--muted);line-height:1.8;max-width:420px;}
+.hero-desc strong{color:var(--ink);}
+.hero-stat-col{display:flex;flex-direction:column;gap:24px;}
+.stat-item{display:flex;flex-direction:column;gap:4px;}
+.stat-num{font-family:'Instrument Serif',serif;font-size:40px;font-weight:400;letter-spacing:-1px;color:var(--accent);}
+.stat-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+.section{padding:100px 64px;max-width:1000px;margin:0 auto;}
+.sec-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:40px;}
+.divider{border:none;border-top:1px solid var(--dim);}
+
+.worker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--dim);}
+.worker-card{background:var(--bg);padding:36px 28px;transition:background .2s;}
+.worker-card:hover{background:var(--accent-soft);}
+.wc-emoji{font-size:32px;margin-bottom:16px;}
+.wc-title{font-size:17px;font-weight:500;color:var(--ink);margin-bottom:8px;}
+.wc-body{font-size:13px;color:var(--muted);line-height:1.75;}
+
+.problem-split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+.ps-col-title{font-family:'Instrument Serif',serif;font-size:30px;font-weight:400;letter-spacing:-.5px;color:var(--ink);margin-bottom:24px;}
+.ps-col-title em{font-style:italic;color:var(--accent);}
+.ps-list{display:flex;flex-direction:column;gap:20px;}
+.ps-item{display:flex;gap:16px;align-items:flex-start;}
+.ps-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);opacity:.5;margin-top:7px;flex-shrink:0;}
+.ps-text{font-size:14px;color:var(--muted);line-height:1.8;}
+.ps-text strong{color:var(--ink);}
+
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start;padding:40px 0;border-bottom:1px solid var(--dim);}
+.flow-step:first-child{border-top:1px solid var(--dim);}
+.fs-num{font-family:'Instrument Serif',serif;font-size:56px;font-weight:400;letter-spacing:-2px;color:var(--accent);opacity:.35;line-height:1;}
+.fs-title{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
+.fs-name{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;letter-spacing:-.5px;color:var(--ink);margin-bottom:12px;}
+.fs-desc{font-size:14px;color:var(--muted);line-height:1.8;max-width:540px;}
+
+.demo-wrap{background:var(--surface);border-top:1px solid var(--dim);border-bottom:1px solid var(--dim);padding:100px 64px;}
+.demo-inner{max-width:1000px;margin:0 auto;}
+.demo-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:40px;flex-wrap:wrap;}
+.demo-title{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,44px);font-weight:400;line-height:1.2;letter-spacing:-1px;color:var(--ink);}
+.demo-title em{font-style:italic;color:var(--accent);}
+.demo-sub{font-size:14px;color:var(--muted);max-width:380px;line-height:1.8;}
+.demo-video-frame{border:1px solid var(--dim);border-radius:8px;overflow:hidden;background:#000;}
+.demo-video-frame video{display:block;width:100%;max-height:560px;background:#000;}
+
+.quote-wrap{background:var(--surface);border-top:1px solid var(--dim);border-bottom:1px solid var(--dim);padding:80px 64px;}
+.quote-inner{max-width:1000px;margin:0 auto;}
+.big-quote{font-family:'Instrument Serif',serif;font-size:clamp(28px,4vw,52px);font-weight:400;line-height:1.2;letter-spacing:-1.5px;color:var(--ink);}
+.big-quote em{font-style:italic;color:var(--accent);}
+
+.impact-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--dim);}
+.impact-card{background:var(--bg);padding:36px 28px;}
+.ic-num{font-family:'Instrument Serif',serif;font-size:44px;font-weight:400;letter-spacing:-1.5px;color:var(--accent);margin-bottom:8px;}
+.ic-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);line-height:1.5;}
+
+.cta-wrap{background:var(--surface);border:1px solid var(--dim);padding:64px;display:flex;justify-content:space-between;align-items:center;gap:40px;}
+.cta-title{font-family:'Instrument Serif',serif;font-size:42px;font-weight:400;letter-spacing:-1px;color:var(--ink);margin-bottom:12px;}
+.cta-body{font-size:14px;color:var(--muted);max-width:400px;line-height:1.8;}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:16px 32px;border-radius:4px;background:var(--accent);color:#09090e;white-space:nowrap;transition:opacity .2s,transform .2s;font-weight:500;}
+.cta-btn:hover{opacity:.85;transform:translateX(3px);}
+
+footer{border-top:1px solid var(--dim);padding:28px 64px;display:flex;justify-content:space-between;align-items:center;max-width:1000px;margin:0 auto;}
+.ft-copy{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
+.ft-copy span{color:var(--accent);}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.in{opacity:1;transform:none;}
+.reveal.d1{transition-delay:.1s;}.reveal.d2{transition-delay:.2s;}.reveal.d3{transition-delay:.3s;}
+@media(max-width:768px){
+  nav{padding:16px 24px;}
+  .hero,.section,.quote-wrap,.demo-wrap{padding-left:24px;padding-right:24px;}
+  .hero-strip{flex-direction:column;gap:32px;}
+  .worker-grid{grid-template-columns:1fr 1fr;}
+  .problem-split{grid-template-columns:1fr;}
+  .flow-step{grid-template-columns:1fr;gap:12px;}
+  .impact-row{grid-template-columns:1fr 1fr;}
+  .cta-wrap{flex-direction:column;padding:40px 24px;}
+  footer{padding:24px;flex-direction:column;gap:8px;text-align:center;}
+  .demo-head{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+  <span class="nav-tag">P — 03 / Gramaseva</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow reveal">Rural India · Agriculture · Skilled Labour</div>
+  <h1 class="hero-title reveal d1">Grama<em>seva</em></h1>
+  <div class="hero-subtitle reveal d2">Rural & Urban Worker Connect</div>
+  <div class="hero-strip reveal d3">
+    <p class="hero-desc">India's farmers, plumbers, electricians, and masons are <strong>invisible online</strong>. Gramaseva gives skilled workers from rural and urban areas a platform to reach clients — bringing discoverability and dignity to the informal workforce.</p>
+    <div class="hero-stat-col">
+      <div class="stat-item"><span class="stat-num">450M+</span><span class="stat-label">India's informal workforce</span></div>
+      <div class="stat-item"><span class="stat-num">&lt; 2%</span><span class="stat-label">With any digital presence</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section class="section">
+  <p class="sec-eyebrow reveal">Who This Is For</p>
+  <div class="worker-grid reveal d1">
+    <div class="worker-card"><div class="wc-emoji">🌾</div><div class="wc-title">Farm Labour</div><p class="wc-body">Seasonal workers, crop harvesters, irrigation workers — skilled people with no way to reach farmers who need them across district boundaries.</p></div>
+    <div class="worker-card"><div class="wc-emoji">🔧</div><div class="wc-title">Plumbers & Electricians</div><p class="wc-body">Highly skilled tradespeople operating entirely on word-of-mouth with no way to expand their reach beyond their immediate neighborhood.</p></div>
+    <div class="worker-card"><div class="wc-emoji">🧱</div><div class="wc-title">Masons & Carpenters</div><p class="wc-body">Construction workers who move project to project with no permanent profile, no reviews, and no way to prove their quality before a job starts.</p></div>
+    <div class="worker-card"><div class="wc-emoji">🏠</div><div class="wc-title">Domestic Workers</div><p class="wc-body">Cooks, cleaners, and household staff who rely entirely on placement networks with no independent identity or bargaining power.</p></div>
+    <div class="worker-card"><div class="wc-emoji">🚛</div><div class="wc-title">Local Transport</div><p class="wc-body">Tractor owners, small truck operators, and goods carriers who can only find clients through local knowledge, never a wider market.</p></div>
+    <div class="worker-card"><div class="wc-emoji">🌿</div><div class="wc-title">Horticulture & Nursery</div><p class="wc-body">Plant nurseries, landscapers, and garden workers in semi-urban areas with real skill and no platform to showcase it.</p></div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);max-width:100%;padding-top:80px;padding-bottom:80px;">
+  <div style="max-width:1000px;margin:0 auto;padding:0 64px;">
+    <p class="sec-eyebrow reveal">The Problem</p>
+    <div class="problem-split reveal d1">
+      <div>
+        <div class="ps-col-title">For Workers — <em>no visibility</em></div>
+        <div class="ps-list">
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">All work comes through personal connections. When those dry up, there's nothing. <strong>No profile, no portfolio, no reviews.</strong></p></div>
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">They cannot charge a fair market rate because clients have no way to compare quality. Undercutting is the only strategy.</p></div>
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">Skilled workers with 20 years of experience look identical on paper to a first-day apprentice — because neither has any paper.</p></div>
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">Seasonal gaps in work mean income dries up. There's no way to find work outside their village radius during the off-season.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="ps-col-title">For Clients — <em>no trust</em></div>
+        <div class="ps-list">
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">Finding skilled help in a new area means asking neighbors, calling relatives, or taking a risk on someone unknown. <strong>No reviews. No history.</strong></p></div>
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">Price negotiation is awkward and opaque. There's no baseline, so both sides guess — and distrust follows.</p></div>
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">No accountability after the job. If work is substandard, there's no recourse. No rating to warn others. The same bad actor keeps finding new victims.</p></div>
+          <div class="ps-item"><div class="ps-dot"></div><p class="ps-text">Urban clients who relocate to semi-rural areas have no idea who the reliable local workers are. Starting from zero every time.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="sec-eyebrow reveal">How Gramaseva Works</p>
+  <div class="flow">
+    <div class="flow-step reveal">
+      <div class="fs-num">1</div>
+      <div>
+        <div class="fs-title">Create a Profile</div>
+        <div class="fs-name">A page to your name</div>
+        <p class="fs-desc">Workers create a profile in Telugu or English — their trade, years of experience, area of operation, daily rate, and photos of past work. A QR code version means even workers without smartphones can have a shareable identity card.</p>
+      </div>
+    </div>
+    <div class="flow-step reveal">
+      <div class="fs-num">2</div>
+      <div>
+        <div class="fs-title">Discover Workers</div>
+        <div class="fs-name">Search by trade & location</div>
+        <p class="fs-desc">Clients search Gramaseva by work type, pincode, or distance. Workers nearby show up with their profile, rating, availability, and rate. Direct messaging opens from the profile — no intermediary.</p>
+      </div>
+    </div>
+    <div class="flow-step reveal">
+      <div class="fs-num">3</div>
+      <div>
+        <div class="fs-title">Confirm & Work</div>
+        <div class="fs-name">Agree on terms, then begin</div>
+        <p class="fs-desc">Both parties confirm the job scope, date, and rate through the platform. An optional digital agreement is generated. The worker gets a timestamped booking confirmation — proof of work they can show anywhere.</p>
+      </div>
+    </div>
+    <div class="flow-step reveal">
+      <div class="fs-num">4</div>
+      <div>
+        <div class="fs-title">Review & Build Reputation</div>
+        <div class="fs-name">Reviews that compound over time</div>
+        <p class="fs-desc">After each job, client and worker review each other. A mason with 50 five-star reviews becomes the most trusted mason in their district — no middleman required. Good work speaks for itself, permanently.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="demo-wrap">
+  <div class="demo-inner">
+    <div class="demo-head reveal">
+      <div>
+        <div class="demo-title">See it <em>in action</em></div>
+      </div>
+      <p class="demo-sub">A quick walkthrough of profile creation, worker discovery, and the booking flow — exactly as it runs today.</p>
+    </div>
+    <div class="demo-video-frame reveal d1">
+      <video controls preload="metadata" poster="">
+        <source src="demo.mp4" type="video/mp4">
+        Your browser does not support embedded video. <a href="demo.mp4">Download the demo</a> instead.
+      </video>
+    </div>
+  </div>
+</div>
+
+<div class="quote-wrap">
+  <div class="quote-inner">
+    <div class="big-quote reveal">"The best hands in the country<br>have <em>no page to their name.</em>"</div>
+  </div>
+</div>
+
+<section class="section">
+  <p class="sec-eyebrow reveal">The Impact We're Building Toward</p>
+  <div class="impact-row reveal d1">
+    <div class="impact-card"><div class="ic-num">↑ 30%</div><div class="ic-label">Earning potential for verified workers</div></div>
+    <div class="impact-card"><div class="ic-num">0</div><div class="ic-label">Middlemen taking a cut of daily wages</div></div>
+    <div class="impact-card"><div class="ic-num">∞</div><div class="ic-label">Reach — village to city, state to state</div></div>
+    <div class="impact-card"><div class="ic-num">1</div><div class="ic-label">Digital identity, built through work</div></div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="cta-wrap reveal">
+    <div class="cta-text">
+      <div class="cta-title">Help us reach more workers</div>
+      <p class="cta-body">Gramaseva is built for Andhra Pradesh first. If you want to partner, pilot, or contribute, let's connect.</p>
+    </div>
+    <a href="https://gramaseva.vercel.app/" class="cta-btn">Website ↗</a>
+  </div>
+</section>
+
+<footer>
+  <span class="ft-copy">Gramaseva — Project by <span>Kummitha Abhiram Reddy</span></span>
+  <a href="index.html" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;">← Back to Portfolio</a>
+</footer>
+<script>
+const obs=new IntersectionObserver((e)=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('in');obs.unobserve(i.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
