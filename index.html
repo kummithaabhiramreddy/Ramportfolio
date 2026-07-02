@@ -243,6 +243,10 @@ footer{border-top:1px solid var(--dim);padding:28px 64px;display:flex;justify-co
   transform-style: preserve-3d;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 
@@ -274,7 +278,7 @@ footer{border-top:1px solid var(--dim);padding:28px 64px;display:flex;justify-co
 
 <section id="hero">
   <div class="hero-3d-logo-container reveal">
-    <img src="oas-logo-nobg.png?v=5" alt="OAS Logo">
+    <img src="oas-logo-nobg.png?v=6" alt="OAS Logo" draggable="false">
   </div>
   <div class="hero-kicker reveal">IT Student &amp; Builder — Andhra Pradesh</div>
   <h1 class="hero-name reveal d1">Kummitha <em>Abhiram</em> Reddy</h1>
