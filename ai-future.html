@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Future — Kummitha Abhiram Reddy</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#09090e; --surface:#111118; --ink:#e8e6f0; --muted:#6a6878;
+  --dim:#2e2c3a; --a1:#c8f135; --a2:#7b61ff; --a3:#ff5e3a; --a4:#00d4aa; --a5:#f5a623;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+a,button{-webkit-tap-highlight-color:transparent;outline:none;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--a1);color:#09090e;}
+
+/* ---- Top bar ---- */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 40px;border-bottom:1px solid rgba(232,230,240,.12);background:rgba(9,9,14,.7);backdrop-filter:blur(8px);}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.nav-logo-link{position:relative;width:38px;height:38px;border-radius:50%;overflow:hidden;border:2px solid #000;flex-shrink:0;display:block;}
+.nav-logo-img{width:100%;height:100%;object-fit:cover;display:block;}
+.nav-page-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.home-btn{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--ink);text-decoration:none;border:1px solid var(--dim);padding:9px 16px;border-radius:999px;transition:border-color .2s,color .2s,background .2s;}
+.home-btn:hover{border-color:var(--a1);color:var(--a1);background:rgba(200,241,53,.06);}
+.home-btn svg{width:14px;height:14px;flex-shrink:0;}
+
+/* ---- Page wrap: the widget renders full-page here instead of a floating corner card ---- */
+.page-wrap{padding:96px 16px 40px;display:flex;justify-content:center;min-height:100vh;}
+
+/* AI Future Chat Box Styles */
+.ai-future-btn{
+  display:flex; align-items:center; gap:7px;
+  padding:8px 13px; border-radius:20px;
+  background:transparent; border:1px solid var(--dim);
+  color:var(--muted); font-family:'DM Sans', sans-serif;
+  font-size:12.5px; font-weight:500; cursor:pointer;
+  transition:color .2s,background .2s;
+  white-space:nowrap;
+}
+.ai-future-btn:hover{color:var(--ink);background:var(--dim);}
+
+.ai-future-chatbox-overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,0.5);
+  z-index:99998; opacity:0; pointer-events:none;
+  transition:opacity .2s ease;
+}
+.ai-future-chatbox-overlay.open{ opacity:1; pointer-events:auto; }
+
+.ai-future-chatbox{
+  position:fixed; bottom:20px; right:20px; width:380px;
+  background:var(--surface); border:1px solid var(--dim);
+  border-radius:12px; box-shadow:0 20px 50px rgba(0,0,0,0.5);
+  z-index:99999; opacity:0; transform:translateY(20px); pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  display:flex; flex-direction:column; max-height:500px;
+}
+.ai-future-chatbox.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
+.ai-future-chatbox.resizing{ transition:none !important; user-select:none; }
+
+/* Resize handles — grab an edge (anywhere along it, including the middle)
+   or a corner and drag out to grow the card, or drag in to shrink it. */
+.cog-resize-handle{ position:absolute; z-index:20; background:transparent; touch-action:none; }
+.cog-resize-handle:hover, .cog-resize-handle.active{ background:rgba(200,241,53,.18); }
+.cog-resize-n, .cog-resize-s{ left:14px; right:14px; height:9px; cursor:ns-resize; }
+.cog-resize-n{ top:-5px; border-radius:6px 6px 0 0; }
+.cog-resize-s{ bottom:-5px; border-radius:0 0 6px 6px; }
+.cog-resize-e, .cog-resize-w{ top:14px; bottom:14px; width:9px; cursor:ew-resize; }
+.cog-resize-e{ right:-5px; border-radius:0 6px 6px 0; }
+.cog-resize-w{ left:-5px; border-radius:6px 0 0 6px; }
+.cog-resize-ne, .cog-resize-nw, .cog-resize-se, .cog-resize-sw{ width:16px; height:16px; }
+.cog-resize-ne{ top:-5px; right:-5px; cursor:nesw-resize; }
+.cog-resize-nw{ top:-5px; left:-5px; cursor:nwse-resize; }
+.cog-resize-se{ bottom:-5px; right:-5px; cursor:nwse-resize; }
+.cog-resize-sw{ bottom:-5px; left:-5px; cursor:nesw-resize; }
+
+.ai-future-chatbox-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 16px; border-bottom:1px solid var(--dim);
+  font-family:'Instrument Serif',serif; font-weight:500; font-size:14px;
+  color:var(--ink);
+}
+.ai-future-chatbox-close{
+  background:none; border:none; color:var(--muted); cursor:pointer;
+  font-size:20px; transition:color .15s ease;
+}
+.ai-future-chatbox-close:hover{ color:var(--ink); }
+
+.ai-future-chatbox-body{
+  flex:1; padding:14px 16px; overflow-y:auto;
+  display:flex; flex-direction:column; gap:10px;
+}
+
+.ai-future-search-bar{
+  display:flex; align-items:center; gap:8px;
+  padding:0 12px; background:var(--bg); border:1px solid var(--dim);
+  border-radius:8px; transition:border-color .15s ease;
+  margin:0 16px 14px 16px;
+}
+.ai-future-search-bar:focus-within{ border-color:var(--a1); }
+.ai-future-search-bar input{
+  flex:1; padding:10px 0; background:none; border:none;
+  color:var(--ink); font-family:'DM Sans', sans-serif;
+  font-size:12px; outline:none;
+}
+.ai-future-search-bar input::placeholder{ color:var(--muted); }
+.ai-future-search-bar button{
+  background:none; border:none; color:var(--a1); cursor:pointer;
+  font-size:16px; transition:transform .15s ease;
+}
+.ai-future-search-bar button:hover{ transform:scale(1.1); }
+
+.ai-future-chat-message{
+  padding:10px 12px; border-radius:8px; font-size:12px;
+  line-height:1.4; animation:slideIn .3s ease;
+}
+.ai-future-chat-message.user{
+  background:rgba(200,241,53,0.15); color:var(--ink); margin-left:20px;
+}
+.ai-future-chat-message.ai{
+  background:var(--bg); color:var(--muted); margin-right:20px;
+}
+
+@keyframes slideIn{
+  from{ opacity:0; transform:translateY(10px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* AI Future Tabs (Search / Messages) */
+.ai-future-tabs{
+  display:flex; gap:6px; padding:10px 16px 0 16px;
+}
+.ai-future-tab{
+  flex:1; display:flex; align-items:center; justify-content:center; gap:6px;
+  padding:8px 10px; border-radius:8px; border:1px solid var(--dim);
+  background:transparent; color:var(--muted);
+  font-family:'DM Sans',sans-serif; font-size:11.5px; font-weight:500;
+  cursor:pointer; transition:color .15s ease,background .15s ease,border-color .15s ease;
+}
+.ai-future-tab:hover{ color:var(--ink); }
+.ai-future-tab.active{ color:var(--bg); background:var(--a1); border-color:var(--a1); }
+
+/* In-card result view — search result links open here, inside the widget,
+   instead of navigating to a new browser tab/page. */
+.cog-result-view{
+  position:absolute; inset:0; background:var(--surface); border-radius:12px;
+  display:flex; flex-direction:column; opacity:0; pointer-events:none;
+  transition:opacity .15s ease; z-index:5;
+}
+.cog-result-view.open{ opacity:1; pointer-events:auto; }
+.cog-result-head{
+  display:flex; align-items:center; gap:8px; padding:12px 14px;
+  border-bottom:1px solid var(--dim); flex-shrink:0;
+}
+.cog-result-back{
+  background:none; border:1px solid var(--dim); color:var(--ink); cursor:pointer;
+  width:28px; height:28px; border-radius:50%; font-size:14px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; transition:border-color .15s ease;
+}
+.cog-result-back:hover{ border-color:var(--a1); }
+.cog-result-label{
+  font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden;
+  text-overflow:ellipsis; flex:1; min-width:0;
+}
+.cog-result-body{ flex:1; position:relative; }
+.cog-result-body iframe{ width:100%; height:100%; border:none; display:block; background:#fff; }
+.cog-result-loading{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:var(--muted); font-family:'DM Mono',monospace; font-size:11px; background:var(--surface);
+}
+.cog-result-loading.hidden{ display:none; }
+
+/* Messages Panel */
+.ai-future-messages-panel{
+  flex:1; display:flex; flex-direction:column; min-height:280px; overflow:hidden;
+}
+
+/* Name entry / new-chat entry screens */
+.msg-entry-screen{
+  flex:1; display:flex; flex-direction:column; align-items:stretch; justify-content:center;
+  gap:12px; padding:20px 18px;
+}
+.msg-entry-title{
+  font-family:'Instrument Serif',serif; font-size:16px; color:var(--ink); text-align:center;
+}
+.msg-entry-sub{
+  font-size:11.5px; color:var(--muted); text-align:center; margin-top:-6px;
+}
+.msg-entry-input{
+  width:100%; background:var(--bg); border:1px solid var(--dim); border-radius:8px;
+  padding:10px 12px; color:var(--ink); font-family:'DM Sans',sans-serif; font-size:12.5px; outline:none;
+  transition:border-color .15s ease;
+}
+.msg-entry-input:focus{ border-color:var(--a1); }
+.msg-entry-btn{
+  background:var(--a1); color:var(--bg); border:none; border-radius:8px;
+  padding:10px 12px; font-family:'DM Sans',sans-serif; font-size:12.5px; font-weight:600;
+  cursor:pointer; transition:opacity .15s ease;
+}
+.msg-entry-btn:hover{ opacity:.85; }
+.msg-entry-back{
+  background:none; border:none; color:var(--muted); font-size:11.5px; cursor:pointer;
+  text-align:center; text-decoration:underline; font-family:'DM Sans',sans-serif;
+}
+
+/* Chat list (WhatsApp-style contact list) */
+.msg-chat-list{ flex:1; overflow-y:auto; display:flex; flex-direction:column; }
+.msg-chat-list-header{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; font-size:11px; color:var(--muted); font-family:'DM Mono',monospace;
+  text-transform:uppercase; letter-spacing:1px;
+}
+.msg-new-chat-btn{
+  background:none; border:1px solid var(--dim); color:var(--a1); border-radius:14px;
+  padding:4px 10px; font-size:11px; cursor:pointer; font-family:'DM Sans',sans-serif;
+}
+.msg-new-chat-btn:hover{ border-color:var(--a1); }
+.msg-chat-list-item{
+  display:flex; align-items:center; gap:10px; padding:10px 16px; cursor:pointer;
+  border-bottom:1px solid rgba(232,230,240,.06); transition:background .15s ease;
+}
+.msg-chat-list-item:hover{ background:var(--dim); }
+.msg-chat-avatar{
+  width:34px; height:34px; border-radius:50%; background:var(--a2); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600;
+  flex-shrink:0; text-transform:uppercase; font-family:'DM Sans',sans-serif;
+}
+.msg-chat-info{ flex:1; min-width:0; }
+.msg-chat-name{ font-size:12.5px; color:var(--ink); font-weight:500; }
+.msg-chat-preview{
+  font-size:11px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.msg-chat-empty{
+  flex:1; display:flex; align-items:center; justify-content:center;
+  color:var(--muted); font-size:11.5px; padding:20px; text-align:center;
+}
+
+/* Conversation view */
+.msg-conversation{ flex:1; display:flex; flex-direction:column; overflow:hidden; }
+.msg-conv-header{
+  display:flex; align-items:center; gap:10px; padding:10px 16px;
+  border-bottom:1px solid var(--dim);
+}
+.msg-conv-back{
+  background:none; border:none; color:var(--muted); font-size:16px; cursor:pointer; line-height:1;
+}
+.msg-conv-back:hover{ color:var(--ink); }
+.msg-conv-name{ font-size:13px; color:var(--ink); font-weight:500; }
+.msg-conv-body{
+  flex:1; overflow-y:auto; padding:14px 16px; display:flex; flex-direction:column; gap:8px;
+}
+.msg-bubble{
+  max-width:78%; padding:8px 11px; border-radius:10px; font-size:12px; line-height:1.4;
+  animation:slideIn .25s ease; word-wrap:break-word;
+}
+.msg-bubble.sent{
+  background:rgba(200,241,53,0.15); color:var(--ink); align-self:flex-end; border-bottom-right-radius:2px;
+}
+.msg-bubble.received{
+  background:var(--bg); border:1px solid var(--dim); color:var(--ink); align-self:flex-start; border-bottom-left-radius:2px;
+}
+.msg-bubble-time{
+  display:block; margin-top:3px; font-size:9px; color:var(--muted); font-family:'DM Mono',monospace;
+}
+.msg-conv-input-bar{
+  display:flex; align-items:center; gap:8px; padding:0 12px;
+  background:var(--bg); border:1px solid var(--dim); border-radius:8px;
+  margin:0 16px 14px 16px; transition:border-color .15s ease;
+}
+.msg-conv-input-bar:focus-within{ border-color:var(--a1); }
+.msg-conv-input-bar input{
+  flex:1; padding:10px 0; background:none; border:none; color:var(--ink);
+  font-family:'DM Sans',sans-serif; font-size:12px; outline:none;
+}
+.msg-conv-input-bar input::placeholder{ color:var(--muted); }
+.msg-conv-input-bar button{
+  background:none; border:none; color:var(--a1); cursor:pointer; font-size:16px;
+  transition:transform .15s ease;
+}
+.msg-conv-input-bar button:hover{ transform:scale(1.1); }
+
+/* Extra input-bar icon buttons: attach / mic / emoji (shared) */
+.ai-future-search-bar,.msg-conv-input-bar{ position:relative; padding:0 8px; }
+.cog-input-icon{
+  background:none; border:none; color:var(--muted); cursor:pointer;
+  font-size:16px; width:26px; height:26px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:50%; transition:color .15s ease,background .15s ease,transform .15s ease;
+}
+.cog-input-icon:hover{ color:var(--a1); background:var(--dim); transform:scale(1.08); }
+.cog-input-icon.cog-mic-active{ color:var(--a3); animation:cogPulse 1s ease-in-out infinite; }
+@keyframes cogPulse{ 0%,100%{ opacity:1; } 50%{ opacity:.45; } }
+.cog-file-input{ display:none; }
+
+/* Pending attachment chips — shown above the input bar before sending */
+.cog-attach-chips{
+  display:none; flex-wrap:wrap; gap:8px; padding:10px 16px 0 16px;
+}
+.cog-attach-chips.has-items{ display:flex; }
+.cog-attach-chip{
+  position:relative; display:flex; align-items:center; gap:6px;
+  background:var(--surface); border:1px solid var(--dim); border-radius:8px;
+  padding:5px 26px 5px 6px; max-width:160px;
+}
+.cog-attach-chip-thumb{
+  width:26px; height:26px; border-radius:5px; object-fit:cover; flex-shrink:0; background:var(--dim);
+}
+.cog-attach-chip-icon{
+  width:26px; height:26px; border-radius:5px; flex-shrink:0; background:var(--dim);
+  display:flex; align-items:center; justify-content:center; font-size:13px;
+}
+.cog-attach-chip-name{
+  font-size:11px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.cog-attach-chip-remove{
+  position:absolute; top:2px; right:2px; width:16px; height:16px; border-radius:50%;
+  background:var(--dim); color:var(--ink); border:none; cursor:pointer; font-size:11px;
+  line-height:1; display:flex; align-items:center; justify-content:center;
+}
+.cog-attach-chip-remove:hover{ background:var(--a3); color:#fff; }
+.cog-attach-chip-pending{ opacity:.65; }
+.cog-attach-chip-loading{ animation:cogPulse 1s ease-in-out infinite; }
+
+/* Sent attachments — rendered inside chat bubbles / messages, clickable to open anytime */
+.cog-msg-attachments{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+.cog-msg-attachments:first-child{ margin-top:0; }
+.cog-attach-link{
+  display:flex; align-items:center; gap:6px; text-decoration:none;
+  background:rgba(255,255,255,.06); border:1px solid var(--dim); border-radius:8px;
+  padding:5px 10px 5px 5px; max-width:190px; transition:border-color .15s ease;
+}
+.cog-attach-link:hover{ border-color:var(--a1); }
+.cog-attach-link img{ width:28px; height:28px; border-radius:5px; object-fit:cover; flex-shrink:0; }
+.cog-attach-link-icon{
+  width:28px; height:28px; border-radius:5px; flex-shrink:0; background:var(--dim);
+  display:flex; align-items:center; justify-content:center; font-size:13px;
+}
+.cog-attach-link-name{
+  font-size:11.5px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+
+/* Attachment preview modal — opens on click before any download happens */
+.cog-preview-overlay{
+  display:none; position:fixed; inset:0; z-index:900; background:rgba(5,5,8,.82);
+  backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:24px;
+}
+.cog-preview-overlay.open{ display:flex; }
+.cog-preview-card{
+  background:var(--surface); border:1px solid var(--dim); border-radius:14px;
+  width:100%; max-width:480px; max-height:86vh; display:flex; flex-direction:column;
+  overflow:hidden; box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.cog-preview-head{
+  display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--dim);
+}
+.cog-preview-head-icon{
+  width:30px; height:30px; border-radius:7px; background:var(--dim); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:14px;
+}
+.cog-preview-head-name{
+  font-size:13px; color:var(--ink); font-weight:500; white-space:nowrap; overflow:hidden;
+  text-overflow:ellipsis; flex:1; min-width:0;
+}
+.cog-preview-close{
+  background:none; border:none; color:var(--muted); font-size:20px; line-height:1;
+  cursor:pointer; width:28px; height:28px; border-radius:50%; flex-shrink:0;
+}
+.cog-preview-close:hover{ background:var(--dim); color:var(--ink); }
+.cog-preview-body{
+  flex:1; min-height:120px; overflow:auto; display:flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,.02); padding:16px;
+}
+.cog-preview-body img{ max-width:100%; max-height:60vh; border-radius:8px; display:block; }
+.cog-preview-body video{ max-width:100%; max-height:60vh; border-radius:8px; display:block; }
+.cog-preview-body audio{ width:100%; }
+.cog-preview-body iframe{ width:100%; height:60vh; border:none; border-radius:8px; background:#fff; }
+.cog-preview-generic{ text-align:center; color:var(--muted); font-size:13px; }
+.cog-preview-generic .cog-preview-generic-icon{ font-size:40px; display:block; margin-bottom:10px; }
+.cog-preview-actions{
+  display:flex; justify-content:center; gap:10px; padding:14px 16px; border-top:1px solid var(--dim);
+}
+.cog-preview-download{
+  font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;
+  padding:10px 20px; border-radius:6px; cursor:pointer; border:1px solid var(--a1);
+  background:var(--a1); color:#09090e; text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+}
+.cog-preview-download:hover{ opacity:.88; }
+
+/* Emoji picker */
+.cog-emoji-picker{
+  position:absolute; bottom:calc(100% + 8px); left:16px; right:16px;
+  background:var(--surface); border:1px solid var(--dim); border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.45); z-index:100000;
+  display:none; flex-direction:column; overflow:hidden;
+}
+.cog-emoji-picker.open{ display:flex; }
+.cog-emoji-search{
+  border:none; border-bottom:1px solid var(--dim); background:var(--bg);
+  color:var(--ink); font-family:'DM Sans',sans-serif; font-size:12px;
+  padding:9px 12px; outline:none; width:100%;
+}
+.cog-emoji-search::placeholder{ color:var(--muted); }
+.cog-emoji-grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(30px,1fr));
+  gap:2px; padding:8px; max-height:190px; overflow-y:auto;
+}
+.cog-emoji-grid button{
+  background:none; border:none; font-size:18px; line-height:1; cursor:pointer;
+  padding:5px 0; border-radius:6px; transition:background .12s ease,transform .12s ease;
+}
+.cog-emoji-grid button:hover{ background:var(--dim); transform:scale(1.15); }
+.cog-emoji-empty{ padding:20px; text-align:center; color:var(--muted); font-size:11.5px; grid-column:1/-1; }
+
+/* ---- Overrides: turn the floating widget into a full-page panel ---- */
+.ai-future-chatbox-overlay{ display:none !important; }
+.ai-future-chatbox{
+  position:static !important;
+  opacity:1 !important; transform:none !important; pointer-events:auto !important;
+  width:100% !important; max-width:640px;
+  height:min(78vh,760px) !important; max-height:none !important;
+  margin:0 auto;
+}
+.cog-resize-handle{ display:none !important; }
+.ai-future-chatbox-close{ cursor:pointer; }
+
+@media (max-width:900px){
+  nav{padding:12px 20px;gap:10px;}
+}
+@media (max-width:680px){
+  .page-wrap{padding:88px 0 0;}
+  .ai-future-chatbox{ max-width:100%; height:calc(100vh - 88px) !important; border-radius:0; }
+  .home-btn span{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="nav-logo-link" aria-label="Home">
+      <img class="nav-logo-img" src="data:image/jpeg;base64,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" alt="Kummitha Abhiram Reddy">
+    </a>
+    <span class="nav-page-label">AI Future</span>
+  </div>
+  <a href="index.html" class="home-btn" aria-label="Back to home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9.5a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>
+    <span>Home</span>
+  </a>
+</nav>
+
+<div class="page-wrap">
+<!-- AI Future Chat Box Overlay -->
+<div class="ai-future-chatbox-overlay" id="aiFutureChatOverlay"></div>
+
+<!-- AI Future Chat Box -->
+<div class="ai-future-chatbox" id="aiFutureChatbox">
+  <div class="cog-resize-handle cog-resize-n" data-dir="n"></div>
+  <div class="cog-resize-handle cog-resize-s" data-dir="s"></div>
+  <div class="cog-resize-handle cog-resize-e" data-dir="e"></div>
+  <div class="cog-resize-handle cog-resize-w" data-dir="w"></div>
+  <div class="cog-resize-handle cog-resize-ne" data-dir="ne"></div>
+  <div class="cog-resize-handle cog-resize-nw" data-dir="nw"></div>
+  <div class="cog-resize-handle cog-resize-se" data-dir="se"></div>
+  <div class="cog-resize-handle cog-resize-sw" data-dir="sw"></div>
+  <div class="ai-future-chatbox-header">
+    <span style="display:flex;align-items:center;gap:8px;"><img src="data:image/jpeg;base64,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" alt="" style="width:20px;height:20px;border-radius:6px;object-fit:cover;">Cognisphereai</span>
+  </div>
+
+  <div class="ai-future-tabs">
+    <button class="ai-future-tab active" id="aiFutureTabSearch" onclick="switchAIFutureTab('search')">🔍 Search</button>
+    <button class="ai-future-tab" id="aiFutureTabMessages" onclick="switchAIFutureTab('messages')">💬 Messages</button>
+  </div>
+
+  <div class="ai-future-chatbox-body" id="aiFutureChatBody">
+    <div class="ai-future-chat-message ai">
+      Welcome to Cognisphereai! 👋 Search the web or ask me anything about future AI developments.
+    </div>
+  </div>
+  <div class="cog-attach-chips" id="cogSearchAttachChips"></div>
+  <div class="ai-future-search-bar" id="aiFutureSearchBar">
+    <button class="cog-input-icon" type="button" title="Attach photos, videos or files" onclick="cogPickFiles('search')">➕</button>
+    <input type="file" class="cog-file-input" id="cogSearchFileInput" multiple accept="*/*" onchange="cogFilesSelected(event,'search')" />
+    <input type="text" id="aiFutureSearchInput" placeholder="Search Cognisphereai or ask..." />
+    <button class="cog-input-icon" type="button" id="cogSearchMicBtn" title="Voice search" onclick="cogToggleMic('search')">🎙️</button>
+    <button onclick="sendAIFutureSearch()" title="Search" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+  </div>
+
+  <!-- Messages Panel (WhatsApp-style chat) -->
+  <div class="ai-future-messages-panel" id="aiFutureMessagesPanel" style="display:none;"></div>
+
+  <!-- In-card result view — a Cognisphereai search result link loads here, inside
+       this card, instead of navigating away to a new browser tab/page. -->
+  <div class="cog-result-view" id="cogResultView">
+    <div class="cog-result-head">
+      <button class="cog-result-back" onclick="cogCloseResultView()" aria-label="Back to chat">←</button>
+      <span class="cog-result-label" id="cogResultLabel"></span>
+    </div>
+    <div class="cog-result-body" id="cogResultBody">
+      <div class="cog-result-loading" id="cogResultLoading">Loading…</div>
+      <iframe id="cogResultFrame" title="Cognisphereai result"></iframe>
+    </div>
+  </div>
+
+  <!-- Attachment preview modal — shared by both the Search and Messages tabs.
+       Clicking a sent attachment opens this preview first; downloading is a
+       separate, explicit action from inside the card. -->
+  <div class="cog-preview-overlay" id="cogPreviewOverlay" onclick="if(event.target===this) cogCloseAttachPreview()">
+    <div class="cog-preview-card">
+      <div class="cog-preview-head">
+        <span class="cog-preview-head-icon" id="cogPreviewIcon">📎</span>
+        <span class="cog-preview-head-name" id="cogPreviewName"></span>
+        <button class="cog-preview-close" onclick="cogCloseAttachPreview()" aria-label="Close">×</button>
+      </div>
+      <div class="cog-preview-body" id="cogPreviewBody"></div>
+      <div class="cog-preview-actions">
+        <a class="cog-preview-download" id="cogPreviewDownload" href="#" download>⬇ Download</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// AI Future Chat Functions
+window.openAIFutureChat = function() {
+  const chatbox = document.getElementById('aiFutureChatbox');
+  const overlay = document.getElementById('aiFutureChatOverlay');
+  if(!chatbox || !overlay) return;
+  chatbox.classList.add('open');
+  overlay.classList.add('open');
+  const input = document.getElementById('aiFutureSearchInput');
+  if(input) input.focus();
+};
+
+window.closeAIFutureChat = function() {
+  const chatbox = document.getElementById('aiFutureChatbox');
+  const overlay = document.getElementById('aiFutureChatOverlay');
+  if(!chatbox || !overlay) return;
+  chatbox.classList.remove('open');
+  overlay.classList.remove('open');
+};
+
+window.sendAIFutureSearch = function() {
+  const input = document.getElementById('aiFutureSearchInput');
+  if(!input) return;
+  const query = input.value.trim();
+  const allPending = cogPendingAttachments.search;
+  // Only files that have finished reading are ready to send; files still
+  // loading stay staged in the bar so they aren't lost if send is hit early.
+  const ready = allPending.filter(a => !a.loading);
+  const stillLoading = allPending.filter(a => a.loading);
+
+  if (!query && !ready.length) return; // nothing ready to send yet
+
+  const chatBody = document.getElementById('aiFutureChatBody');
+  if(!chatBody) return;
+
+  // Add user message to chat (text + any attached files, both clickable/reopenable)
+  const userMsg = document.createElement('div');
+  userMsg.className = 'ai-future-chat-message user';
+  userMsg.innerHTML = (query ? cogEscape(query) : '') + cogRenderAttachments(ready);
+  chatBody.appendChild(userMsg);
+
+  // Clear the staged attachments that were just sent, keep any still-loading ones
+  cogPendingAttachments.search = stillLoading;
+  cogRenderAttachChips('search');
+
+  // Add typing indicator
+  const typingMsg = document.createElement('div');
+  typingMsg.className = 'ai-future-chat-message ai';
+  typingMsg.textContent = 'Searching Cognisphereai...';
+  typingMsg.id = 'typingMsg';
+  chatBody.appendChild(typingMsg);
+  
+  // Scroll to bottom
+  chatBody.scrollTop = chatBody.scrollHeight;
+  
+  // Simulate search and open Cognisphereai link
+  setTimeout(() => {
+    const typing = document.getElementById('typingMsg');
+    if (typing) typing.remove();
+
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'ai-future-chat-message ai';
+    if (query) {
+      const resultUrl = 'https://cognisphereai.vercel.app/home.html?q=' + encodeURIComponent(query);
+      aiMsg.appendChild(document.createTextNode(`Here's what I found for: "${query}" `));
+      aiMsg.appendChild(document.createElement('br'));
+      // Clicking this opens the result inside the Cognisphereai card itself
+      // (via cogOpenResult), never a new browser tab/page.
+      const resultLink = document.createElement('a');
+      resultLink.href = 'javascript:void(0)';
+      resultLink.style.color = 'var(--a1)';
+      resultLink.style.textDecoration = 'none';
+      resultLink.style.cursor = 'pointer';
+      resultLink.textContent = resultUrl + ' →';
+      resultLink.addEventListener('click', function(e){
+        e.preventDefault();
+        cogOpenResult(resultUrl, 'Cognisphereai — ' + query);
+      });
+      aiMsg.appendChild(resultLink);
+    } else {
+      aiMsg.textContent = 'Got your file — you can reopen it anytime by tapping it above.';
+    }
+    chatBody.appendChild(aiMsg);
+    
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 800);
+  
+  input.value = '';
+};
+
+// Allow Enter key to send search
+document.addEventListener('DOMContentLoaded', function() {
+  const searchInput = document.getElementById('aiFutureSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        window.sendAIFutureSearch();
+      }
+    });
+  }
+});
+
+// Initialize on load
+// Note: overlay click-to-close intentionally disabled.
+// Only the × button in the chat box header closes the chat box.
+
+// ==== AI Future Tabs (Search / Messages) ====
+window.switchAIFutureTab = function(tab) {
+  const searchBar = document.getElementById('aiFutureSearchBar');
+  const chatBody = document.getElementById('aiFutureChatBody');
+  const msgPanel = document.getElementById('aiFutureMessagesPanel');
+  const tabSearch = document.getElementById('aiFutureTabSearch');
+  const tabMessages = document.getElementById('aiFutureTabMessages');
+  if (!searchBar || !chatBody || !msgPanel || !tabSearch || !tabMessages) return;
+
+  if (tab === 'search') {
+    chatBody.style.display = 'flex';
+    searchBar.style.display = 'flex';
+    msgPanel.style.display = 'none';
+    tabSearch.classList.add('active');
+    tabMessages.classList.remove('active');
+  } else {
+    chatBody.style.display = 'none';
+    searchBar.style.display = 'none';
+    msgPanel.style.display = 'flex';
+    tabMessages.classList.add('active');
+    tabSearch.classList.remove('active');
+    renderAIFutureMessages();
+  }
+};
+
+// ==== WhatsApp-style Messages (persisted locally, survives refresh) ====
+const COG_MSG_KEY = 'cogMessengerData';
+let cogActiveChat = null; // recipient name of the currently open conversation
+
+// Card resize — grab any edge (including its middle, not just the corners)
+// and drag outward to extend the card, or drag inward to shrink it back down.
+document.addEventListener('DOMContentLoaded', function(){
+  const box = document.getElementById('aiFutureChatbox');
+  if(!box) return;
+  const MIN_W = 300, MIN_H = 320;
+  let resizing = null;
+
+  function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+  function maxDims(){
+    return { maxW: Math.min(window.innerWidth - 24, 720), maxH: Math.min(window.innerHeight - 24, 800) };
+  }
+  function pointOf(e){
+    const t = e.touches && e.touches[0];
+    return { x: t ? t.clientX : e.clientX, y: t ? t.clientY : e.clientY };
+  }
+
+  function startResize(e, dir, handleEl){
+    e.preventDefault();
+    e.stopPropagation();
+    const rect = box.getBoundingClientRect();
+    // Freeze the card to explicit left/top/width/height so any edge can
+    // drive the resize, regardless of its usual bottom/right anchoring.
+    box.style.right = 'auto';
+    box.style.bottom = 'auto';
+    box.style.left = rect.left + 'px';
+    box.style.top = rect.top + 'px';
+    box.style.width = rect.width + 'px';
+    box.style.height = rect.height + 'px';
+    box.style.maxHeight = 'none';
+    box.classList.add('resizing');
+    handleEl.classList.add('active');
+
+    const p = pointOf(e);
+    resizing = { dir, handleEl, startX: p.x, startY: p.y, startLeft: rect.left, startTop: rect.top, startW: rect.width, startH: rect.height };
+
+    document.addEventListener('mousemove', onResizeMove);
+    document.addEventListener('mouseup', stopResize);
+    document.addEventListener('touchmove', onResizeMove, { passive:false });
+    document.addEventListener('touchend', stopResize);
+  }
+
+  function onResizeMove(e){
+    if(!resizing) return;
+    e.preventDefault();
+    const p = pointOf(e);
+    const dx = p.x - resizing.startX;
+    const dy = p.y - resizing.startY;
+    const { maxW, maxH } = maxDims();
+    const { dir, startLeft, startTop, startW, startH } = resizing;
+    let newLeft = startLeft, newTop = startTop, newW = startW, newH = startH;
+
+    // Pulling an edge (or corner) away from the card extends it in that
+    // direction; pushing it back toward the card's center shrinks it.
+    if(dir.includes('e')){ newW = clamp(startW + dx, MIN_W, maxW); }
+    if(dir.includes('s')){ newH = clamp(startH + dy, MIN_H, maxH); }
+    if(dir.includes('w')){
+      newW = clamp(startW - dx, MIN_W, maxW);
+      newLeft = startLeft + (startW - newW);
+    }
+    if(dir.includes('n')){
+      newH = clamp(startH - dy, MIN_H, maxH);
+      newTop = startTop + (startH - newH);
+    }
+
+    // Keep the card fully on-screen while resizing.
+    newLeft = clamp(newLeft, 4, window.innerWidth - newW - 4);
+    newTop = clamp(newTop, 4, window.innerHeight - newH - 4);
+
+    box.style.left = newLeft + 'px';
+    box.style.top = newTop + 'px';
+    box.style.width = newW + 'px';
+    box.style.height = newH + 'px';
+  }
+
+  function stopResize(){
+    if(!resizing) return;
+    resizing.handleEl.classList.remove('active');
+    resizing = null;
+    box.classList.remove('resizing');
+    document.removeEventListener('mousemove', onResizeMove);
+    document.removeEventListener('mouseup', stopResize);
+    document.removeEventListener('touchmove', onResizeMove);
+    document.removeEventListener('touchend', stopResize);
+  }
+
+  box.querySelectorAll(':scope > .cog-resize-handle').forEach(function(handle){
+    const dir = handle.getAttribute('data-dir');
+    handle.addEventListener('mousedown', function(e){ startResize(e, dir, handle); });
+    handle.addEventListener('touchstart', function(e){ startResize(e, dir, handle); }, { passive:false });
+  });
+});
+
+function cogGetData(){
+  try {
+    const raw = localStorage.getItem(COG_MSG_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e){}
+  return { userName: '', conversations: {} };
+}
+function cogSaveData(data){
+  try { localStorage.setItem(COG_MSG_KEY, JSON.stringify(data)); } catch(e){}
+}
+// Opens a Cognisphereai search result inside the card itself (an iframe
+// overlay), instead of navigating away to a new browser tab/page.
+window.cogOpenResult = function(url, label){
+  const view = document.getElementById('cogResultView');
+  const frame = document.getElementById('cogResultFrame');
+  const loading = document.getElementById('cogResultLoading');
+  const labelEl = document.getElementById('cogResultLabel');
+  if (!view || !frame) return;
+  if (labelEl) labelEl.textContent = label || url;
+  if (loading) loading.classList.remove('hidden');
+  frame.style.visibility = 'hidden';
+  frame.onload = function(){
+    if (loading) loading.classList.add('hidden');
+    frame.style.visibility = 'visible';
+  };
+  frame.src = url;
+  view.classList.add('open');
+};
+
+// Closes the in-card result view and returns to the chat/search view.
+window.cogCloseResultView = function(){
+  const view = document.getElementById('cogResultView');
+  const frame = document.getElementById('cogResultFrame');
+  const loading = document.getElementById('cogResultLoading');
+  if (view) view.classList.remove('open');
+  if (frame) frame.src = 'about:blank';
+  if (loading) loading.classList.remove('hidden');
+};
+
+function cogEscape(str){
+  const d = document.createElement('div');
+  d.textContent = str == null ? '' : String(str);
+  return d.innerHTML;
+}
+function cogInitials(name){
+  return (name || '?').trim().slice(0,2).toUpperCase();
+}
+function cogTimeNow(){
+  return new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+}
+
+window.renderAIFutureMessages = function(){
+  const data = cogGetData();
+  const panel = document.getElementById('aiFutureMessagesPanel');
+  if (!panel) return;
+
+  // Step 1: first time here -> ask sender's name
+  if (!data.userName) {
+    panel.innerHTML = `
+      <div class="msg-entry-screen">
+        <div class="msg-entry-title">Let's get you set up</div>
+        <div class="msg-entry-sub">What's your name?</div>
+        <input type="text" class="msg-entry-input" id="cogNameInput" placeholder="Your name" autocomplete="off" />
+        <button class="msg-entry-btn" onclick="cogSaveName()">Continue</button>
+      </div>`;
+    const inp = document.getElementById('cogNameInput');
+    if (inp) {
+      inp.focus();
+      inp.addEventListener('keypress', e => { if (e.key === 'Enter') cogSaveName(); });
+    }
+    return;
+  }
+
+  // Step 2: a conversation is open -> show it (with full history, like WhatsApp)
+  if (cogActiveChat) {
+    cogRenderConversation(cogActiveChat);
+    return;
+  }
+
+  // Step 3: default -> show the list of all chats
+  cogRenderChatList();
+};
+
+window.cogSaveName = function(){
+  const inp = document.getElementById('cogNameInput');
+  if (!inp) return;
+  const name = inp.value.trim();
+  if (!name) return;
+  const data = cogGetData();
+  data.userName = name;
+  cogSaveData(data);
+  renderAIFutureMessages();
+};
+
+function cogRenderChatList(){
+  const data = cogGetData();
+  const panel = document.getElementById('aiFutureMessagesPanel');
+  const names = Object.keys(data.conversations || {});
+
+  let listHtml;
+  if (names.length === 0) {
+    listHtml = `<div class="msg-chat-empty">No chats yet.<br>Tap "New chat" to message someone.</div>`;
+  } else {
+    names.sort((a,b) => {
+      const ta = (data.conversations[a].slice(-1)[0] || {}).ts || 0;
+      const tb = (data.conversations[b].slice(-1)[0] || {}).ts || 0;
+      return tb - ta;
+    });
+    listHtml = names.map(name => {
+      const thread = data.conversations[name] || [];
+      const last = thread[thread.length - 1];
+      const preview = last ? (last.from === 'me' ? 'You: ' : '') + cogEscape(last.text) : 'No messages yet';
+      const safeName = cogEscape(name);
+      return `
+        <div class="msg-chat-list-item" onclick="cogOpenChat(decodeURIComponent('${encodeURIComponent(name)}'))">
+          <div class="msg-chat-avatar">${cogEscape(cogInitials(name))}</div>
+          <div class="msg-chat-info">
+            <div class="msg-chat-name">${safeName}</div>
+            <div class="msg-chat-preview">${preview}</div>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  panel.innerHTML = `
+    <div class="msg-chat-list">
+      <div class="msg-chat-list-header">
+        <span>Chats — ${cogEscape(data.userName)}</span>
+        <button class="msg-new-chat-btn" onclick="cogShowNewChat()">+ New chat</button>
+      </div>
+      ${listHtml}
+    </div>`;
+}
+
+window.cogShowNewChat = function(){
+  const panel = document.getElementById('aiFutureMessagesPanel');
+  if (!panel) return;
+  panel.innerHTML = `
+    <div class="msg-entry-screen">
+      <div class="msg-entry-title">Start a new chat</div>
+      <div class="msg-entry-sub">Who do you want to message?</div>
+      <input type="text" class="msg-entry-input" id="cogRecipientInput" placeholder="Recipient's name" autocomplete="off" />
+      <button class="msg-entry-btn" onclick="cogStartChat()">Start chat</button>
+      <button class="msg-entry-back" onclick="cogActiveChat=null; renderAIFutureMessages();">← Back to chats</button>
+    </div>`;
+  const inp = document.getElementById('cogRecipientInput');
+  if (inp) {
+    inp.focus();
+    inp.addEventListener('keypress', e => { if (e.key === 'Enter') cogStartChat(); });
+  }
+};
+
+window.cogStartChat = function(){
+  const inp = document.getElementById('cogRecipientInput');
+  if (!inp) return;
+  const name = inp.value.trim();
+  if (!name) return;
+  const data = cogGetData();
+  if (!data.conversations[name]) data.conversations[name] = [];
+  cogSaveData(data);
+  cogOpenChat(name);
+};
+
+window.cogOpenChat = function(name){
+  cogActiveChat = name;
+  cogRenderConversation(name);
+};
+
+function cogRenderConversation(name){
+  const data = cogGetData();
+  const panel = document.getElementById('aiFutureMessagesPanel');
+  if (!panel) return;
+  const thread = data.conversations[name] || [];
+
+  // Always render the FULL stored history for this chat (persists across opens/refreshes)
+  const bubbles = thread.map(m => `
+    <div class="msg-bubble ${m.from === 'me' ? 'sent' : 'received'}">
+      ${cogEscape(m.text)}
+      ${cogRenderAttachments(m.attachments)}
+      <span class="msg-bubble-time">${cogEscape(m.from === 'me' ? data.userName : name)} · ${cogEscape(m.time)}</span>
+    </div>`).join('');
+
+  panel.innerHTML = `
+    <div class="msg-conversation">
+      <div class="msg-conv-header">
+        <button class="msg-conv-back" onclick="cogActiveChat=null; renderAIFutureMessages();">←</button>
+        <div class="msg-chat-avatar">${cogEscape(cogInitials(name))}</div>
+        <div class="msg-conv-name">${cogEscape(name)}</div>
+      </div>
+      <div class="msg-conv-body" id="cogConvBody">
+        ${bubbles || '<div class="msg-chat-empty">No messages yet. Say hi 👋</div>'}
+      </div>
+      <div class="cog-attach-chips" id="cogMsgAttachChips"></div>
+      <div class="msg-conv-input-bar">
+        <div class="cog-emoji-picker" id="cogEmojiPicker">
+          <input type="text" class="cog-emoji-search" id="cogEmojiSearch" placeholder="Search emoji..." autocomplete="off" oninput="cogFilterEmoji()" />
+          <div class="cog-emoji-grid" id="cogEmojiGrid"></div>
+        </div>
+        <button class="cog-input-icon" type="button" title="Attach photos, videos or files" onclick="cogPickFiles('msg')">➕</button>
+        <input type="file" class="cog-file-input" id="cogMsgFileInput" multiple accept="*/*" onchange="cogFilesSelected(event,'msg')" />
+        <button class="cog-input-icon" type="button" title="Emoji" onclick="cogToggleEmojiPicker()">😊</button>
+        <input type="text" id="cogMsgInput" placeholder="Message ${cogEscape(name)}..." autocomplete="off" />
+        <button class="cog-input-icon" type="button" id="cogMsgMicBtn" title="Voice message" onclick="cogToggleMic('msg')">🎙️</button>
+        <button onclick="cogSendMessage()">➤</button>
+      </div>
+    </div>`;
+
+  const body = document.getElementById('cogConvBody');
+  if (body) body.scrollTop = body.scrollHeight;
+  const inp = document.getElementById('cogMsgInput');
+  if (inp) {
+    inp.focus();
+    inp.addEventListener('keypress', e => { if (e.key === 'Enter') cogSendMessage(); });
+  }
+  cogRenderAttachChips('msg'); // re-show any files picked but not yet sent
+}
+
+window.cogSendMessage = function(){
+  const inp = document.getElementById('cogMsgInput');
+  if (!inp || !cogActiveChat) return;
+  const text = inp.value.trim();
+  const allPending = cogPendingAttachments.msg;
+  // Only files that finished reading are ready; keep still-loading ones staged.
+  const ready = allPending.filter(a => !a.loading);
+  const stillLoading = allPending.filter(a => a.loading);
+  if (!text && !ready.length) return; // nothing ready to send yet
+
+  const data = cogGetData();
+  if (!data.conversations[cogActiveChat]) data.conversations[cogActiveChat] = [];
+  data.conversations[cogActiveChat].push({
+    from: 'me', text: text, time: cogTimeNow(), ts: Date.now(),
+    attachments: ready.map(a => ({ name: a.name, mime: a.mime, url: a.url }))
+  });
+  cogSaveData(data);
+  inp.value = '';
+  cogPendingAttachments.msg = stillLoading;
+  cogRenderConversation(cogActiveChat); // re-render in place — no page refresh needed
+};
+
+// ==== Attach photos / videos / files (Gallery access via native file picker) ====
+// Files picked from the browser are staged as chips in the bar first; only once the
+// user hits send do they travel into the chat, where they stay as clickable links
+// that can be opened again at any time.
+window.cogPickFiles = function(target){
+  const inputId = target === 'search' ? 'cogSearchFileInput' : 'cogMsgFileInput';
+  const input = document.getElementById(inputId);
+  if (input) input.click();
+};
+
+// Web development files are not allowed as attachments (any other file type is fine)
+const COG_BLOCKED_EXT = ['html','htm','css','js','mjs','cjs','jsx','ts','tsx','php','asp','aspx','jsp','vue','svelte'];
+const COG_MAX_ATTACH_BYTES = 8 * 1024 * 1024; // 8MB per file, so it can be saved+reopened later
+
+window.cogPendingAttachments = { search: [], msg: [] };
+
+window.cogFilesSelected = function(event, target){
+  let files = Array.from(event.target.files || []);
+  event.target.value = ''; // allow re-selecting the same file(s) next time
+  if (!files.length) return;
+
+  const blocked = files.filter(f => COG_BLOCKED_EXT.includes((f.name.split('.').pop() || '').toLowerCase()));
+  if (blocked.length) {
+    files = files.filter(f => !blocked.includes(f));
+    alert('Web development files (' + blocked.map(f => f.name).join(', ') + ") can't be attached.");
+  }
+
+  const tooBig = files.filter(f => f.size > COG_MAX_ATTACH_BYTES);
+  if (tooBig.length) {
+    files = files.filter(f => !tooBig.includes(f));
+    alert('These files are over 8MB and can\'t be attached: ' + tooBig.map(f => f.name).join(', '));
+  }
+  if (!files.length) return;
+
+  files.forEach(f => {
+    // Show a "loading" chip immediately so the user gets instant feedback
+    // in the search bar — don't wait for the (possibly slow) file read to finish.
+    const pendingEntry = { name: f.name, mime: f.type || 'application/octet-stream', url: null, loading: true };
+    cogPendingAttachments[target].push(pendingEntry);
+    cogRenderAttachChips(target);
+
+    const reader = new FileReader();
+    reader.onload = function(){
+      pendingEntry.url = reader.result;
+      pendingEntry.loading = false;
+      cogRenderAttachChips(target);
+    };
+    reader.onerror = function(){
+      // Reading failed — remove the stuck placeholder instead of leaving a dead chip
+      const idx = cogPendingAttachments[target].indexOf(pendingEntry);
+      if (idx > -1) cogPendingAttachments[target].splice(idx, 1);
+      cogRenderAttachChips(target);
+      alert('Could not attach "' + f.name + '". Please try again.');
+    };
+    reader.readAsDataURL(f);
+  });
+};
+
+function cogAttachIcon(mime){
+  if ((mime || '').startsWith('video/')) return '🎬';
+  if ((mime || '').startsWith('audio/')) return '🎵';
+  if (mime === 'application/pdf') return '📄';
+  return '📎';
+}
+
+// Render the removable chips for files staged but not yet sent
+window.cogRenderAttachChips = function(target){
+  const containerId = target === 'search' ? 'cogSearchAttachChips' : 'cogMsgAttachChips';
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const items = cogPendingAttachments[target];
+
+  container.classList.toggle('has-items', items.length > 0);
+  container.innerHTML = items.map((a, i) => {
+    const isImg = !a.loading && a.mime.startsWith('image/');
+    const thumb = a.loading
+      ? `<span class="cog-attach-chip-icon cog-attach-chip-loading">⏳</span>`
+      : (isImg
+          ? `<img class="cog-attach-chip-thumb" src="${a.url}" alt="">`
+          : `<span class="cog-attach-chip-icon">${cogAttachIcon(a.mime)}</span>`);
+    return `
+      <div class="cog-attach-chip${a.loading ? ' cog-attach-chip-pending' : ''}" title="${cogEscape(a.name)}">
+        ${thumb}
+        <span class="cog-attach-chip-name">${cogEscape(a.name)}</span>
+        <button type="button" class="cog-attach-chip-remove" onclick="cogRemoveAttachment('${target}',${i})" title="Remove">×</button>
+      </div>`;
+  }).join('');
+};
+
+window.cogRemoveAttachment = function(target, index){
+  cogPendingAttachments[target].splice(index, 1);
+  cogRenderAttachChips(target);
+};
+
+// Render clickable, reopenable attachment links inside a sent chat bubble / message.
+// Clicking opens a preview card first (image/video/audio/pdf inline, or a generic file
+// card) — the actual download only happens if the user taps "Download" inside that card.
+window.cogAttachStore = window.cogAttachStore || {};
+let cogAttachIdCounter = 0;
+
+function cogRenderAttachments(attachments){
+  if (!attachments || !attachments.length) return '';
+  const links = attachments.map(a => {
+    const id = 'cogAtt' + (cogAttachIdCounter++);
+    cogAttachStore[id] = a;
+    const isImg = a.mime.startsWith('image/');
+    const thumb = isImg
+      ? `<img src="${a.url}" alt="">`
+      : `<span class="cog-attach-link-icon">${cogAttachIcon(a.mime)}</span>`;
+    return `<a class="cog-attach-link" href="javascript:void(0)" onclick="cogOpenAttachPreview('${id}')" title="Open ${cogEscape(a.name)}">${thumb}<span class="cog-attach-link-name">${cogEscape(a.name)}</span></a>`;
+  }).join('');
+  return `<div class="cog-msg-attachments">${links}</div>`;
+}
+
+// Open the preview modal for a stored attachment (by id, so we never inline
+// large data-URLs into onclick attributes).
+window.cogOpenAttachPreview = function(id){
+  const a = cogAttachStore[id];
+  if (!a) return;
+  const mime = a.mime || 'application/octet-stream';
+  let bodyHtml;
+  if (mime.startsWith('image/')) {
+    bodyHtml = `<img src="${a.url}" alt="${cogEscape(a.name)}">`;
+  } else if (mime.startsWith('video/')) {
+    bodyHtml = `<video src="${a.url}" controls></video>`;
+  } else if (mime.startsWith('audio/')) {
+    bodyHtml = `<audio src="${a.url}" controls></audio>`;
+  } else if (mime === 'application/pdf') {
+    bodyHtml = `<iframe src="${a.url}"></iframe>`;
+  } else {
+    bodyHtml = `<div class="cog-preview-generic"><span class="cog-preview-generic-icon">${cogAttachIcon(mime)}</span>${cogEscape(a.name)}<br>No inline preview available for this file type.</div>`;
+  }
+
+  document.getElementById('cogPreviewIcon').textContent = cogAttachIcon(mime);
+  document.getElementById('cogPreviewName').textContent = a.name;
+  document.getElementById('cogPreviewBody').innerHTML = bodyHtml;
+  const dl = document.getElementById('cogPreviewDownload');
+  dl.href = a.url;
+  dl.setAttribute('download', a.name);
+
+  document.getElementById('cogPreviewOverlay').classList.add('open');
+};
+
+window.cogCloseAttachPreview = function(){
+  document.getElementById('cogPreviewOverlay').classList.remove('open');
+  document.getElementById('cogPreviewBody').innerHTML = '';
+};
+
+// ==== Mic / voice input (Web Speech API) — works on both search bars ====
+let cogRecognition = null;
+let cogMicTarget = null;
+
+window.cogToggleMic = function(target){
+  const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const btnId = target === 'search' ? 'cogSearchMicBtn' : 'cogMsgMicBtn';
+  const btn = document.getElementById(btnId);
+
+  if (!SpeechRec) {
+    alert('Voice input is not supported in this browser. Try Chrome or Edge.');
+    return;
+  }
+
+  // If already listening, stop
+  if (cogRecognition && cogMicTarget === target) {
+    cogRecognition.stop();
+    return;
+  }
+  // Switch target mid-listen: stop the old one first
+  if (cogRecognition) { cogRecognition.stop(); }
+
+  const rec = new SpeechRec();
+  cogRecognition = rec;
+  cogMicTarget = target;
+  rec.lang = 'en-US';
+  rec.interimResults = false;
+  rec.maxAlternatives = 1;
+
+  rec.onstart = function(){ if (btn) btn.classList.add('cog-mic-active'); };
+  rec.onerror = function(){ if (btn) btn.classList.remove('cog-mic-active'); };
+  rec.onend = function(){
+    if (btn) btn.classList.remove('cog-mic-active');
+    cogRecognition = null;
+    cogMicTarget = null;
+  };
+  rec.onresult = function(e){
+    const transcript = e.results[0][0].transcript;
+    const inputId = target === 'search' ? 'aiFutureSearchInput' : 'cogMsgInput';
+    const inp = document.getElementById(inputId);
+    if (inp) {
+      inp.value = inp.value ? `${inp.value} ${transcript}` : transcript;
+      inp.focus();
+    }
+  };
+
+  rec.start();
+};
+
+// ==== Emoji picker (search bar messages only) — large searchable emoji set ====
+const COG_EMOJI_DATA = [
+  ['😀','grinning happy smile face'],['😁','beaming grin happy'],['😂','joy laugh tears funny'],['🤣','rofl laugh floor funny'],
+  ['😊','smile blush happy'],['😇','angel innocent halo'],['🙂','slight smile'],['🙃','upside down smile'],
+  ['😉','wink flirt'],['😍','love heart eyes crush'],['🥰','love hearts adore'],['😘','kiss love'],
+  ['😗','kiss'],['😚','kiss closed eyes'],['😙','kiss smile'],['😋','yum tongue tasty food'],
+  ['😛','tongue playful'],['😜','wink tongue silly'],['🤪','crazy zany silly'],['😝','tongue closed eyes'],
+  ['🤑','money rich greedy'],['🤗','hug hugging'],['🤭','giggle oops shy'],['🤫','shush quiet secret'],
+  ['🤔','think thinking hmm'],['🤐','zipper mouth quiet secret'],['🤨','skeptical suspicious raised eyebrow'],
+  ['😐','neutral meh'],['😑','expressionless blank'],['😶','no mouth silent'],['😏','smirk sly'],
+  ['😒','unamused annoyed'],['🙄','eye roll annoyed'],['😬','grimace awkward'],['🤥','lying pinocchio nose'],
+  ['😌','relieved calm peaceful'],['😔','sad pensive down'],['😪','sleepy tired'],['🤤','drool sleepy hungry'],
+  ['😴','sleep zzz tired'],['😷','mask sick ill'],['🤒','sick fever thermometer'],['🤕','hurt injured bandage'],
+  ['🤢','sick nauseous gross'],['🤮','vomit sick gross'],['🤧','sneeze sick cold'],['🥵','hot sweat heat'],
+  ['🥶','cold freezing ice'],['🥴','dizzy woozy'],['😵','dizzy dead confused'],['🤯','mind blown shock'],
+  ['🤠','cowboy hat'],['🥳','party celebrate birthday'],['😎','cool sunglasses'],['🤓','nerd glasses smart'],
+  ['🧐','monocle curious inspect'],['😕','confused unsure'],['😟','worried concerned'],['🙁','frown sad'],
+  ['😮','wow surprised gasp'],['😯','stunned surprised silent'],['😲','astonished shocked'],['😳','flushed embarrassed'],
+  ['🥺','pleading puppy eyes please'],['😦','frown open mouth'],['😧','anguished shocked'],['😨','fearful scared'],
+  ['😰','anxious sweat worried'],['😥','sad relieved sweat'],['😢','cry sad tear'],['😭','sob crying loud'],
+  ['😱','scream fear shock'],['😖','confounded frustrated'],['😣','persevere struggle'],['😞','disappointed sad'],
+  ['😓','sweat downcast tired'],['😩','weary tired exhausted'],['😫','tired exhausted fed up'],['🥱','yawn tired bored'],
+  ['😤','huff angry proud steam'],['😡','angry mad rage'],['😠','angry mad'],['🤬','swearing curse angry'],
+  ['😈','devil evil smile'],['👿','angry devil'],['💀','skull death'],['☠️','skull crossbones danger'],
+  ['💩','poop funny'],['🤡','clown'],['👹','ogre monster'],['👺','goblin monster'],['👻','ghost spooky'],
+  ['👽','alien ufo'],['🤖','robot ai bot'],['😺','cat smile happy'],['😸','cat grin'],['😹','cat laugh joy'],
+  ['😻','cat love heart eyes'],['😼','cat smirk'],['😽','cat kiss'],['🙀','cat scream fear'],['😿','cat cry sad'],
+  ['😾','cat pouting angry'],
+  ['👋','wave hello hi bye'],['🤚','hand raised'],['🖐️','hand five fingers'],['✋','hand stop high five'],
+  ['🖖','vulcan spock'],['👌','ok okay perfect'],['🤌','pinch fingers italian'],['🤏','pinch small'],
+  ['✌️','peace victory'],['🤞','fingers crossed luck'],['🤟','love you gesture'],['🤘','rock horns'],
+  ['🤙','call me shaka'],['👈','point left'],['👉','point right'],['👆','point up'],['👇','point down'],
+  ['☝️','point up one'],['👍','thumbs up like good yes'],['👎','thumbs down dislike bad no'],
+  ['✊','fist power'],['👊','punch fist bump'],['🤛','fist bump left'],['🤜','fist bump right'],
+  ['👏','clap applause'],['🙌','raised hands celebrate praise'],['👐','open hands'],['🤲','open hands offer pray'],
+  ['🤝','handshake deal agreement'],['🙏','pray please thanks hope'],['✍️','writing hand pen'],
+  ['💅','nails manicure'],['💪','muscle strong flex'],['🦾','mechanical arm strong'],
+  ['🫶','heart hands love'],['❤️','red heart love'],['🧡','orange heart'],['💛','yellow heart'],
+  ['💚','green heart'],['💙','blue heart'],['💜','purple heart'],['🖤','black heart'],['🤍','white heart'],
+  ['🤎','brown heart'],['💔','broken heart heartbreak sad'],['❣️','heart exclamation'],['💕','two hearts love'],
+  ['💞','revolving hearts'],['💓','beating heart'],['💗','growing heart'],['💖','sparkling heart love'],
+  ['💘','heart arrow cupid love'],['💝','heart gift love'],['💟','heart decoration'],
+  ['🔥','fire lit hot amazing'],['✨','sparkles shiny magic'],['⭐','star'],['🌟','glowing star'],
+  ['💫','dizzy star'],['💥','boom explosion'],['💯','hundred perfect score'],['💢','anger symbol'],
+  ['💦','sweat splash droplets'],['💨','dash wind fast'],['🕳️','hole'],['💣','bomb'],['💬','speech bubble chat'],
+  ['🗯️','anger bubble'],['💭','thought bubble think'],['💤','sleep zzz'],
+  ['🐶','dog puppy pet'],['🐱','cat kitten pet'],['🐭','mouse'],['🐹','hamster'],['🐰','rabbit bunny'],
+  ['🦊','fox'],['🐻','bear'],['🐼','panda'],['🐨','koala'],['🐯','tiger'],['🦁','lion'],['🐮','cow'],
+  ['🐷','pig'],['🐸','frog'],['🐵','monkey'],['🐔','chicken'],['🐧','penguin'],['🐦','bird'],['🦆','duck'],
+  ['🦅','eagle'],['🦉','owl'],['🦇','bat'],['🐺','wolf'],['🐗','boar'],['🐴','horse'],['🦄','unicorn'],
+  ['🐝','bee bug'],['🐛','caterpillar bug'],['🦋','butterfly'],['🐌','snail'],['🐞','ladybug'],['🐢','turtle'],
+  ['🐍','snake'],['🐙','octopus'],['🦀','crab'],['🐠','fish tropical'],['🐟','fish'],['🐬','dolphin'],
+  ['🐳','whale'],['🦈','shark'],['🐊','crocodile'],['🐘','elephant'],['🦒','giraffe'],['🦓','zebra'],
+  ['🌵','cactus plant'],['🌲','tree pine'],['🌳','tree deciduous'],['🌴','palm tree'],['🌱','seedling plant'],
+  ['🌸','cherry blossom flower'],['🌹','rose flower'],['🌻','sunflower flower'],['🌼','flower'],['🌷','tulip flower'],
+  ['🍀','clover luck'],['🍁','maple leaf autumn'],['🍂','fallen leaves autumn'],['🍃','leaves wind'],
+  ['🌈','rainbow'],['☀️','sun sunny weather'],['🌤️','sun cloud weather'],['⛅','cloud sun weather'],
+  ['🌧️','rain weather'],['⛈️','storm thunder weather'],['❄️','snowflake snow cold'],['☃️','snowman'],
+  ['⚡','lightning bolt energy'],['🌊','wave ocean water'],['🌙','moon crescent night'],['🌕','full moon'],
+  ['🌎','earth globe world'],
+  ['🍏','green apple food'],['🍎','red apple food'],['🍐','pear fruit'],['🍊','orange fruit'],['🍋','lemon fruit'],
+  ['🍌','banana fruit'],['🍉','watermelon fruit'],['🍇','grapes fruit'],['🍓','strawberry fruit'],['🍒','cherries fruit'],
+  ['🍑','peach fruit'],['🥭','mango fruit'],['🍍','pineapple fruit'],['🥥','coconut fruit'],['🥝','kiwi fruit'],
+  ['🍅','tomato food'],['🥑','avocado food'],['🍆','eggplant food'],['🥔','potato food'],['🥕','carrot food'],
+  ['🌽','corn food'],['🌶️','pepper spicy hot'],['🥒','cucumber food'],['🍕','pizza food'],['🍔','burger food'],
+  ['🍟','fries food'],['🌭','hotdog food'],['🥪','sandwich food'],['🌮','taco food'],['🌯','burrito food'],
+  ['🍜','noodles ramen food'],['🍝','pasta spaghetti food'],['🍣','sushi food'],['🍤','shrimp fried food'],
+  ['🍦','ice cream soft serve'],['🍩','donut food'],['🍪','cookie food'],['🎂','birthday cake'],['🍰','cake slice'],
+  ['🧁','cupcake food'],['🍫','chocolate food'],['🍿','popcorn food'],['🍭','lollipop candy'],['🍬','candy sweet'],
+  ['☕','coffee drink'],['🍵','tea drink'],['🥤','soda drink cup'],['🧃','juice box drink'],['🍺','beer drink'],
+  ['🍻','cheers beer drink'],['🍷','wine drink'],['🍹','cocktail drink'],['🥂','champagne toast celebrate'],
+  ['⚽','soccer football sport'],['🏀','basketball sport'],['🏈','american football sport'],['⚾','baseball sport'],
+  ['🎾','tennis sport'],['🏐','volleyball sport'],['🏉','rugby sport'],['🎱','pool billiards eight ball'],
+  ['🏓','ping pong table tennis'],['🏸','badminton sport'],['🥊','boxing glove'],['🥋','martial arts'],
+  ['⛳','golf sport'],['🎣','fishing rod'],['🎽','running shirt jog'],['🏆','trophy win award'],
+  ['🥇','gold medal first'],['🥈','silver medal second'],['🥉','bronze medal third'],['🎮','video game controller'],
+  ['🕹️','joystick game retro'],['🎲','dice game'],['🎯','dart target bullseye'],['🎳','bowling sport'],
+  ['🎸','guitar music'],['🎹','piano keyboard music'],['🎺','trumpet music'],['🎷','saxophone music'],
+  ['🥁','drum music'],['🎤','microphone sing karaoke'],['🎧','headphones music listen'],['🎬','clapper movie film'],
+  ['🎨','art palette paint'],['🎭','theater masks drama'],['📷','camera photo'],['📸','camera flash photo'],
+  ['🎥','video camera film'],['🚗','car vehicle drive'],['🚕','taxi cab'],['🚌','bus vehicle'],['🚓','police car'],
+  ['🚑','ambulance emergency'],['🚒','fire truck emergency'],['🚚','truck delivery'],['🚲','bike bicycle'],
+  ['🛵','scooter moped'],['✈️','plane airplane travel flight'],['🚀','rocket launch space'],['🚁','helicopter'],
+  ['⛵','sailboat boat'],['🚢','ship boat cruise'],['🚂','train locomotive'],['🚆','train'],['🚇','metro subway'],
+  ['🗽','statue of liberty landmark'],['🗼','tower landmark'],['🏰','castle landmark'],['🏔️','mountain snow'],
+  ['🏖️','beach vacation'],['🏝️','island vacation'],['🏕️','camping tent'],['🎡','ferris wheel fun fair'],
+  ['🎢','roller coaster fun'],['🎠','carousel fun'],
+  ['💡','light bulb idea'],['🔦','flashlight torch'],['🕯️','candle light'],['📱','phone mobile smartphone'],
+  ['💻','laptop computer'],['⌨️','keyboard type'],['🖥️','desktop computer'],['🖨️','printer'],['⏰','alarm clock time'],
+  ['⏱️','stopwatch time'],['🔋','battery power'],['🔌','plug charge power'],['📡','satellite dish signal'],
+  ['💰','money bag rich'],['💵','money cash dollar'],['💳','credit card pay'],['💎','diamond gem'],
+  ['🔑','key unlock'],['🔒','lock secure'],['🔓','unlock open'],['🎁','gift present'],['🎈','balloon party'],
+  ['🎉','party popper celebrate'],['🎊','confetti celebrate'],['🎀','ribbon bow gift'],['🏅','medal award'],
+  ['📅','calendar date'],['📆','calendar'],['📌','pin location marker'],['📎','paperclip attach file'],
+  ['✂️','scissors cut'],['🖊️','pen write'],['📝','memo note write'],['📚','books study read'],
+  ['📖','open book read'],['📰','newspaper news'],['📧','email envelope mail'],['✉️','envelope mail'],
+  ['📦','package box delivery'],['🔍','search magnify find'],['🔎','search magnify glass'],
+  ['✅','check mark done yes'],['❌','cross mark no wrong'],['❓','question mark'],['❗','exclamation mark'],
+  ['⚠️','warning alert caution'],['♻️','recycle eco'],['🔄','refresh reload sync'],['🆗','ok symbol'],
+  ['🆕','new symbol'],['🔝','top symbol'],
+  ['🇺🇸','flag usa america'],['🇬🇧','flag uk britain'],['🇮🇳','flag india'],['🇨🇦','flag canada'],
+  ['🇦🇺','flag australia'],['🇩🇪','flag germany'],['🇫🇷','flag france'],['🇯🇵','flag japan'],
+  ['🇰🇷','flag south korea'],['🇨🇳','flag china'],['🇧🇷','flag brazil'],['🇮🇹','flag italy'],
+  ['🇪🇸','flag spain'],['🇷🇺','flag russia'],['🌍','globe earth world africa europe']
+];
+
+window.cogToggleEmojiPicker = function(){
+  const picker = document.getElementById('cogEmojiPicker');
+  if (!picker) return;
+  const willOpen = !picker.classList.contains('open');
+  picker.classList.toggle('open', willOpen);
+  if (willOpen) {
+    cogRenderEmojiGrid(COG_EMOJI_DATA);
+    const search = document.getElementById('cogEmojiSearch');
+    if (search) { search.value = ''; search.focus(); }
+  }
+};
+
+function cogRenderEmojiGrid(list){
+  const grid = document.getElementById('cogEmojiGrid');
+  if (!grid) return;
+  if (!list.length) {
+    grid.innerHTML = '<div class="cog-emoji-empty">No emoji found</div>';
+    return;
+  }
+  grid.innerHTML = list.map(([emoji]) =>
+    `<button type="button" onclick="cogInsertEmoji('${emoji}')">${emoji}</button>`
+  ).join('');
+}
+
+window.cogFilterEmoji = function(){
+  const search = document.getElementById('cogEmojiSearch');
+  const q = (search ? search.value : '').trim().toLowerCase();
+  if (!q) { cogRenderEmojiGrid(COG_EMOJI_DATA); return; }
+  const filtered = COG_EMOJI_DATA.filter(([emoji, keywords]) => keywords.includes(q));
+  cogRenderEmojiGrid(filtered);
+};
+
+window.cogInsertEmoji = function(emoji){
+  const inp = document.getElementById('cogMsgInput');
+  if (inp) {
+    const start = inp.selectionStart != null ? inp.selectionStart : inp.value.length;
+    const end = inp.selectionEnd != null ? inp.selectionEnd : inp.value.length;
+    inp.value = inp.value.slice(0, start) + emoji + inp.value.slice(end);
+    inp.focus();
+    const pos = start + emoji.length;
+    inp.setSelectionRange(pos, pos);
+  }
+};
+
+// Close the emoji picker when clicking outside of it
+document.addEventListener('click', function(e){
+  const picker = document.getElementById('cogEmojiPicker');
+  if (!picker || !picker.classList.contains('open')) return;
+  const bar = picker.closest('.msg-conv-input-bar');
+  if (bar && !bar.contains(e.target)) picker.classList.remove('open');
+});
+</script>
+</body>
+</html>
