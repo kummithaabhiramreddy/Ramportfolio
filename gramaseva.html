@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gramaseva — Rural & Urban Worker Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vfx-styles.css">
 <style>
 :root{--bg:#09090e;--surface:#090e0c;--ink:#e8e6f0;--muted:#6a6878;--dim:#2e2c3a;--accent:#00d4aa;--accent-soft:#00d4aa18;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -253,6 +252,5 @@ footer{border-top:1px solid var(--dim);padding:28px 64px;display:flex;justify-co
 const obs=new IntersectionObserver((e)=>{e.forEach(i=>{if(i.isIntersecting){i.target.classList.add('in');obs.unobserve(i.target);}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
-<script src="vfx-engine.js"></script>
 </body>
 </html>
