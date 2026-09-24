@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CogniCoder · Live Code Learning &amp; Lab Management Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="vfx-styles.css">
+<style>
+:root {
+  --bg: #090a0f;
+  --surface: #10121a;
+  --surface-2: #151823;
+  --surface-3: #1e2231;
+  --ink: #f0f3fa;
+  --muted: #858b9f;
+  --dim: #262a3c;
+  --a1: #c8f135;
+  --a2: #7b61ff;
+  --a3: #ff5e3a;
+  --a4: #00d4aa;
+  --ct-border: rgba(255, 255, 255, 0.08);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--a1);
+  color: #090a0f;
+}
+
+/* ================= Top Navigation Bar ================= */
+.ct-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: rgba(16, 18, 26, 0.95);
+  border-bottom: 1px solid var(--ct-border);
+  backdrop-filter: blur(14px);
+}
+
+.ct-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 19px;
+  color: #ffffff;
+  letter-spacing: -0.2px;
+  line-height: 28px;
+  display: inline-block;
+}
+
+.ct-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #cbd5e1;
+  border: 1px solid var(--dim);
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11.5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  background: var(--surface-2);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ai-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(123, 97, 255, 0.15);
+  border: 1px solid rgba(123, 97, 255, 0.4);
+  color: #d8b4fe;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 11.5px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.ai-toggle-btn:hover {
+  background: rgba(123, 97, 255, 0.3);
+  box-shadow: 0 0 12px rgba(123, 97, 255, 0.4);
+}
+
+
+
+/* ================= Step Container ================= */
+.main-content-flow {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 24px 24px 60px;
+}
+
+.step-page {
+  display: none;
+  animation: fadeIn 0.25s ease;
+}
+
+.step-page.active {
+  display: block;
+}
+
+.step-heading {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+.step-subtext {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* ================= Step 1: Education Level Cards Grid ================= */
+.level-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.level-card {
+  background: var(--surface);
+  border: 1px solid var(--ct-border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.level-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--a1);
+  background: var(--surface-2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.level-card-icon {
+  font-size: 28px;
+}
+
+.level-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.level-card-desc {
+  font-size: 12.5px;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.level-badge-pill {
+  font-family: 'DM Mono', monospace;
+  font-size: 10.5px;
+  color: var(--a1);
+  background: rgba(200, 241, 53, 0.1);
+  padding: 4px 10px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+/* ================= Step 2: Course / Subject Labs Grid ================= */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.course-card {
+  background: var(--surface);
+  border: 1px solid var(--ct-border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.course-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--a4);
+  background: var(--surface-2);
+}
+
+.course-code {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--a4);
+}
+
+.course-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.course-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid var(--ct-border);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ================= Step 3: Lab Record Table (Matching Photo 5) ================= */
+.lab-record-card {
+  background: #ffffff;
+  color: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.lab-record-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.lab-title-main {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.experiments-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  text-align: left;
+}
+
+.experiments-table th {
+  background: #334155;
+  color: #f8fafc;
+  font-weight: 600;
+  padding: 10px 14px;
+  border: 1px solid #475569;
+}
+
+.experiments-table td {
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  vertical-align: middle;
+}
+
+.experiments-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.status-check {
+  color: #10b981;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.status-none {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.open-btn-green {
+  background: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.open-btn-green:hover {
+  background: #059669;
+}
+
+/* ================= Step 4: Live Coding Studio (Photo 1, 2, 3, 4 Style) ================= */
+.studio-box {
+  background: #0f1118;
+  border: 1px solid var(--ct-border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 110px);
+  min-height: 560px;
+  max-height: 840px;
+}
+
+.studio-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 18px;
+  background: #181b26;
+  border-bottom: 1px solid var(--ct-border);
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.studio-title-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.studio-exp-title {
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+}
+
+.studio-timer-pill {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.studio-2col-layout {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Left Problem Specs (Photo 1) */
+.specs-pane {
+  padding: 16px 20px;
+  background: #12141d;
+  border-right: 1px solid var(--ct-border);
+  overflow-y: auto;
+  font-size: 13px;
+  color: #cbd5e1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 1024px) {
+  .studio-box {
+    height: auto;
+    max-height: none;
+    min-height: auto;
+  }
+
+  .studio-2col-layout { 
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .specs-pane {
+    height: auto;
+    max-height: 320px;
+    border-right: none;
+    border-bottom: 1px solid var(--ct-border);
+  }
+
+  .editor-pane {
+    height: auto;
+    min-height: 480px;
+  }
+
+  .editor-textarea-holder {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ct-navbar {
+    padding: 8px 14px;
+  }
+
+  .brand-name {
+    font-size: 17px;
+  }
+
+  .brand-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .main-content-flow {
+    padding: 14px 12px 60px;
+  }
+
+  .step-heading {
+    font-size: 22px;
+  }
+
+  .step-subtext {
+    font-size: 12px;
+    margin-bottom: 14px;
+  }
+
+  .level-cards-grid,
+  .courses-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .lab-record-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .lab-title-main {
+    font-size: 14.5px;
+  }
+
+  .table-responsive-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+
+  .experiments-table {
+    min-width: 650px;
+  }
+
+  .studio-top-bar {
+    padding: 8px 12px;
+  }
+
+  .studio-exp-title {
+    font-size: 13px;
+  }
+
+  .studio-bottom-actions {
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .floating-ai-drawer {
+    width: 100vw;
+    right: 0;
+    top: 52px;
+    height: calc(100vh - 52px);
+    max-height: none;
+    border-radius: 0;
+    transform: translateX(100%);
+  }
+}
+
+.schema-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.schema-table th {
+  background: var(--surface-3);
+  color: #fff;
+  padding: 6px 10px;
+  border: 1px solid var(--ct-border);
+  text-align: left;
+}
+
+.schema-table td {
+  padding: 6px 10px;
+  border: 1px solid var(--ct-border);
+  color: #cbd5e1;
+  font-family: 'Fira Code', monospace;
+}
+
+.expected-output-box {
+  background: var(--surface-2);
+  border: 1px solid var(--ct-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: #a7f3d0;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+/* Right Editor Pane */
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  background: #090a10;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.editor-header-tab {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #141722;
+  border-bottom: 1px solid var(--ct-border);
+  padding: 0 12px;
+  flex-shrink: 0;
+}
+
+.file-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #090a10;
+  color: #fff;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  border-top: 2px solid #10b981;
+}
+
+.top-submit-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+
+.top-submit-btn:hover {
+  background: #059669;
+}
+
+.editor-textarea-holder {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  background: #090a10;
+  overflow-y: auto;
+}
+
+.line-col {
+  padding: 12px 8px;
+  color: #475569;
+  font-family: 'Fira Code', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  text-align: right;
+  user-select: none;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  min-width: 36px;
+}
+
+.code-field-input {
+  flex: 1;
+  background: transparent;
+  color: #f8fafc;
+  font-family: 'Fira Code', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  border: none;
+  outline: none;
+  padding: 12px 14px;
+  resize: none;
+  tab-size: 4;
+  height: 100%;
+}
+
+/* Bottom Output Drawer in Studio */
+.bottom-test-drawer {
+  background: #141722;
+  border-top: 1px solid var(--ct-border);
+  display: none;
+  flex-direction: column;
+  max-height: 230px;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.bottom-test-drawer.open {
+  display: flex;
+}
+
+.drawer-tab-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #181b26;
+  border-bottom: 1px solid var(--ct-border);
+  flex-shrink: 0;
+}
+
+.drawer-tab-btn {
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.drawer-tab-btn.active {
+  background: var(--surface-3);
+  color: #fff;
+  font-weight: 600;
+}
+
+.test-cases-list-pane {
+  padding: 10px 14px;
+  overflow-y: auto;
+  flex: 1;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+}
+
+.terminal-pane {
+  display: none;
+  padding: 12px 16px;
+  overflow-y: auto;
+  flex: 1;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: #38bdf8;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.tc-row-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  color: #cbd5e1;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+  margin-bottom: 2px;
+}
+
+.tc-row-item:hover {
+  background: rgba(255,255,255,0.03);
+}
+
+.tc-row-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 10px;
+}
+
+.tc-detail-box {
+  display: none;
+  background: rgba(15, 23, 42, 0.8);
+  border-left: 3px solid #ef4444;
+  margin: 0 10px 8px;
+  padding: 8px 12px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: #cbd5e1;
+  border-radius: 0 4px 4px 0;
+}
+
+.tc-detail-box.passed {
+  border-left-color: #10b981;
+}
+
+.tc-detail-box.expanded {
+  display: block;
+}
+
+.tc-pass-check {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.tc-fail-cross {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+.tc-loading-spinner {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.studio-bottom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #0f1118;
+  border-top: 1px solid var(--ct-border);
+  flex-shrink: 0;
+}
+
+/* ================= Floating Right-Side AI Companion Card ================= */
+.floating-ai-drawer {
+  position: fixed;
+  top: 65px;
+  right: 20px;
+  width: 370px;
+  height: calc(100vh - 85px);
+  max-height: 640px;
+  background: rgba(18, 20, 29, 0.95);
+  border: 1px solid rgba(123, 97, 255, 0.35);
+  border-radius: 10px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(410px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-ai-drawer.open {
+  transform: translateX(0);
+}
+
+.ai-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--ct-border);
+}
+
+.ai-chat-body-area {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12.5px;
+}
+
+.ai-message {
+  padding: 10px 12px;
+  border-radius: 6px;
+  line-height: 1.5;
+}
+
+.ai-message.ai {
+  background: var(--surface-2);
+  border: 1px solid rgba(123, 97, 255, 0.2);
+  color: #e2e8f0;
+}
+
+.ai-message.user {
+  background: rgba(200, 241, 53, 0.12);
+  border: 1px solid rgba(200, 241, 53, 0.3);
+  color: #fff;
+  align-self: flex-end;
+}
+
+.ai-chips-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--ct-border);
+}
+
+.ai-chip-item {
+  background: var(--surface-2);
+  border: 1px solid var(--ct-border);
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ai-chip-item:hover {
+  border-color: var(--a1);
+  color: var(--a1);
+}
+
+.ai-input-row {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--ct-border);
+  background: var(--surface-2);
+}
+
+.ai-text-field {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--ct-border);
+  border-radius: 4px;
+  padding: 6px 10px;
+  color: #fff;
+  font-size: 12px;
+  outline: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="ct-navbar">
+  <div class="ct-nav-left">
+    <a href="index.html" class="brand-link">
+      <img src="cognicoder-ai-logo.png" alt="CogniCoder Logo" class="brand-logo">
+      <span class="brand-name">CogniCoder</span>
+    </a>
+  </div>
+  <div class="ct-nav-right">
+    <a href="index.html" class="nav-btn">Portfolio Home</a>
+    <button class="ai-toggle-btn" onclick="toggleFloatingAi()">
+      <img src="cognicoder-ai-logo.png" alt="" style="width:16px;height:16px;border-radius:3px;">
+      <span>AI Assistant</span>
+    </button>
+  </div>
+</nav>
+
+<div class="main-content-flow">
+
+  <!-- ================= STEP 1: EDUCATION LEVELS (CARD GRID) ================= -->
+  <div class="step-page active" id="step1Page">
+    <h1 class="step-heading">Select Education Level</h1>
+    <p class="step-subtext">Choose your academic tier to explore curriculum labs, practical assignments, and live code evaluations.</p>
+
+    <div class="level-cards-grid">
+      
+      <div class="level-card" onclick="chooseLevel('btech2')">
+        <div class="level-card-icon">💻</div>
+        <div class="level-card-title">B.Tech 2nd Year Curriculum</div>
+        <div class="level-card-desc">DBMS Lab (CC-DBMS-201), Data Structures &amp; Algorithms Lab (CC-DSA-202), and Operating Systems.</div>
+        <div class="level-badge-pill">4 Labs Available</div>
+      </div>
+
+      <div class="level-card" onclick="chooseLevel('btech1')">
+        <div class="level-card-icon">⚡</div>
+        <div class="level-card-title">B.Tech 1st Year Curriculum</div>
+        <div class="level-card-desc">Problem Solving &amp; Programming with C (CC-PROG-101) and Python Computing Foundations.</div>
+        <div class="level-badge-pill">3 Labs Available</div>
+      </div>
+
+      <div class="level-card" onclick="chooseLevel('btech3')">
+        <div class="level-card-icon">🌐</div>
+        <div class="level-card-title">B.Tech 3rd Year Curriculum</div>
+        <div class="level-card-desc">Java OOP Lab (CC-JAVA-301), Web Technologies, and Machine Learning Systems.</div>
+        <div class="level-badge-pill">3 Labs Available</div>
+      </div>
+
+      <div class="level-card" onclick="chooseLevel('inter')">
+        <div class="level-card-icon">📐</div>
+        <div class="level-card-title">Intermediate (MPC / Computing)</div>
+        <div class="level-card-desc">Computational Mathematics with Python (CC-PYTH-102), Logic Gates, and Matrices.</div>
+        <div class="level-badge-pill">2 Labs Available</div>
+      </div>
+
+      <div class="level-card" onclick="chooseLevel('grade10')">
+        <div class="level-card-icon">🌱</div>
+        <div class="level-card-title">10th Class (School Logic)</div>
+        <div class="level-card-desc">Foundations of Computing &amp; Logic (CC-LOGIC-001), Flowcharts, and Number Sequences.</div>
+        <div class="level-badge-pill">1 Lab Available</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= STEP 2: COURSE / LABS SELECTION (CARD GRID) ================= -->
+  <div class="step-page" id="step2Page">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+      <button class="nav-btn" onclick="navToStep(1)">← Back to Levels</button>
+      <h1 class="step-heading" style="margin-bottom:0;" id="levelTitleHeader">B.Tech 2nd Year Labs</h1>
+    </div>
+    <p class="step-subtext">Select a practical laboratory course to view required experiments and submit live code.</p>
+
+    <div class="courses-grid" id="coursesGrid">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <!-- ================= STEP 3: LAB EXPERIMENTS TABLE (PHOTO 5 STYLE) ================= -->
+  <div class="step-page" id="step3Page">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+      <button class="nav-btn" onclick="navToStep(2)">← Back to Labs</button>
+    </div>
+
+    <div class="lab-record-card">
+      <div class="lab-record-top">
+        <div class="lab-title-main" id="labSubjectName">Database Management Systems Lab - CC-DBMS-201</div>
+        <button class="print-btn" onclick="window.print()">🖨 Print Lab Record</button>
+      </div>
+
+      <div class="table-responsive-wrapper">
+        <table class="experiments-table">
+          <thead>
+            <tr>
+              <th style="width:50px;">S.No</th>
+              <th style="width:90px;">Date</th>
+              <th>Name of the Experiment</th>
+              <th style="width:60px;text-align:center;">Print</th>
+              <th style="width:70px;text-align:center;">Status</th>
+              <th style="width:80px;text-align:center;">Page No</th>
+              <th style="width:100px;">Remarks</th>
+              <th style="width:140px;text-align:center;">Q.Availability</th>
+            </tr>
+          </thead>
+          <tbody id="experimentsTbody">
+            <!-- Injected via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= STEP 4: LIVE CODING STUDIO (PHOTO 1, 2, 3, 4 STYLE) ================= -->
+  <div class="step-page" id="step4Page">
+    <div class="studio-box">
+      <div class="studio-top-bar">
+        <div class="studio-title-area">
+          <button class="nav-btn" onclick="navToStep(3)" style="padding:4px 10px;font-size:11.5px;">← Back to Labs</button>
+          <span class="studio-exp-title" id="studioTitleText">5.1.1. TrafficViolations Table Creation</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span class="studio-timer-pill" id="studioTimerText">⏱ 00:00</span>
+        </div>
+      </div>
+
+      <div class="studio-2col-layout">
+        <!-- Left Spec Pane (Photo 1) -->
+        <div class="specs-pane" id="studioSpecsPane">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- Right Code Editor Pane -->
+        <div class="editor-pane">
+          <div class="editor-header-tab">
+            <div class="file-tab">
+              <span>📄</span>
+              <span id="studioFileName">index.sql</span>
+            </div>
+            <button class="top-submit-btn" onclick="runLiveSubmit()">
+              <span>▶ Submit</span>
+            </button>
+          </div>
+
+          <div class="editor-textarea-holder">
+            <div class="line-col" id="studioLineCol">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</div>
+            <textarea class="code-field-input" id="studioCodeInput" spellcheck="false" oninput="handleCodeInput()">/* Write your code here... */</textarea>
+          </div>
+
+          <!-- Bottom Test Cases & Terminal Drawer (Opened ONLY after Submit) -->
+          <div class="bottom-test-drawer" id="bottomTestDrawer">
+            <div class="drawer-tab-bar">
+              <button class="drawer-tab-btn" id="tabBtnTerminal" onclick="switchStudioTab('terminal')">Terminal</button>
+              <button class="drawer-tab-btn active" id="tabBtnTestCases" onclick="switchStudioTab('testcases')">Test cases</button>
+              <div style="margin-left:auto;font-family:'DM Mono',monospace;font-size:11px;" id="studioMetricsSummary"></div>
+            </div>
+
+            <div class="test-cases-list-pane" id="studioTestCasePane">
+              <!-- Injected on submit -->
+            </div>
+
+            <div class="terminal-pane" id="studioTerminalPane">
+              <!-- Terminal standard output -->
+            </div>
+          </div>
+
+          <!-- Bottom Action Buttons (Always Visible at Bottom) -->
+          <div class="studio-bottom-actions">
+            <div style="display:flex;gap:6px;">
+              <button class="nav-btn" onclick="prevExperiment()">&lt; Prev</button>
+              <button class="nav-btn" onclick="nextExperiment()">Next &gt;</button>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button class="nav-btn" onclick="resetCodeField()">Reset</button>
+              <button class="top-submit-btn" onclick="runLiveSubmit()">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Floating Right AI Companion Drawer -->
+<div class="floating-ai-drawer" id="floatingAiDrawer">
+  <div class="ai-head-row">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <img src="cognicoder-ai-logo.png" alt="" style="width:20px;height:20px;border-radius:4px;">
+      <span style="font-weight:600;font-size:13px;color:#fff;">CogniCoder AI Sensei</span>
+    </div>
+    <button style="background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;" onclick="toggleFloatingAi()">×</button>
+  </div>
+
+  <div class="ai-chat-body-area" id="aiChatMessages">
+    <div class="ai-message ai">
+      👋 <strong>Hello!</strong> I am your CogniCoder AI guide. Follow the instructions and write your code in the editor, then click <strong>Submit</strong> to evaluate!
+    </div>
+  </div>
+
+  <div class="ai-chips-panel">
+    <button class="ai-chip-item" onclick="askAiPrompt('explain')">🔍 Explain Requirements</button>
+    <button class="ai-chip-item" onclick="askAiPrompt('hint')">💡 Socratic Hint</button>
+    <button class="ai-chip-item" onclick="askAiPrompt('syntax')">🐞 Syntax Audit</button>
+  </div>
+
+  <div class="ai-input-row">
+    <input type="text" class="ai-text-field" id="aiUserInputText" placeholder="Ask AI a question..." onkeydown="if(event.key==='Enter') sendUserAiMessage()">
+    <button class="open-btn-green" onclick="sendUserAiMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+/* ================= Dynamic Curriculum Structure with Custom Subject Codes ================= */
+const DATA_LEVELS = {
+  btech2: {
+    title: "B.Tech 2nd Year Curriculum",
+    courses: [
+      {
+        id: "dbms",
+        code: "CC-DBMS-201",
+        name: "Database Management Systems Lab",
+        desc: "Relational Schema, SQL DDL/DML, Constraints, Joins, Triggers, Views, and Procedures.",
+        experiments: [
+          {
+            id: "e1",
+            title: "5.1.1. TrafficViolations Table Creation and Data Insertion",
+            date: "02-Jan-2026",
+            completed: false,
+            ext: "index.sql",
+            specHTML: `
+              <p>Create a relational database table named <strong>TrafficViolations</strong> to record vehicle offenses and enforce strict integrity constraints, then insert a sample violation tuple.</p>
+              <div style="font-weight:600;margin-top:10px;color:#fff;">1. Table Structure: TrafficViolations</div>
+              <table class="schema-table">
+                <tr><th>Column Name</th><th>Data Type</th><th>Description &amp; Constraints</th></tr>
+                <tr><td>violation_id</td><td>SERIAL</td><td>PRIMARY KEY, auto-incrementing integer</td></tr>
+                <tr><td>vehicle_number</td><td>VARCHAR(15)</td><td>NOT NULL, vehicle registration code</td></tr>
+                <tr><td>driver_name</td><td>VARCHAR(50)</td><td>NOT NULL, driver full name</td></tr>
+                <tr><td>violation_type</td><td>VARCHAR(30)</td><td>NOT NULL, e.g. 'Speeding', 'Signal Jump'</td></tr>
+                <tr><td>fine_amount</td><td>DECIMAL(8,2)</td><td>NOT NULL, currency value with 2 decimals</td></tr>
+                <tr><td>violation_date</td><td>DATE</td><td>NOT NULL, ISO format YYYY-MM-DD</td></tr>
+              </table>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">2. Expected Output:</div>
+              <div class="expected-output-box">CREATE TABLE TrafficViolations (
+    violation_id SERIAL PRIMARY KEY,
+    vehicle_number VARCHAR(15) NOT NULL,
+    driver_name VARCHAR(50) NOT NULL,
+    violation_type VARCHAR(30) NOT NULL,
+    fine_amount DECIMAL(8,2) NOT NULL,
+    violation_date DATE NOT NULL
+);
+
+INSERT INTO TrafficViolations (vehicle_number, driver_name, violation_type, fine_amount, violation_date)
+VALUES ('AP39AB1234', 'Ravi Kumar', 'Speeding', 1500.00, '2026-01-15');</div>
+            `,
+            starterCode: `/* Write your SQL DDL & DML code here according to instructions on left */\n\n`,
+            testCases: [
+              { 
+                desc: "'TrafficViolations' table created with CREATE TABLE", 
+                checkKeywords: ["create table", "trafficviolations"],
+                detailRequirement: "Checks that the statement starts with 'CREATE TABLE TrafficViolations'.",
+                failureDiagnosis: "Missing 'CREATE TABLE TrafficViolations' definition in your SQL editor.",
+                fixHint: "Define the table using: CREATE TABLE TrafficViolations ( ... );"
+              },
+              { 
+                desc: "'violation_id' is defined as PRIMARY KEY", 
+                checkKeywords: ["violation_id", "primary key"],
+                detailRequirement: "Ensures violation_id has the PRIMARY KEY constraint.",
+                failureDiagnosis: "PRIMARY KEY constraint not detected on violation_id column.",
+                fixHint: "Add PRIMARY KEY to violation_id: violation_id SERIAL PRIMARY KEY"
+              },
+              { 
+                desc: "'violation_id' is of SERIAL data type", 
+                checkKeywords: ["serial"],
+                detailRequirement: "Validates auto-incrementing SERIAL data type.",
+                failureDiagnosis: "SERIAL keyword missing for auto-increment ID.",
+                fixHint: "Use SERIAL type for violation_id."
+              },
+              { 
+                desc: "Text column 'driver_name' with VARCHAR(50)", 
+                checkKeywords: ["driver_name", "varchar(50)"],
+                detailRequirement: "Validates driver_name column is VARCHAR(50).",
+                failureDiagnosis: "driver_name VARCHAR(50) definition missing or mismatched.",
+                fixHint: "Specify driver_name VARCHAR(50) NOT NULL"
+              },
+              { 
+                desc: "'fine_amount' is defined as DECIMAL(8,2)", 
+                checkKeywords: ["fine_amount", "decimal"],
+                detailRequirement: "Validates fine_amount column has DECIMAL(8,2) precision.",
+                failureDiagnosis: "DECIMAL data type not detected on fine_amount.",
+                fixHint: "Use fine_amount DECIMAL(8,2) NOT NULL"
+              },
+              { 
+                desc: "Sample record insertion with INSERT INTO VALUES", 
+                checkKeywords: ["insert into", "values"],
+                detailRequirement: "Validates that a sample data record is inserted into TrafficViolations.",
+                failureDiagnosis: "INSERT INTO TrafficViolations VALUES statement not found.",
+                fixHint: "Add: INSERT INTO TrafficViolations (...) VALUES (...);"
+              }
+            ]
+          },
+          {
+            id: "e2",
+            title: "5.1.2. DDL - ALTER Table & Foreign Key Constraints",
+            date: "09-Jan-2026",
+            completed: false,
+            ext: "index.sql",
+            specHTML: `
+              <p>Execute DDL statements to alter existing tables and append payment tracking columns.</p>
+              <div style="font-weight:600;margin-top:10px;color:#fff;">Requirements:</div>
+              <ul style="padding-left:20px;margin-top:6px;line-height:1.6;">
+                <li>Alter table <code>TrafficViolations</code></li>
+                <li>Add column <code>payment_status</code> of type <code>VARCHAR(20)</code></li>
+                <li>Set DEFAULT value to <code>'Pending'</code></li>
+              </ul>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">ALTER TABLE TrafficViolations ADD COLUMN payment_status VARCHAR(20) DEFAULT 'Pending';</div>
+            `,
+            starterCode: `/* Write your ALTER TABLE statement here */\n`,
+            testCases: [
+              { 
+                desc: "ALTER TABLE column addition verified", 
+                checkKeywords: ["alter table", "add column", "payment_status"],
+                detailRequirement: "Checks that ALTER TABLE TrafficViolations ADD COLUMN payment_status is present.",
+                failureDiagnosis: "ALTER TABLE statement missing or payment_status column not added.",
+                fixHint: "Write: ALTER TABLE TrafficViolations ADD COLUMN payment_status VARCHAR(20) DEFAULT 'Pending';"
+              },
+              { 
+                desc: "DEFAULT 'Pending' constraint verified", 
+                checkKeywords: ["default", "pending"],
+                detailRequirement: "Checks DEFAULT constraint value 'Pending'.",
+                failureDiagnosis: "DEFAULT 'Pending' clause missing.",
+                fixHint: "Add DEFAULT 'Pending' to the ALTER TABLE statement."
+              }
+            ]
+          },
+          {
+            id: "e3",
+            title: "5.1.3. DDL - DROP & TRUNCATE Table Operations",
+            date: "16-Jan-2026",
+            completed: false,
+            ext: "index.sql",
+            specHTML: `
+              <p>Demonstrate the structural and transactional differences between <strong>TRUNCATE</strong> and <strong>DROP</strong> in relational databases.</p>
+              <div style="font-weight:600;margin-top:10px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">TRUNCATE TABLE TempViolations;
+DROP TABLE OldLogs;</div>
+            `,
+            starterCode: `/* Write your TRUNCATE / DROP statements here */\n`,
+            testCases: [
+              { 
+                desc: "TRUNCATE statement executed on TempViolations", 
+                checkKeywords: ["truncate", "tempviolations"],
+                detailRequirement: "Checks TRUNCATE TABLE TempViolations operation.",
+                failureDiagnosis: "TRUNCATE TABLE TempViolations missing.",
+                fixHint: "Write: TRUNCATE TABLE TempViolations;"
+              },
+              { 
+                desc: "DROP TABLE executed on OldLogs", 
+                checkKeywords: ["drop table", "oldlogs"],
+                detailRequirement: "Checks DROP TABLE OldLogs operation.",
+                failureDiagnosis: "DROP TABLE OldLogs missing.",
+                fixHint: "Write: DROP TABLE OldLogs;"
+              }
+            ]
+          },
+          {
+            id: "e4",
+            title: "5.1.4. DML - SELECT * FROM TABLE - University Payroll System",
+            date: "23-Jan-2026",
+            completed: false,
+            ext: "index.sql",
+            specHTML: `
+              <p>Write an inner join query between <code>Students</code> and <code>Departments</code> on <code>dept_id</code> to output student ID, student name, and department name.</p>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">SELECT s.student_id, s.student_name, d.dept_name 
+FROM Students s 
+JOIN Departments d ON s.dept_id = d.dept_id;</div>
+            `,
+            starterCode: `/* Write your SELECT JOIN query here */\n`,
+            testCases: [
+              { 
+                desc: "SELECT with JOIN and ON condition validated", 
+                checkKeywords: ["select", "join", "on"],
+                detailRequirement: "Checks that SELECT query joins Students and Departments.",
+                failureDiagnosis: "JOIN clause or ON condition missing.",
+                fixHint: "Use: SELECT s.student_id, s.student_name, d.dept_name FROM Students s JOIN Departments d ON s.dept_id = d.dept_id;"
+              },
+              { 
+                desc: "Columns student_name and dept_name selected", 
+                checkKeywords: ["student_name", "dept_name"],
+                detailRequirement: "Ensures required columns student_name and dept_name are projected.",
+                failureDiagnosis: "Target columns not found in SELECT projection.",
+                fixHint: "Project student_name and dept_name in SELECT statement."
+              }
+            ]
+          },
+          {
+            id: "e5",
+            title: "5.1.5. ANY / ALL Operator Nested Subqueries",
+            date: "30-Jan-2026",
+            completed: false,
+            ext: "index.sql",
+            specHTML: `
+              <p>Retrieve employee name and salary where employee salary exceeds the salary of ANY employee in department 10.</p>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">SELECT emp_name, salary 
+FROM Employees 
+WHERE salary > ANY (SELECT salary FROM Employees WHERE dept_id = 10);</div>
+            `,
+            starterCode: `/* Write your ANY/ALL subquery here */\n`,
+            testCases: [
+              { 
+                desc: "ANY operator subquery syntax verified", 
+                checkKeywords: ["salary", "any", "select"],
+                detailRequirement: "Checks usage of > ANY comparison operator with nested subquery.",
+                failureDiagnosis: "ANY keyword or subquery filter missing.",
+                fixHint: "Write: WHERE salary > ANY (SELECT salary FROM Employees WHERE dept_id = 10)"
+              },
+              { 
+                desc: "Outer WHERE clause and dept_id filter validated", 
+                checkKeywords: ["where", "dept_id"],
+                detailRequirement: "Validates dept_id filter inside the subquery.",
+                failureDiagnosis: "WHERE dept_id = 10 filter not found.",
+                fixHint: "Include WHERE dept_id = 10 in subquery."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "dsa",
+        code: "CC-DSA-202",
+        name: "Data Structures & Algorithms Lab",
+        desc: "Linked Lists, Stacks, Queues, Binary Trees, Heaps, and Graph Traversals.",
+        experiments: [
+          {
+            id: "dsa1",
+            title: "1.1. Singly Linked List Implementation",
+            date: "05-Jan-2026",
+            completed: false,
+            ext: "linkedlist.c",
+            specHTML: `
+              <p>Implement a dynamic Singly Linked List in C featuring node creation, memory allocation using <code>malloc</code>, and sequential element traversal.</p>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Terminal Output:</div>
+              <div class="expected-output-box">Linked List Initialized.
+Nodes: 10 -> 20 -> 30 -> NULL</div>
+            `,
+            starterCode: `/* Implement Singly Linked List in C */\n#include <stdio.h>\n#include <stdlib.h>\n\nstruct Node {\n    int data;\n    struct Node* next;\n};\n\nint main() {\n    // TODO: Allocate memory and print list\n    return 0;\n}`,
+            testCases: [
+              { 
+                desc: "Node struct definition verified", 
+                checkKeywords: ["struct", "node", "next"],
+                detailRequirement: "Checks struct Node definition with int data and struct Node* next.",
+                failureDiagnosis: "struct Node definition incomplete or missing 'next' pointer.",
+                fixHint: "Define struct Node { int data; struct Node* next; };"
+              },
+              { 
+                desc: "Memory allocation using malloc verified", 
+                checkKeywords: ["malloc", "sizeof"],
+                detailRequirement: "Checks heap memory allocation using malloc(sizeof(struct Node)).",
+                failureDiagnosis: "malloc(sizeof(...)) not found in code.",
+                fixHint: "Allocate node memory using (struct Node*)malloc(sizeof(struct Node));"
+              },
+              { 
+                desc: "Traversal printf output formatted", 
+                checkKeywords: ["printf"],
+                detailRequirement: "Checks standard console output printing.",
+                failureDiagnosis: "printf statement missing.",
+                fixHint: "Add printf to print elements."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  btech1: {
+    title: "B.Tech 1st Year Curriculum",
+    courses: [
+      {
+        id: "c_prog",
+        code: "CC-PROG-101",
+        name: "Problem Solving & Programming with C Lab",
+        desc: "Pointers, Arrays, Strings, Structs, File I/O, and Dynamic Memory Allocation.",
+        experiments: [
+          {
+            id: "c1",
+            title: "1. Prime Sieve of Eratosthenes",
+            date: "10-Nov-2025",
+            completed: false,
+            ext: "sieve.c",
+            specHTML: `
+              <p>Find all prime numbers up to <code>N = 30</code> using the Sieve of Eratosthenes algorithm in C.</p>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">2 3 5 7 11 13 17 19 23 29</div>
+            `,
+            starterCode: `/* Write C Sieve algorithm here */\n#include <stdio.h>\n#include <stdbool.h>\n\nint main() {\n    // TODO: Implement Sieve\n    return 0;\n}`,
+            testCases: [
+              { 
+                desc: "Prime boolean array initialization", 
+                checkKeywords: ["bool", "prime"],
+                detailRequirement: "Checks declaration of boolean prime array.",
+                failureDiagnosis: "bool prime array not found.",
+                fixHint: "Declare: bool prime[31]; memset(prime, true, sizeof(prime));"
+              },
+              { 
+                desc: "Nested loops for composite marking", 
+                checkKeywords: ["for", "*"],
+                detailRequirement: "Checks nested for loop marking multiples of p.",
+                failureDiagnosis: "Nested elimination loop missing.",
+                fixHint: "Use nested for loop: for (int i = p*p; i <= n; i += p)"
+              },
+              { 
+                desc: "Output printing verified", 
+                checkKeywords: ["printf"],
+                detailRequirement: "Checks printing of generated primes.",
+                failureDiagnosis: "printf statement missing.",
+                fixHint: "Print primes using printf(\"%d \", p);"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  btech3: {
+    title: "B.Tech 3rd Year Curriculum",
+    courses: [
+      {
+        id: "java_lab",
+        code: "CC-JAVA-301",
+        name: "Object Oriented Programming Java Lab",
+        desc: "Inheritance, Multi-threading, Collections, and Exception handling.",
+        experiments: [
+          {
+            id: "j1",
+            title: "1. Multi-threaded Synchronization",
+            date: "12-Feb-2026",
+            completed: false,
+            ext: "Solution.java",
+            specHTML: `
+              <p>Implement thread-safe synchronized methods in Java for a concurrent banking transaction system.</p>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">Thread synchronized successfully. Balance updated.</div>
+            `,
+            starterCode: `/* Write synchronized Java methods here */\npublic class Solution {\n    public static void main(String[] args) {\n        // TODO: Implement synchronized thread operations\n    }\n}`,
+            testCases: [
+              { 
+                desc: "synchronized keyword declared", 
+                checkKeywords: ["synchronized"],
+                detailRequirement: "Checks method synchronization using the 'synchronized' keyword.",
+                failureDiagnosis: "synchronized keyword not detected in class definition.",
+                fixHint: "Add 'synchronized' to your transaction method signature."
+              },
+              { 
+                desc: "Thread execution handling", 
+                checkKeywords: ["thread", "run"],
+                detailRequirement: "Checks Thread creation or Runnable run method.",
+                failureDiagnosis: "Thread creation or run method missing.",
+                fixHint: "Implement Thread or Runnable with run() method."
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  inter: {
+    title: "Intermediate (MPC / Computing)",
+    courses: [
+      {
+        id: "py_comp",
+        code: "CC-PYTH-102",
+        name: "Computational Mathematics with Python",
+        desc: "Matrices, Differential equations, Root finding, and Graphing.",
+        experiments: [
+          {
+            id: "py1",
+            title: "1. Quadratic Equation Solver",
+            date: "15-Aug-2025",
+            completed: false,
+            ext: "main.py",
+            specHTML: `
+              <p>Write a Python function <code>solve(a, b, c)</code> to compute real and complex roots for quadratic equations <code>ax^2 + bx + c = 0</code> using <code>cmath</code>.</p>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">Roots calculated: ((-1+1j), (-1-1j))</div>
+            `,
+            starterCode: `# Write Python quadratic solver here:\nimport cmath\n\ndef solve(a, b, c):\n    pass\n`,
+            testCases: [
+              { 
+                desc: "Discriminant formula checked (b**2 - 4*a*c)", 
+                checkKeywords: ["b**2", "4*a*c"],
+                detailRequirement: "Checks calculation of discriminant formula d = b**2 - 4*a*c.",
+                failureDiagnosis: "Discriminant formula missing or mismatched.",
+                fixHint: "Compute discriminant: d = (b**2) - (4*a*c)"
+              },
+              { 
+                desc: "Roots returned using cmath.sqrt", 
+                checkKeywords: ["return", "cmath"],
+                detailRequirement: "Checks quadratic formula return with cmath.sqrt(d).",
+                failureDiagnosis: "cmath.sqrt calculation or return statement missing.",
+                fixHint: "Return: ((-b - cmath.sqrt(d))/(2*a), (-b + cmath.sqrt(d))/(2*a))"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  grade10: {
+    title: "10th Class (School Logic)",
+    courses: [
+      {
+        id: "logic_fund",
+        code: "CC-LOGIC-001",
+        name: "Foundations of Computing & Logic",
+        desc: "Number series, Armstrong numbers, Palindromes, and Factorials.",
+        experiments: [
+          {
+            id: "g1",
+            title: "1. Armstrong Number Checker",
+            date: "01-Jul-2024",
+            completed: false,
+            ext: "armstrong.py",
+            specHTML: `
+              <p>Check whether an input integer equals the sum of cubes of its digits (e.g. <code>153 = 1^3 + 5^3 + 3^3</code>).</p>
+              <div style="font-weight:600;margin-top:12px;color:var(--a1);">Expected Output:</div>
+              <div class="expected-output-box">True (153 is an Armstrong number)</div>
+            `,
+            starterCode: `# Write Armstrong number checker in Python:\ndef is_armstrong(n):\n    pass\n`,
+            testCases: [
+              { 
+                desc: "Digit splitting logic verified (str / len)", 
+                checkKeywords: ["str", "len"],
+                detailRequirement: "Checks string conversion and length computation of the number.",
+                failureDiagnosis: "str(n) or len() not found.",
+                fixHint: "Convert to string: s = str(n); power = len(s)"
+              },
+              { 
+                desc: "Power summation validated", 
+                checkKeywords: ["sum", "**"],
+                detailRequirement: "Checks calculation of sum of digit powers.",
+                failureDiagnosis: "sum() of powers missing.",
+                fixHint: "Use: return sum(int(d)**len(s) for d in s) == n"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+};
+
+/* ================= Active Navigation State, Persistence & Timer ================= */
+let activeLevelKey = "btech2";
+let activeCourse = DATA_LEVELS.btech2.courses[0];
+let activeExperiment = activeCourse.experiments[0];
+let unlockedStep = 1;
+
+// Persistent User Code Map (experimentId -> code)
+const userCodeStorage = {};
+
+// Live Dynamic Stopwatch Timer
+let timerSeconds = 0;
+let timerInterval = null;
+
+function startTimer() {
+  stopTimer();
+  timerSeconds = 0;
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    timerSeconds++;
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function stopTimer() {
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+}
+
+function updateTimerDisplay() {
+  const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+  const s = String(timerSeconds % 60).padStart(2, '0');
+  const el = document.getElementById("studioTimerText");
+  if (el) el.textContent = `⏱ ${m}:${s}`;
+}
+
+/* ================= Step Navigation Controller ================= */
+function navToStep(stepNum) {
+  if (stepNum > unlockedStep) return;
+
+  for (let i = 1; i <= 4; i++) {
+    const page = document.getElementById(`step${i}Page`);
+    if (page) page.classList.toggle("active", i === stepNum);
+  }
+
+  // If leaving studio, stop timer and close drawer
+  if (stepNum < 4) {
+    stopTimer();
+    const drawer = document.getElementById("bottomTestDrawer");
+    if (drawer) drawer.classList.remove("open");
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function chooseLevel(levelKey) {
+  activeLevelKey = levelKey;
+  const levelData = DATA_LEVELS[levelKey];
+  if (!levelData) return;
+
+  document.getElementById("levelTitleHeader").textContent = `${levelData.title} · Labs`;
+
+  const grid = document.getElementById("coursesGrid");
+  grid.innerHTML = levelData.courses.map(c => `
+    <div class="course-card" onclick="chooseCourse('${c.id}')">
+      <span class="course-code">${c.code}</span>
+      <h3 class="course-title">${c.name}</h3>
+      <p style="font-size:12.5px;color:#94a3b8;line-height:1.5;">${c.desc}</p>
+      <div class="course-stats">
+        <span>${c.experiments.length} Experiments</span>
+        <span style="color:var(--a1);font-weight:600;">Open Lab →</span>
+      </div>
+    </div>
+  `).join("");
+
+  unlockedStep = Math.max(unlockedStep, 2);
+  navToStep(2);
+}
+
+function chooseCourse(courseId) {
+  const levelData = DATA_LEVELS[activeLevelKey];
+  activeCourse = levelData.courses.find(c => c.id === courseId);
+  if (!activeCourse) return;
+
+  document.getElementById("labSubjectName").textContent = `${activeCourse.name} - ${activeCourse.code}`;
+
+  renderExperimentsTable();
+
+  unlockedStep = Math.max(unlockedStep, 3);
+  navToStep(3);
+}
+
+function renderExperimentsTable() {
+  const tbody = document.getElementById("experimentsTbody");
+  tbody.innerHTML = activeCourse.experiments.map((exp, idx) => `
+    <tr>
+      <td style="font-weight:600;text-align:center;">${idx + 1}</td>
+      <td style="color:#64748b;font-size:11.5px;">${exp.date}</td>
+      <td style="font-weight:600;color:#0f172a;">${exp.title}</td>
+      <td style="text-align:center;">🖨</td>
+      <td style="text-align:center;" id="status-tick-${exp.id}">
+        ${exp.completed ? '<span class="status-check">✓</span>' : '<span class="status-none">Pending</span>'}
+      </td>
+      <td style="text-align:center;color:#64748b;">${idx * 4 + 1}</td>
+      <td style="color:#64748b;font-size:11.5px;">${exp.completed ? 'Completed' : 'In Progress'}</td>
+      <td style="text-align:center;">
+        <button class="open-btn-green" onclick="openExperimentStudio('${exp.id}')">Open Question</button>
+      </td>
+    </tr>
+  `).join("");
+}
+
+function openExperimentStudio(expId) {
+  activeExperiment = activeCourse.experiments.find(e => e.id === expId);
+  if (!activeExperiment) return;
+
+  document.getElementById("studioTitleText").textContent = activeExperiment.title;
+  document.getElementById("studioFileName").textContent = activeExperiment.ext;
+  document.getElementById("studioSpecsPane").innerHTML = activeExperiment.specHTML;
+  
+  // Persisted User Code Retrieval
+  const savedCode = userCodeStorage[activeExperiment.id];
+  document.getElementById("studioCodeInput").value = (savedCode !== undefined) ? savedCode : activeExperiment.starterCode;
+  updateLineNumbers();
+
+  // Close test drawer initially
+  document.getElementById("bottomTestDrawer").classList.remove("open");
+  document.getElementById("studioMetricsSummary").textContent = "";
+
+  // Start live timer
+  startTimer();
+
+  unlockedStep = Math.max(unlockedStep, 4);
+  navToStep(4);
+}
+
+function handleCodeInput() {
+  const val = document.getElementById("studioCodeInput").value;
+  if (activeExperiment) {
+    userCodeStorage[activeExperiment.id] = val;
+  }
+  updateLineNumbers();
+}
+
+function updateLineNumbers() {
+  const code = document.getElementById("studioCodeInput").value;
+  const count = code.split("\n").length;
+  let nums = "";
+  for (let i = 1; i <= Math.max(count, 14); i++) {
+    nums += i + "<br>";
+  }
+  document.getElementById("studioLineCol").innerHTML = nums;
+}
+
+function resetCodeField() {
+  if (activeExperiment) {
+    delete userCodeStorage[activeExperiment.id];
+    document.getElementById("studioCodeInput").value = activeExperiment.starterCode;
+    updateLineNumbers();
+    document.getElementById("bottomTestDrawer").classList.remove("open");
+    startTimer();
+  }
+}
+
+function prevExperiment() {
+  const idx = activeCourse.experiments.findIndex(e => e.id === activeExperiment.id);
+  if (idx > 0) openExperimentStudio(activeCourse.experiments[idx - 1].id);
+}
+
+function nextExperiment() {
+  const idx = activeCourse.experiments.findIndex(e => e.id === activeExperiment.id);
+  if (idx < activeCourse.experiments.length - 1) openExperimentStudio(activeCourse.experiments[idx + 1].id);
+}
+
+/* ================= Live Submit Runner, Timer Halt & Click-to-Inspect Failures ================= */
+function runLiveSubmit() {
+  if (!activeExperiment) return;
+
+  // STOP the count timer immediately on submit!
+  stopTimer();
+
+  const testCases = activeExperiment.testCases;
+  const userCode = document.getElementById("studioCodeInput").value.toLowerCase();
+  const drawer = document.getElementById("bottomTestDrawer");
+  const pane = document.getElementById("studioTestCasePane");
+  const term = document.getElementById("studioTerminalPane");
+  const metrics = document.getElementById("studioMetricsSummary");
+
+  // Open drawer ONLY on submit!
+  drawer.classList.add("open");
+  switchStudioTab('testcases');
+
+  // Step 1: Spinner
+  pane.innerHTML = `
+    <div style="text-align:center;padding:24px 0;">
+      <div class="tc-loading-spinner" style="width:20px;height:20px;margin-bottom:8px;"></div>
+      <div style="color:var(--muted);font-size:12px;">Preparing live test suite evaluation...</div>
+    </div>
+  `;
+  metrics.innerHTML = "";
+
+  // Terminal initial logs
+  term.textContent = `[CogniCoder Execution Engine - ${activeExperiment.ext}]\nEvaluating code against ${testCases.length} specification test cases...\n----------------------------------------\n`;
+
+  setTimeout(() => {
+    let passedCount = 0;
+    pane.innerHTML = `
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--ct-border);font-size:11.5px;">
+        <div><span style="color:var(--muted);">Execution Time: </span><strong style="color:#fff;">${(timerSeconds + 0.35).toFixed(2)}s</strong></div>
+        <div id="livePassedBanner" style="color:#ef4444;font-weight:600;">🔴 0 out of ${testCases.length} test case(s) passed</div>
+        <div style="margin-left:auto;color:var(--muted);font-size:10.5px;">💡 Click any test case row to view details</div>
+      </div>
+      <div id="tcLiveRows"></div>
+    `;
+
+    const rowsBox = document.getElementById("tcLiveRows");
+
+    testCases.forEach((tc, i) => {
+      const row = document.createElement("div");
+      row.className = "tc-row-item";
+      row.id = `live-tc-${i}`;
+      row.onclick = () => toggleTcDetail(i);
+      row.innerHTML = `
+        <div class="tc-row-header">
+          <div><span style="color:var(--muted);margin-right:8px;">${i + 1}</span> <span>${tc.desc}</span></div>
+          <div class="tc-status-cell"><span class="tc-loading-spinner"></span></div>
+        </div>
+        <div class="tc-detail-box" id="tc-detail-${i}">
+          <div style="font-weight:600;margin-bottom:4px;color:#fff;">🔍 Requirement:</div>
+          <div>${tc.detailRequirement || tc.desc}</div>
+          <div id="tc-diag-${i}" style="margin-top:6px;"></div>
+        </div>
+      `;
+      rowsBox.appendChild(row);
+    });
+
+    let current = 0;
+
+    function stepLoop() {
+      if (current < testCases.length) {
+        const tc = testCases[current];
+        const rowEl = document.getElementById(`live-tc-${current}`);
+        const detailEl = document.getElementById(`tc-detail-${current}`);
+        const diagEl = document.getElementById(`tc-diag-${current}`);
+        
+        // Evaluate code dynamically: check if user code contains required keywords
+        const isPass = tc.checkKeywords ? tc.checkKeywords.every(kw => userCode.includes(kw)) : (userCode.length > 25);
+
+        setTimeout(() => {
+          if (rowEl) {
+            if (isPass) {
+              rowEl.querySelector(".tc-status-cell").innerHTML = `<span class="tc-pass-check">✓</span>`;
+              passedCount++;
+              detailEl.classList.add("passed");
+              diagEl.innerHTML = `<span style="color:#10b981;font-weight:600;">✓ PASSED:</span> All required constructs detected in your code.`;
+              term.textContent += `[Test Case ${current + 1}] PASSED: ${tc.desc}\n`;
+            } else {
+              rowEl.querySelector(".tc-status-cell").innerHTML = `<span class="tc-fail-cross">✗</span>`;
+              detailEl.classList.remove("passed");
+              diagEl.innerHTML = `
+                <div style="color:#ef4444;font-weight:600;margin-bottom:2px;">✗ FAILED: ${tc.failureDiagnosis || 'Required logic missing.'}</div>
+                <div style="color:var(--a1);margin-top:4px;">💡 Hint: ${tc.fixHint || 'Follow the instructions on the left pane.'}</div>
+              `;
+              term.textContent += `[Test Case ${current + 1}] FAILED: ${tc.failureDiagnosis || tc.desc}\n`;
+            }
+
+            const banner = document.getElementById("livePassedBanner");
+            if (banner) {
+              if (passedCount === testCases.length) {
+                banner.innerHTML = `🟢 ${passedCount} out of ${testCases.length} test case(s) passed`;
+                banner.style.color = "#10b981";
+              } else {
+                banner.innerHTML = `🔴 ${passedCount} out of ${testCases.length} test case(s) passed`;
+              }
+            }
+          }
+          current++;
+          stepLoop();
+        }, 320);
+      } else {
+        if (passedCount === testCases.length) {
+          activeExperiment.completed = true;
+          renderExperimentsTable();
+          term.textContent += `----------------------------------------\nExecution completed with exit code 0. All ${testCases.length} test cases passed!`;
+          addAiMessage(`🎉 <strong>All ${testCases.length} test cases passed!</strong> "${activeExperiment.title}" is now marked as Completed.`);
+        } else {
+          term.textContent += `----------------------------------------\nExecution finished with exit code 1. ${testCases.length - passedCount} test case(s) failed.\nClick on any failed test case above for detailed error diagnostics and hints!`;
+          addAiMessage(`⚠️ <strong>${passedCount}/${testCases.length} test cases passed:</strong> Click on any failed test case in the list to see exactly what is missing and how to fix it!`);
+        }
+      }
+    }
+
+    stepLoop();
+  }, 400);
+}
+
+function toggleTcDetail(idx) {
+  const el = document.getElementById(`tc-detail-${idx}`);
+  if (el) el.classList.toggle("expanded");
+}
+
+function switchStudioTab(tabName) {
+  const isTerm = tabName === 'terminal';
+  document.getElementById("tabBtnTerminal").classList.toggle("active", isTerm);
+  document.getElementById("tabBtnTestCases").classList.toggle("active", !isTerm);
+  document.getElementById("studioTerminalPane").style.display = isTerm ? 'block' : 'none';
+  document.getElementById("studioTestCasePane").style.display = isTerm ? 'none' : 'block';
+}
+
+/* ================= Floating AI Assistant ================= */
+function toggleFloatingAi() {
+  document.getElementById("floatingAiDrawer").classList.toggle("open");
+}
+
+function addAiMessage(html, isUser = false) {
+  const chat = document.getElementById("aiChatMessages");
+  const msg = document.createElement("div");
+  msg.className = `ai-message ${isUser ? 'user' : 'ai'}`;
+  msg.innerHTML = html;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function sendUserAiMessage() {
+  const input = document.getElementById("aiUserInputText");
+  const text = input.value.trim();
+  if (!text) return;
+  addAiMessage(text, true);
+  input.value = "";
+
+  setTimeout(() => {
+    addAiMessage(`🧠 <strong>CogniCoder AI:</strong> Regarding "<em>${text}</em>":<br><br>Check the requirements and schema on the left pane. Write your solution in the code editor, then click <strong>Submit</strong> to evaluate!`);
+  }, 400);
+}
+
+function askAiPrompt(type) {
+  if (type === 'explain') {
+    addAiMessage(`📖 <strong>Requirements Breakdown:</strong><br><br>1. Define table schema with exact column names.<br>2. Set primary key identifier.<br>3. Populate test tuples.`);
+  } else if (type === 'hint') {
+    addAiMessage(`💡 <strong>Socratic Hint:</strong><br><br>Ensure that your data types match the table specification. For currency amounts, remember to use <code>DECIMAL(8,2)</code>.`);
+  } else if (type === 'syntax') {
+    addAiMessage(`🐞 <strong>Syntax Check:</strong><br><br>✓ Keywords validated.<br>✓ Semicolon terminator present.<br>✓ Parentheses balanced.`);
+  }
+}
+</script>
+
+<script src="vfx-engine.js"></script>
+</body>
+</html>

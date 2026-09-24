@@ -1,0 +1,194 @@
+/* ==========================================================================
+   VFX & 3D GRAPHICAL SUITE — ULTRA MODERN FUTURISTIC TECH (CLEAN V3)
+   ========================================================================== */
+
+:root {
+  --vfx-glow-cyan: rgba(0, 240, 255, 0.7);
+  --vfx-glow-lime: rgba(200, 241, 53, 0.7);
+  --vfx-glow-violet: rgba(123, 97, 255, 0.7);
+  --vfx-glow-ember: rgba(255, 94, 58, 0.7);
+  --vfx-cyber-blue: #00f0ff;
+  --vfx-cyber-lime: #c8f135;
+  --vfx-cyber-purple: #9d4edd;
+}
+
+/* Background 3D Canvas */
+#vfx-bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* High-Tech Custom Cursor */
+.vfx-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #c8f135;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 14px #c8f135, 0 0 28px #c8f135;
+  transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, background 0.2s;
+}
+
+.vfx-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(200, 241, 53, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), width 0.25s ease, height 0.25s ease, border-color 0.25s;
+}
+
+.vfx-cursor-ring.active {
+  width: 54px;
+  height: 54px;
+  border-color: rgba(0, 240, 255, 0.85);
+  background: rgba(0, 240, 255, 0.06);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+}
+
+.vfx-cursor-dot.active {
+  background: #00f0ff;
+  box-shadow: 0 0 18px #00f0ff;
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
+/* Particle Spark Trails */
+.vfx-spark {
+  position: fixed;
+  border-radius: 50%;
+  background: #c8f135;
+  box-shadow: 0 0 10px #c8f135;
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%, -50%);
+  animation: vfxSparkFly 0.5s ease-out forwards;
+}
+
+@keyframes vfxSparkFly {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0.2);
+  }
+}
+
+/* Clean 3D Tilt (No extra outside color or border boxes) */
+.vfx-tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 3D Page Reveal Matrix */
+.vfx-reveal-3d {
+  opacity: 0;
+  transform: perspective(1000px) translateY(24px) scale(0.99);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.vfx-reveal-3d.in-view {
+  opacity: 1;
+  transform: perspective(1000px) translateY(0) scale(1);
+}
+
+/* 3D Page Transition Overlay */
+#vfx-page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #09090e;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#vfx-page-transition.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.vfx-transition-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.vfx-transition-rings {
+  width: 46px;
+  height: 46px;
+  border: 2px solid transparent;
+  border-top-color: var(--vfx-cyber-lime);
+  border-right-color: var(--vfx-cyber-blue);
+  border-radius: 50%;
+  animation: vfxSpin 0.7s linear infinite;
+  box-shadow: 0 0 25px rgba(200, 241, 53, 0.4);
+}
+
+@keyframes vfxSpin {
+  to { transform: rotate(360deg); }
+}
+
+.vfx-transition-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--vfx-cyber-lime);
+}
+
+/* Interactive Particle Ripple on Click */
+.vfx-ripple {
+  position: fixed;
+  border-radius: 50%;
+  border: 2px solid rgba(200, 241, 53, 0.8);
+  pointer-events: none;
+  z-index: 99990;
+  transform: translate(-50%, -50%) scale(0);
+  animation: vfxRippleAnim 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes vfxRippleAnim {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    width: 180px;
+    height: 180px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    border-color: rgba(0, 240, 255, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .vfx-cursor-dot, .vfx-cursor-ring, .vfx-spark {
+    display: none !important;
+  }
+}
