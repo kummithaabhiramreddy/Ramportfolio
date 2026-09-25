@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resume — Kummitha Abhiram Reddy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vfx-styles.css">
+<link rel="stylesheet" href="../vfx-styles.css">
 <style>
 :root {
   --bg:#09090e; --surface:#111118; --ink:#e8e6f0; --muted:#6a6878;
@@ -18,7 +18,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 ::selection{background:var(--a1);color:#09090e;}
 
 /* ---- Top bar (unified header style, matches Academics/Certificates/Admins) ---- */
-.acad-topbar{position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:6px;padding:14px 18px;background:rgba(9,9,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--dim);}
+.acad-topbar{position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:6px;padding:14px 18px;background:rgba(9,9,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--dim);}
 .nav-logo-link{position:relative;width:30px;height:30px;border-radius:50%;overflow:hidden;border:2px solid var(--dim);flex-shrink:0;display:block;}
 .nav-logo-img{width:100%;height:100%;object-fit:cover;display:block;}
 .acad-back{background:none;border:1px solid var(--dim);color:var(--ink);width:28px;height:28px;border-radius:50%;font-size:13px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
@@ -29,7 +29,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 .page-wrap{padding:24px 20px 60px;display:flex;justify-content:center;}
 
 /* ---- Resume sheet (same design language as the in-page modal) ---- */
-.resume-sheet{background:#fff;width:100%;max-width:820px;border-radius:6px;padding:0;font-family:'DM Sans',Arial,sans-serif;box-shadow:0 30px 80px rgba(0,0,0,.5);}
+.resume-sheet{background:rgba(255,255,255,.94);backdrop-filter:blur(12px);width:100%;max-width:820px;border-radius:6px;padding:0;font-family:'DM Sans',Arial,sans-serif;box-shadow:0 30px 80px rgba(0,0,0,.55);}
 .resume-inner{background:#fff;border-radius:4px;overflow:hidden;color:#1a1a1a;}
 .resume-header{background:#2b3245;padding:34px 36px 46px;position:relative;}
 .resume-name{font-weight:800;font-size:30px;letter-spacing:1px;text-transform:uppercase;color:#fff;}
@@ -224,6 +224,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 <script>
 document.getElementById('resumePrintBtn').addEventListener('click', function(){ window.print(); });
 </script>
-<script src="vfx-engine.js"></script>
+<script src="../vfx-engine.js"></script>
 </body>
 </html>

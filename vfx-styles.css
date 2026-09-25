@@ -31,12 +31,12 @@
   left: 0;
   width: 8px;
   height: 8px;
-  background: #c8f135;
+  background: #00f0ff;
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 14px #c8f135, 0 0 28px #c8f135;
+  box-shadow: 0 0 14px #00f0ff, 0 0 28px #00f0ff;
   transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, background 0.2s;
 }
 
@@ -46,7 +46,7 @@
   left: 0;
   width: 36px;
   height: 36px;
-  border: 1.5px solid rgba(200, 241, 53, 0.45);
+  border: 1.5px solid rgba(0, 240, 255, 0.5);
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
@@ -72,8 +72,8 @@
 .vfx-spark {
   position: fixed;
   border-radius: 50%;
-  background: #c8f135;
-  box-shadow: 0 0 10px #c8f135;
+  background: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
   pointer-events: none;
   z-index: 99997;
   transform: translate(-50%, -50%);
@@ -164,7 +164,7 @@
 .vfx-ripple {
   position: fixed;
   border-radius: 50%;
-  border: 2px solid rgba(200, 241, 53, 0.8);
+  border: 2px solid rgba(0, 240, 255, 0.8);
   pointer-events: none;
   z-index: 99990;
   transform: translate(-50%, -50%) scale(0);

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Certificates · Kummitha Abhiram Reddy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vfx-styles.css">
+<link rel="stylesheet" href="../vfx-styles.css">
 <style>
 :root {
   --bg:#09090e; --surface:#111118; --ink:#e8e6f0; --muted:#6a6878;
@@ -24,8 +24,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 .acad-back:hover{border-color:var(--a1);color:var(--a1);transform:translateX(-2px);}
 
 /* ===== Shared compact-shell layout (also used by the Academics page) ===== */
-.acad-shell{width:100%;max-width:640px;min-height:100vh;margin:0 auto;background:var(--bg);position:relative;}
-.acad-topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;padding:14px 18px;background:rgba(9,9,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--dim);}
+.acad-shell{width:100%;max-width:640px;min-height:100vh;margin:0 auto;background:transparent;position:relative;}
+.acad-topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;padding:14px 18px;background:rgba(9,9,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--dim);}
 .nav-logo-link{position:relative;width:30px;height:30px;border-radius:50%;overflow:hidden;border:2px solid var(--dim);flex-shrink:0;display:block;transition:border-color .2s;}
 .nav-logo-link:hover{border-color:var(--a1);}
 .nav-logo-img{width:100%;height:100%;object-fit:cover;display:block;}
@@ -35,11 +35,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 
 /* ===== Certificates page styles (moved out of index.html) ===== */
 /* Certificates overlay */
-#certificatesOverlay{display:none;position:fixed;inset:0;z-index:600;width:100vw;height:100vh;background:var(--bg);overflow-y:auto;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;}
+#certificatesOverlay{display:none;position:fixed;inset:0;z-index:600;width:100vw;height:100vh;background:rgba(9,9,14,.82);backdrop-filter:blur(12px);overflow-y:auto;overflow-x:hidden;-ms-overflow-style:none;scrollbar-width:none;}
 #certificatesOverlay::-webkit-scrollbar{display:none;}
 #certificatesOverlay.open{display:block;}
 .cert-search-wrap{flex-shrink:0;}
-.cert-search-wrap input{width:118px;background:var(--bg);border:1px solid var(--dim);border-radius:20px;padding:6px 12px;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--ink);outline:none;transition:border-color .2s,width .2s;}
+.cert-search-wrap input{width:118px;background:rgba(17,17,24,.6);backdrop-filter:blur(6px);border:1px solid var(--dim);border-radius:20px;padding:6px 12px;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--ink);outline:none;transition:border-color .2s,width .2s;}
 .cert-search-wrap input:focus{border-color:var(--a1);width:160px;}
 .cert-search-wrap input::placeholder{color:var(--muted);}
 .cert-search-noresult{display:none;text-align:center;padding:60px 8px;color:var(--muted);font-size:12px;font-family:'DM Mono',monospace;}
@@ -49,9 +49,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 /* ===== New grid gallery model (replaces long-form list) ===== */
 .cert-group{margin-bottom:34px;}
 .cert-group-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;padding-left:2px;}
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;}
-.cert-group[data-group="images"] .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;}
-.cert-group[data-group="pdfs"] .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;align-items:stretch;}
+.cert-group[data-group="images"] .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;align-items:stretch;}
+.cert-group[data-group="pdfs"] .cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%;align-items:stretch;}
 @media (max-width:768px){
   .cert-grid,
   .cert-group[data-group="images"] .cert-grid,
@@ -65,8 +65,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
   .cert-thumb-pdf{max-height:none;}
   .cert-tile-title{font-size:8px;}
 }
-.cert-tile{display:flex;flex-direction:column;gap:4px;background:none;border:none;padding:0;cursor:pointer;text-align:left;font-family:inherit;color:inherit;max-width:100%;}
-.cert-thumb{position:relative;aspect-ratio:3/4;width:100%;max-height:150px;border-radius:8px;overflow:hidden;border:1px solid var(--dim);background:var(--surface);transition:border-color .2s,transform .2s;}
+.cert-tile{display:flex;flex-direction:column;justify-content:space-between;gap:4px;background:none;border:none;padding:0;cursor:pointer;text-align:left;font-family:inherit;color:inherit;max-width:100%;height:100%;}
+.cert-thumb{position:relative;aspect-ratio:3/4;width:100%;max-height:150px;border-radius:8px;overflow:hidden;border:1px solid var(--dim);background:rgba(17,17,24,.65);backdrop-filter:blur(6px);transition:border-color .2s,transform .2s;}
 .cert-tile-title{font-size:9px;line-height:1.3;color:var(--ink);}
 @media (hover:hover) and (pointer:fine){
   .cert-tile:hover .cert-thumb{border-color:var(--a5);transform:translateY(-2px);}
@@ -100,7 +100,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 
 /* ===== Academics / Personal division toggle ===== */
 .cert-div-toggle-row{display:flex;justify-content:center;padding:12px 14px 0;}
-.cert-div-toggle{position:relative;display:inline-flex;background:var(--surface);border:1px solid var(--dim);border-radius:999px;padding:2px;gap:2px;}
+.cert-div-toggle{position:relative;display:inline-flex;background:rgba(17,17,24,.65);backdrop-filter:blur(8px);border:1px solid var(--dim);border-radius:999px;padding:2px;gap:2px;}
 .cert-div-toggle-thumb{position:absolute;top:2px;left:2px;bottom:2px;width:calc(50% - 2px);background:var(--ink);border:1px solid var(--ink);border-radius:999px;transition:transform .28s cubic-bezier(.4,0,.2,1);z-index:0;}
 .cert-div-toggle[data-active="personal"] .cert-div-toggle-thumb{transform:translateX(100%);}
 .cert-div-btn{position:relative;z-index:1;border:none;background:none;font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:5px 13px;border-radius:999px;cursor:pointer;transition:color .25s;white-space:nowrap;}
@@ -146,28 +146,28 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
       <section class="cert-group reveal" data-group="images">
         <p class="cert-group-label">Images</p>
         <div class="cert-grid">
-          <button class="cert-tile" type="button" data-type="image" data-src="udbhav.png" data-title="UDBHAV 2K26 — National Level Hackathon">
-            <span class="cert-thumb"><img src="udbhav.png" alt="UDBHAV 2K26 — National Level Hackathon" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/udbhav.png" data-title="UDBHAV 2K26 — National Level Hackathon">
+            <span class="cert-thumb"><img src="../images/udbhav.png" alt="UDBHAV 2K26 — National Level Hackathon" loading="lazy"></span>
             <span class="cert-tile-title">UDBHAV 2K26 — National Level Hackathon</span>
           </button>
-          <button class="cert-tile" type="button" data-type="image" data-src="html_essentials_certificate.png" data-title="HTML Essentials — Cisco Networking Academy">
-            <span class="cert-thumb"><img src="html_essentials_certificate.png" alt="HTML Essentials — Cisco Networking Academy" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/html_essentials_certificate.png" data-title="HTML Essentials — Cisco Networking Academy">
+            <span class="cert-thumb"><img src="../images/html_essentials_certificate.png" alt="HTML Essentials — Cisco Networking Academy" loading="lazy"></span>
             <span class="cert-tile-title">HTML Essentials — Cisco Networking Academy</span>
           </button>
-          <button class="cert-tile" type="button" data-type="image" data-src="sem2_results.png" data-title="Semester II Result Sheet">
-            <span class="cert-thumb"><img src="sem2_results.png" alt="Semester II Result Sheet" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/sem2_results.png" data-title="Semester II Result Sheet">
+            <span class="cert-thumb"><img src="../images/sem2_results.png" alt="Semester II Result Sheet" loading="lazy"></span>
             <span class="cert-tile-title">Semester II Result Sheet</span>
           </button>
-          <button class="cert-tile" type="button" data-type="image" data-src="c_essentials_1.jpg" data-title="C Essentials 1 — Cisco Networking Academy">
-            <span class="cert-thumb"><img src="c_essentials_1.jpg" alt="C Essentials 1 — Cisco Networking Academy" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/c_essentials_1.jpg" data-title="C Essentials 1 — Cisco Networking Academy">
+            <span class="cert-thumb"><img src="../images/c_essentials_1.jpg" alt="C Essentials 1 — Cisco Networking Academy" loading="lazy"></span>
             <span class="cert-tile-title">C Essentials 1 — Cisco Networking Academy</span>
           </button>
-          <button class="cert-tile" type="button" data-type="image" data-src="c_essentials_2.jpg" data-title="C Essentials 2 — Cisco Networking Academy">
-            <span class="cert-thumb"><img src="c_essentials_2.jpg" alt="C Essentials 2 — Cisco Networking Academy" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/c_essentials_2.jpg" data-title="C Essentials 2 — Cisco Networking Academy">
+            <span class="cert-thumb"><img src="../images/c_essentials_2.jpg" alt="C Essentials 2 — Cisco Networking Academy" loading="lazy"></span>
             <span class="cert-tile-title">C Essentials 2 — Cisco Networking Academy</span>
           </button>
-          <button class="cert-tile" type="button" data-type="image" data-src="sem1_results.jpg" data-title="Semester I Result Sheet">
-            <span class="cert-thumb"><img src="sem1_results.jpg" alt="Semester I Result Sheet" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/sem1_results.jpg" data-title="Semester I Result Sheet">
+            <span class="cert-thumb"><img src="../images/sem1_results.jpg" alt="Semester I Result Sheet" loading="lazy"></span>
             <span class="cert-tile-title">Semester I Result Sheet</span>
           </button>
         </div>
@@ -176,12 +176,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
       <section class="cert-group reveal d1" data-group="pdfs">
         <p class="cert-group-label">PDFs</p>
         <div class="cert-grid">
-          <div class="cert-tile" tabindex="0" role="button" data-type="pdf" data-src="study_certificates.pdf" data-title="Study & Admission Certificates">
-            <span class="cert-thumb cert-thumb-pdf"><canvas class="cert-pdf-canvas"></canvas><button class="cert-pdf-download-btn" type="button" aria-label="Download" title="Download" data-src="study_certificates.pdf" data-title="Study & Admission Certificates">⬇</button></span>
+          <div class="cert-tile" tabindex="0" role="button" data-type="pdf" data-src="../pdfs/study_certificates.pdf" data-title="Study & Admission Certificates">
+            <span class="cert-thumb cert-thumb-pdf"><canvas class="cert-pdf-canvas"></canvas><button class="cert-pdf-download-btn" type="button" aria-label="Download" title="Download" data-src="../pdfs/study_certificates.pdf" data-title="Study & Admission Certificates">⬇</button></span>
             <span class="cert-tile-title">Study & Admission Certificates</span>
           </div>
-          <div class="cert-tile" tabindex="0" role="button" data-type="pdf" data-src="hall_tickets.pdf" data-title="Study & Hall Tickets">
-            <span class="cert-thumb cert-thumb-pdf"><canvas class="cert-pdf-canvas"></canvas><button class="cert-pdf-download-btn" type="button" aria-label="Download" title="Download" data-src="hall_tickets.pdf" data-title="Study & Hall Tickets">⬇</button></span>
+          <div class="cert-tile" tabindex="0" role="button" data-type="pdf" data-src="../pdfs/hall_tickets.pdf" data-title="Study & Hall Tickets">
+            <span class="cert-thumb cert-thumb-pdf"><canvas class="cert-pdf-canvas"></canvas><button class="cert-pdf-download-btn" type="button" aria-label="Download" title="Download" data-src="../pdfs/hall_tickets.pdf" data-title="Study & Hall Tickets">⬇</button></span>
             <span class="cert-tile-title">Study & Hall Tickets</span>
           </div>
         </div>
@@ -191,12 +191,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
       <section class="cert-group reveal" data-group="images">
         <p class="cert-group-label">Images</p>
         <div class="cert-grid">
-          <button class="cert-tile" type="button" data-type="image" data-src="Abhi_aadhaar_card.jpg" data-title="Abhiram Reddy Aadhaar Card">
-            <span class="cert-thumb"><img src="Abhi_aadhaar_card.jpg" alt="Abhiram Reddy Aadhaar Card" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/Abhi_aadhaar_card.jpg" data-title="Abhiram Reddy Aadhaar Card">
+            <span class="cert-thumb"><img src="../images/Abhi_aadhaar_card.jpg" alt="Abhiram Reddy Aadhaar Card" loading="lazy"></span>
             <span class="cert-tile-title">Abhiram Reddy Aadhaar Card</span>
           </button>
-          <button class="cert-tile" type="button" data-type="image" data-src="bank_document.png" data-title="Canara Bank Joint Account">
-            <span class="cert-thumb"><img src="bank_document.png" alt="Canara Bank Joint Account" loading="lazy"></span>
+          <button class="cert-tile" type="button" data-type="image" data-src="../images/bank_document.png" data-title="Canara Bank Joint Account">
+            <span class="cert-thumb"><img src="../images/bank_document.png" alt="Canara Bank Joint Account" loading="lazy"></span>
             <span class="cert-tile-title">Canara Bank Joint Account</span>
           </button>
         </div>
@@ -205,8 +205,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
       <section class="cert-group reveal d1" data-group="pdfs">
         <p class="cert-group-label">PDFs</p>
         <div class="cert-grid">
-          <div class="cert-tile" tabindex="0" role="button" data-type="pdf" data-src="AADHAAR_CARDS.pdf" data-title="Aadhaar Cards (Family)">
-            <span class="cert-thumb cert-thumb-pdf"><canvas class="cert-pdf-canvas"></canvas><button class="cert-pdf-download-btn" type="button" aria-label="Download" title="Download" data-src="AADHAAR_CARDS.pdf" data-title="Aadhaar Cards (Family)">⬇</button></span>
+          <div class="cert-tile" tabindex="0" role="button" data-type="pdf" data-src="../pdfs/AADHAAR_CARDS.pdf" data-title="Aadhaar Cards (Family)">
+            <span class="cert-thumb cert-thumb-pdf"><canvas class="cert-pdf-canvas"></canvas><button class="cert-pdf-download-btn" type="button" aria-label="Download" title="Download" data-src="../pdfs/AADHAAR_CARDS.pdf" data-title="Aadhaar Cards (Family)">⬇</button></span>
             <span class="cert-tile-title">Aadhaar Cards (Family)</span>
           </div>
         </div>
@@ -508,6 +508,6 @@ document.addEventListener('keydown', (e)=>{
   }
 });
 </script>
-<script src="vfx-engine.js"></script>
+<script src="../vfx-engine.js"></script>
 </body>
 </html>

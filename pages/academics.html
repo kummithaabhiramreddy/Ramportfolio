@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Academics · Kummitha Abhiram Reddy</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="vfx-styles.css">
+<link rel="stylesheet" href="../vfx-styles.css">
 <style>
 :root {
   --bg:#09090e; --surface:#111118; --ink:#e8e6f0; --muted:#6a6878;
@@ -19,8 +19,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 
 /* ===== Academics page styles (moved out of index.html) ===== */
 /* ===== Academics overlay — compact style with smooth transitions ===== */
-.acad-shell{width:100%;max-width:640px;min-height:100vh;margin:0 auto;background:var(--bg);position:relative;}
-.acad-topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;padding:14px 18px;background:rgba(9,9,14,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--dim);}
+.acad-shell{width:100%;max-width:640px;min-height:100vh;margin:0 auto;background:transparent;position:relative;}
+.acad-topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;padding:14px 18px;background:rgba(9,9,14,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--dim);}
 .nav-logo-link{position:relative;width:30px;height:30px;border-radius:50%;overflow:hidden;border:2px solid var(--dim);flex-shrink:0;display:block;}
 .nav-logo-img{width:100%;height:100%;object-fit:cover;display:block;}
 .acad-back{background:none;border:1px solid var(--dim);color:var(--ink);width:28px;height:28px;border-radius:50%;font-size:13px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:border-color .2s,color .2s,transform .2s;}
@@ -31,17 +31,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 .acad-close:hover{color:var(--a3);transform:rotate(90deg);}
 .acad-body{padding:16px 14px 44px;transition:opacity .28s ease, transform .28s ease;will-change:opacity,transform;}
 
-.acad-countdown{background:var(--surface);border:1px solid rgba(205,216,255,.18);border-radius:12px;padding:14px 14px;margin-bottom:18px;text-align:center;}
+.acad-countdown{background:rgba(17,17,24,.65);backdrop-filter:blur(8px);border:1px solid rgba(205,216,255,.18);border-radius:12px;padding:14px 14px;margin-bottom:18px;text-align:center;}
 .acad-cd-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--acad-light-dim);margin-bottom:10px;}
 .acad-cd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
-.acad-cd-unit{background:var(--bg);border:1px solid rgba(205,216,255,.1);border-radius:7px;padding:8px 3px;transition:transform .15s ease,border-color .15s ease;}
+.acad-cd-unit{background:rgba(9,9,14,.45);border:1px solid rgba(205,216,255,.1);border-radius:7px;padding:8px 3px;transition:transform .15s ease,border-color .15s ease;}
 .acad-cd-unit:hover{border-color:rgba(205,216,255,.4);}
 .acad-cd-num{font-family:'DM Mono',monospace;font-size:17px;font-weight:500;color:var(--acad-light);}
 .acad-cd-unitlabel{font-size:8px;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;margin-top:2px;}
 .acad-cd-sub{font-size:9.5px;color:var(--muted);margin-top:10px;}
 
 .acad-list{display:flex;flex-direction:column;gap:8px;}
-.acad-item{background:var(--surface);border:1px solid var(--dim);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .2s,transform .2s,background .2s;}
+.acad-item{background:rgba(17,17,24,.65);backdrop-filter:blur(6px);border:1px solid var(--dim);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .2s,transform .2s,background .2s;}
 .acad-item:hover{border-color:var(--a1);transform:translateX(3px);}
 .acad-item:active{transform:translateX(1px) scale(.99);}
 .acad-item.locked{opacity:.4;cursor:not-allowed;}
@@ -55,13 +55,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line
 .acad-item-badge.locked{background:rgba(106,104,120,.15);color:var(--muted);}
 
 .acad-stats-row{display:flex;gap:8px;margin-bottom:16px;}
-.acad-stat{flex:1;background:var(--surface);border:1px solid var(--dim);border-radius:9px;padding:10px 8px;text-align:center;transition:border-color .2s;}
+.acad-stat{flex:1;background:rgba(17,17,24,.65);backdrop-filter:blur(6px);border:1px solid var(--dim);border-radius:999px;padding:10px 8px;text-align:center;transition:border-color .2s;}
 .acad-stat:hover{border-color:var(--a1);}
 .acad-stat-val{font-family:'DM Mono',monospace;font-size:15px;color:var(--acad-light);}
 .acad-stat-label{font-size:8px;color:var(--muted);letter-spacing:.8px;text-transform:uppercase;margin-top:3px;}
 
 .acad-hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:4px;}
-.acad-hub-card{background:var(--surface);border:1px solid var(--dim);border-radius:8px;padding:8px 8px;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;align-items:center;gap:7px;position:relative;}
+.acad-hub-card{background:rgba(17,17,24,.65);backdrop-filter:blur(6px);border:1px solid var(--dim);border-radius:8px;padding:8px 8px;cursor:pointer;transition:border-color .2s,transform .2s;display:flex;align-items:center;gap:7px;position:relative;}
 .acad-hub-card:hover{border-color:var(--a1);transform:translateY(-1px);}
 .acad-hub-card:active{transform:translateY(0) scale(.98);}
 .acad-hub-num{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);flex-shrink:0;}
@@ -249,7 +249,7 @@ const ACADEMICS_DATA = {
           start:'20 Jan 2026', end:'30 Jan 2026',
           resultsReleased:true,
           resultsReleasedDate:'09-Feb-2026',
-          resultImage:'sem1_results.jpg',
+          resultImage:'../images/sem1_results.jpg',
           officialResultLink:"javascript:__doPostBack('ctl00$ContentPlaceHolder1$Repeater2$ctl06$Linkbtn2','')",
           certificates:[],
           sgpa:'8.56', cgpa:'8.56', totalCredits:'19.50', creditsSecured:'19.50',
@@ -261,7 +261,7 @@ const ACADEMICS_DATA = {
           subjects:[
             {code:'B23HS1101', name:'Communicative English', cr:'2.00', grade:'C', units:[null,null,null,null,null]},
             {code:'B23BS1101', name:'Linear Algebra & Calculus', cr:'3.00', grade:'A', units:[
-              {name:'Matrices', file:'LAC_Unit1_notes.pdf', syllabus:{topic:'Matrices', hours:'10 Hrs', content:'Rank of a matrix by echelon form, normal form. Cauchy–Binet formulae (without proof). Inverse of Non-singular matrices by Gauss-Jordan method. System of linear equations: Consistency and solution of Homogeneous and Non-Homogeneous equations, Gauss elimination method, Jacobi and Gauss Seidel Iteration Methods.'}},
+              {name:'Matrices', file:'../pdfs/LAC_Unit1_notes.pdf', syllabus:{topic:'Matrices', hours:'10 Hrs', content:'Rank of a matrix by echelon form, normal form. Cauchy–Binet formulae (without proof). Inverse of Non-singular matrices by Gauss-Jordan method. System of linear equations: Consistency and solution of Homogeneous and Non-Homogeneous equations, Gauss elimination method, Jacobi and Gauss Seidel Iteration Methods.'}},
               {syllabus:{topic:'Eigen values, Eigenvectors and Orthogonal Transformation', hours:'10 Hrs', content:'Eigen values, Eigenvectors and their properties, Diagonalization of a matrix, Cayley-Hamilton Theorem (without proof), finding inverse and power of a matrix by Cayley-Hamilton Theorem, Quadratic forms and Nature of the Quadratic Forms, Reduction of Quadratic form to canonical forms by Orthogonal Transformation.'}},
               {syllabus:{topic:'Calculus', hours:'10 Hrs', content:"Mean Value Theorems: Rolle's Theorem, Lagrange's mean value theorem with their geometrical interpretation, Cauchy's mean value theorem, Taylor's and Maclaurin theorems with remainders (without proof), Problems and applications on the above theorems."}},
               {syllabus:{topic:'Partial Differentiation and Applications (Multi Variable Calculus)', hours:'10 Hrs', content:"Functions of several variables: Continuity and Differentiability, Partial derivatives, total derivatives, chain rule, Directional derivative, Taylor's and Maclaurin's series expansion of functions of two variables. Jacobians, Functional dependence, maxima and minima of functions of two variables, method of Lagrange multipliers, Differentiation under integral sign."}},
@@ -276,7 +276,7 @@ const ACADEMICS_DATA = {
             {code:'B23CS1102', name:'Computer Programming Lab', cr:'1.50', grade:'S', units:[null,null,null,null,null]},
             {code:'B23HS1103', name:'NSS/NCC/Scouts & Guides/Community Service', cr:'0.50', grade:'S', isActivity:true, units:[null,null,null,null,null]}
           ],
-          hallTicketImage:'firstyear_sem1_hallticket.png',
+          hallTicketImage:'../images/firstyear_sem1_hallticket.png',
           hallTicket:{
             regdNo:'25B91A1292', monthYear:'Jan-2026', branch:'INFORMATION TECHNOLOGY (IT)',
             exams:[
@@ -294,15 +294,15 @@ const ACADEMICS_DATA = {
           start:'06 Jul 2026', end:'16 Jul 2026',
           resultsReleased:true,
           resultsReleasedDate:'05-Aug-2026',
-          resultImage:'sem2_results.png',
+          resultImage:'../images/sem2_results.png',
           sgpa:'8.90', cgpa:'8.73', totalCredits:'20.50', creditsSecured:'20.50',
           subjects:[
             {code:'B23BS1201', name:'Differential Equations & Vector Calculus', cr:'3.00', grade:'B', units:[
-              {name:'Differential equations of first order and first degree', file:'DEVC_Unit1_notes.pdf', syllabus:{topic:'Differential equations of first order and first degree', hours:'10 Hrs', content:"Linear differential equations – Bernoulli's equations- Exact equations and equations reducible to exact form. Applications: Orthogonal Trajectories, Newton's Law of cooling – Law of natural growth and decay- Electrical circuits: RL & RC circuits."}},
-              {name:'Linear differential equations of higher order (Constant Coefficients)', file:'DEVC_Unit2_notes.pdf', syllabus:{topic:'Linear differential equations of higher order (Constant Coefficients)', hours:'10 Hrs', content:'Definitions, homogenous and non-homogenous, complimentary function, general solution, particular integral, Wronskian, Method of variation of parameters. Simultaneous linear equations, Applications to L-C-R Circuit problems and Simple Harmonic motion.'}},
-              {name:'Partial Differential Equations', file:'DEVC_Unit3_notes.pdf', syllabus:{topic:'Partial Differential Equations', hours:'10 Hrs', content:"Introduction and formation of Partial Differential Equations by elimination of arbitrary constants and arbitrary functions, solutions of first order linear equations using Lagrange's method. Homogeneous and Non-Homogeneous Linear Partial differential equations with constant coefficients."}},
-              {name:'Vector Differentiation', file:'DEVC_Unit4_notes.pdf', syllabus:{topic:'Vector differentiation', hours:'10 Hrs', content:'Scalar and vector point functions, vector operator Del, Del applies to scalar point functions- Gradient and applications, Directional derivative, del applied to vector point functions-Divergence and Curl, vector identities.'}},
-              {name:'Vector Integration', file:'DEVC_Unit5_notes.pdf', syllabus:{topic:'Vector integration', hours:'10 Hrs', content:"Line Integral-circulation-work done, surface integral-flux, Green's theorem in the plane (without proof), Stoke's theorem (without proof), volume integral, Divergence theorem (without proof) and related problems."}}
+              {name:'Differential equations of first order and first degree', file:'../pdfs/DEVC_Unit1_notes.pdf', syllabus:{topic:'Differential equations of first order and first degree', hours:'10 Hrs', content:"Linear differential equations – Bernoulli's equations- Exact equations and equations reducible to exact form. Applications: Orthogonal Trajectories, Newton's Law of cooling – Law of natural growth and decay- Electrical circuits: RL & RC circuits."}},
+              {name:'Linear differential equations of higher order (Constant Coefficients)', file:'../pdfs/DEVC_Unit2_notes.pdf', syllabus:{topic:'Linear differential equations of higher order (Constant Coefficients)', hours:'10 Hrs', content:'Definitions, homogenous and non-homogenous, complimentary function, general solution, particular integral, Wronskian, Method of variation of parameters. Simultaneous linear equations, Applications to L-C-R Circuit problems and Simple Harmonic motion.'}},
+              {name:'Partial Differential Equations', file:'../pdfs/DEVC_Unit3_notes.pdf', syllabus:{topic:'Partial Differential Equations', hours:'10 Hrs', content:"Introduction and formation of Partial Differential Equations by elimination of arbitrary constants and arbitrary functions, solutions of first order linear equations using Lagrange's method. Homogeneous and Non-Homogeneous Linear Partial differential equations with constant coefficients."}},
+              {name:'Vector Differentiation', file:'../pdfs/DEVC_Unit4_notes.pdf', syllabus:{topic:'Vector differentiation', hours:'10 Hrs', content:'Scalar and vector point functions, vector operator Del, Del applies to scalar point functions- Gradient and applications, Directional derivative, del applied to vector point functions-Divergence and Curl, vector identities.'}},
+              {name:'Vector Integration', file:'../pdfs/DEVC_Unit5_notes.pdf', syllabus:{topic:'Vector integration', hours:'10 Hrs', content:"Line Integral-circulation-work done, surface integral-flux, Green's theorem in the plane (without proof), Stoke's theorem (without proof), volume integral, Divergence theorem (without proof) and related problems."}}
             ]},
             {code:'B23BS1203', name:'Chemistry', cr:'3.00', grade:'B', units:[
               {name:'Structure and Bonding Models', syllabus:{topic:'Structure and Bonding Models', hours:'', content:'Fundamentals of Quantum mechanics, Schrodinger Wave equation, significance of Ψ and Ψ², particle in one dimensional box, molecular orbital theory – bonding in homo- and heteronuclear diatomic molecules – energy level diagrams of O₂ and CO, etc. π-molecular orbitals of butadiene and benzene, calculation of bond order.'}},
@@ -319,11 +319,11 @@ const ACADEMICS_DATA = {
               {name:'Mechanical: Manufacturing Processes & Thermal Engineering', syllabus:{topic:'Mechanical: Manufacturing Processes & Thermal Engineering', hours:'', content:'Manufacturing Processes: Principles of Casting, Forming, joining processes, Machining, Introduction to CNC machines, 3D printing, and Smart manufacturing.\nThermal Engineering – Working principle of Boilers, Otto cycle, Diesel cycle, Refrigeration and air-conditioning cycles, IC engines, 2-Stroke and 4-Stroke engines, SI/CI Engines, Components of Electric and Hybrid Vehicles.'}},
               {name:'Mechanical: Power Plants, Power Transmission & Robotics', syllabus:{topic:'Mechanical: Power Plants, Power Transmission & Robotics', hours:'', content:'Power plants – Working principle of Steam, Diesel, Hydro, Nuclear power plants.\nMechanical Power Transmission – Belt Drives, Chain, Rope drives, Gear Drives and their applications.\nIntroduction to Robotics – Joints & links, configurations, and applications of robotics.'}}
             ]},
-            {code:'B23CS1203', name:'Data Structures', cr:'3.00', grade:'A', units:[{name:'ADT & Data Structure Fundamentals', file:'DS_Unit1_notes.docx', syllabus:{topic:'Abstract Data Types', hours:'10 Hrs', content:'Stack ADT, Queue ADT, Linear vs Non-linear data structures, Time complexity analysis (Best and Worst case), Sorting algorithms fundamentals'}},
-              {name:'Linked Lists (Single, Double, Circular)', file:'DS_Unit2_notes.docx', syllabus:{topic:'Linked Lists', hours:'12 Hrs', content:'Single linked lists, doubly linked lists, circular linked lists, operations (insert, delete, display), applications in polynomial representation and sparse matrices'}},
-              {name:'Stacks - LIFO Principle', file:'DS_Unit3_notes.docx', syllabus:{topic:'Stacks', hours:'10 Hrs', content:'Stack ADT, LIFO principle, push and pop operations, applications in expression evaluation, infix to postfix conversion, backtracking'}},
-              {name:'Queues - FIFO & Variants', file:'DS_Unit4_notes.docx', syllabus:{topic:'Queues', hours:'10 Hrs', content:'Queue ADT, FIFO principle, enQueue and deQueue operations, circular queues, priority queues, applications in CPU scheduling and BFS'}},
-              {name:'Trees & Hashing Fundamentals', file:'DS_Unit5_notes.docx', syllabus:{topic:'Trees and Hashing', hours:'12 Hrs', content:'Tree structures, binary trees, tree traversals (In-order, Pre-order, Post-order), binary search trees, hashing, collision handling'}}]},
+            {code:'B23CS1203', name:'Data Structures', cr:'3.00', grade:'A', units:[{name:'ADT & Data Structure Fundamentals', file:'../docx/DS_Unit1_notes.docx', syllabus:{topic:'Abstract Data Types', hours:'10 Hrs', content:'Stack ADT, Queue ADT, Linear vs Non-linear data structures, Time complexity analysis (Best and Worst case), Sorting algorithms fundamentals'}},
+              {name:'Linked Lists (Single, Double, Circular)', file:'../docx/DS_Unit2_notes.docx', syllabus:{topic:'Linked Lists', hours:'12 Hrs', content:'Single linked lists, doubly linked lists, circular linked lists, operations (insert, delete, display), applications in polynomial representation and sparse matrices'}},
+              {name:'Stacks - LIFO Principle', file:'../docx/DS_Unit3_notes.docx', syllabus:{topic:'Stacks', hours:'10 Hrs', content:'Stack ADT, LIFO principle, push and pop operations, applications in expression evaluation, infix to postfix conversion, backtracking'}},
+              {name:'Queues - FIFO & Variants', file:'../docx/DS_Unit4_notes.docx', syllabus:{topic:'Queues', hours:'10 Hrs', content:'Queue ADT, FIFO principle, enQueue and deQueue operations, circular queues, priority queues, applications in CPU scheduling and BFS'}},
+              {name:'Trees & Hashing Fundamentals', file:'../docx/DS_Unit5_notes.docx', syllabus:{topic:'Trees and Hashing', hours:'12 Hrs', content:'Tree structures, binary trees, tree traversals (In-order, Pre-order, Post-order), binary search trees, hashing, collision handling'}}]},
             {code:'B23ME1201', name:'Engineering Graphics', cr:'3.00', grade:'S', units:[
               {name:'Introduction, Curves & Scales', syllabus:{topic:'Introduction, Curves & Scales', hours:'', content:'Introduction: Lines, Lettering and Dimensioning, Geometrical Constructions and Constructing regular polygons by general methods.\nCurves: construction of ellipse, parabola and hyperbola by general method, Cycloids, Involutes, Normal and tangent to Curves.\nScales: Plain scales, diagonal scales and vernier scales.'}},
               {name:'Orthographic Projections – Points, Lines & Planes', syllabus:{topic:'Orthographic Projections – Points, Lines & Planes', hours:'', content:'Orthographic Projections: Reference plane, importance of reference lines or plane, Projections of a point situated in any one of the four quadrants.\nProjections of Straight Lines: Projections of straight lines parallel to both reference planes, perpendicular to one reference plane and parallel to the other reference plane, inclined to one reference plane and parallel to the other reference plane. Projections of Straight Line inclined to both the reference planes.\nProjections of Planes: regular planes perpendicular to both reference planes, parallel to one reference plane and inclined to the other reference plane; plane inclined to both the reference planes.'}},
@@ -384,7 +384,7 @@ const ACADEMICS_DATA = {
           certificates:[
             {
               title:'UDBHAV 2K26',
-              image:'udbhav.png',
+              image:'../images/udbhav.png',
               level:'National Level Hackathon',
               team:'Hack Horizons',
               project:'HELP — Human Emergency Life Provider',
@@ -417,7 +417,7 @@ const ACADEMICS_DATA = {
               solo:true
             }
           ],
-          hallTicketImage:'firstyear_sem2_hallticket.png',
+          hallTicketImage:'../images/firstyear_sem2_hallticket.png',
           hallTicket:{
             regdNo:'25B91A1292', abcId:'234809159866', monthYear:'Jul-2026', branch:'INFORMATION TECHNOLOGY (IT)',
             exams:[
@@ -441,21 +441,21 @@ const ACADEMICS_DATA = {
           certificates:[],
           subjects:[
             {code:'B23BS2101', name:'Discrete Mathematics and Graph Theory', cr:'3.00', extraMaterials:[
-              {label:'Units 1, 2 & 3 (half) — Combined Notes', file:'B23BS2101_Unit1-3_extra.pdf'},
-              {label:'Short Answers / 2 Marks — Units 1 to 5', file:'B23BS2101_Unit1-5_ShortAnswers.pdf'}
+              {label:'Units 1, 2 & 3 (half) — Combined Notes', file:'../pdfs/B23BS2101_Unit1-3_extra.pdf'},
+              {label:'Short Answers / 2 Marks — Units 1 to 5', file:'../pdfs/B23BS2101_Unit1-5_ShortAnswers.pdf'}
             ], units:[
-              {name:'Mathematical Logic', files:['B23BS2101_Unit1.pdf','B23BS2101_Unit1_extra.pdf'], syllabus:{topic:'Mathematical Logic', hours:'10 Hrs', content:'Propositional Calculus: Statements and Notations, Connectives, Well Formed Formulas, Truth Tables, Tautologies, Equivalence of Formulas, Duality Law, Tautological Implications, Normal Forms, Theory of Inference for Statement Calculus, Consistency of Premises, Indirect Method of Proof. Predicate Calculus: Predicates, Predicative Logic, Statement Functions, Variables and Quantifiers, Free and Bound Variables, Inference Theory for Predicate Calculus.'}},
-              {name:'Set Theory', file:'B23BS2101_Unit2.pdf', syllabus:{topic:'Set Theory', hours:'10 Hrs', content:'Sets: Operations on Sets, Principle of Inclusion-Exclusion. Relations: Properties, Operations, Partition and Covering, Transitive Closure, Equivalence, Compatibility and Partial Ordering, Hasse Diagrams, Lattice and its Properties. Functions: Bijective, Composition, Inverse, Permutation, and Recursive Functions.'}},
+              {name:'Mathematical Logic', files:['../pdfs/B23BS2101_Unit1.pdf','../pdfs/B23BS2101_Unit1_extra.pdf'], syllabus:{topic:'Mathematical Logic', hours:'10 Hrs', content:'Propositional Calculus: Statements and Notations, Connectives, Well Formed Formulas, Truth Tables, Tautologies, Equivalence of Formulas, Duality Law, Tautological Implications, Normal Forms, Theory of Inference for Statement Calculus, Consistency of Premises, Indirect Method of Proof. Predicate Calculus: Predicates, Predicative Logic, Statement Functions, Variables and Quantifiers, Free and Bound Variables, Inference Theory for Predicate Calculus.'}},
+              {name:'Set Theory', file:'../pdfs/B23BS2101_Unit2.pdf', syllabus:{topic:'Set Theory', hours:'10 Hrs', content:'Sets: Operations on Sets, Principle of Inclusion-Exclusion. Relations: Properties, Operations, Partition and Covering, Transitive Closure, Equivalence, Compatibility and Partial Ordering, Hasse Diagrams, Lattice and its Properties. Functions: Bijective, Composition, Inverse, Permutation, and Recursive Functions.'}},
               {name:'Combinatorics and Recurrence Relations', file:'B23BS2101_Unit3.pdf', syllabus:{topic:'Combinatorics and Recurrence Relations', hours:'12 Hrs', content:'Basis of Counting, Permutations, Permutations with repetitions, Circular and Restricted Permutations, Combinations, Restricted Combinations, Binomial and Multinomial Coefficients and Theorems. Recurrence Relations: Generating Functions, Function of Sequences, Partial Fractions, Calculating Coefficient of Generating Functions, Recurrence Relations, Formulation as Recurrence Relations, Solving Recurrence Relations by Substitution and Generating Functions, Method of Characteristic Roots, Solving Inhomogeneous Recurrence Relations.'}},
               {name:'Graph Theory', file:'B23BS2101_Unit4.pdf', syllabus:{topic:'Graph Theory', hours:'10 Hrs', content:'Basic Concepts, Graph Theory and its Applications, Subgraphs, Graph Representations: Adjacency and Incidence Matrices, Isomorphic Graphs, Paths and Circuits, Eulerian and Hamiltonian Graphs.'}},
               {name:'Multi Graphs', file:'B23BS2101_Unit5.pdf', syllabus:{topic:'Multi Graphs', hours:'8 Hrs', content:'Multigraphs, Bipartite and Planar Graphs, Euler\'s Theorem, Graph Coloring and Covering, Chromatic Number, Trees and their properties, Spanning Trees - BFS and DFS Spanning Trees, Prim\'s and Kruskal\'s Algorithms.'}}
             ]},
             {code:'B23HS2101', name:'Universal Human Values-II: Understanding Harmony and Ethical Human Conduct', cr:'3.00', extraMaterials:[
-              {label:'Unit-wise Questions (Short & Long) — Units 1 to 5', file:'B23HS2101_Unit1-5_Questions.docx'}
+              {label:'Unit-wise Questions (Short & Long) — Units 1 to 5', file:'../docx/B23HS2101_Unit1-5_Questions.docx'}
             ], units:[
-              {name:'Introduction to Value Education', file:'B23HS2101_Unit1.pdf', syllabus:{topic:'Introduction to Value Education', hours:'9 Hrs', content:'Understanding Value Education - Need, Basic Guidelines, Content and Process for Value Education. Purpose and motivation for the course. Self-exploration as the Process for Value Education - Sharing about Oneself. Myers-Briggs Type Indicator (MBTI) Personality Test. Continuous Happiness and Prosperity – the Basic Human Aspirations and their Fulfilment. Right Understanding, Relationship and Physical Facility (Holistic Development and the Role of Education) - Exploring Human Consciousness. Happiness and Prosperity – Current Scenario. Method to Fulfil the Basic Human Aspirations - Exploring Natural Acceptance—understanding and living in harmony at various levels.'}},
-              {name:'Harmony in the Human Being', file:'B23HS2101_Unit2.pdf', syllabus:{topic:'Harmony in the Human Being', hours:'9 Hrs', content:'Understanding Human being as the Co-existence of the Self and the Body. Distinguishing between the Needs of the Self and the Body - Exploring the difference of Needs of Self (I) and Body (Happiness and Physical Facility). The Body as an Instrument of the Self (I) (I being the doer, seer and enjoyer). Understanding Harmony in the Self(I) - Exploring Sources of Imagination in the Self(I). Harmony of the Self (I) with the Body (characteristics and activities of \'I\' and harmony in \'I\'). Programme to ensure self-regulation(Sanyam) and Health(Swasth)- Exploring Harmony of Self (I) with the Body.'}},
-              {name:'Harmony in the Family and Society', file:'B23HS2101_Unit3.pdf', syllabus:{topic:'Harmony in the Family and Society', hours:'9 Hrs', content:'Harmony in the Family – the Basic Unit of Human Interaction. \'Trust\' – the Foundational Value in Relationship- Exploring the Feeling of Trust—intention and competence. \'Respect\' – as the Right Evaluation- Exploring the Feeling of Respect. Other Feelings, Justice in Human-to-Human Relationship. Understanding Harmony in the Society- (society being an extension of family). Vision for the Universal Human Order- Exploring Systems to fulfil Human Goal.'}},
+              {name:'Introduction to Value Education', file:'../pdfs/B23HS2101_Unit1.pdf', syllabus:{topic:'Introduction to Value Education', hours:'9 Hrs', content:'Understanding Value Education - Need, Basic Guidelines, Content and Process for Value Education. Purpose and motivation for the course. Self-exploration as the Process for Value Education - Sharing about Oneself. Myers-Briggs Type Indicator (MBTI) Personality Test. Continuous Happiness and Prosperity – the Basic Human Aspirations and their Fulfilment. Right Understanding, Relationship and Physical Facility (Holistic Development and the Role of Education) - Exploring Human Consciousness. Happiness and Prosperity – Current Scenario. Method to Fulfil the Basic Human Aspirations - Exploring Natural Acceptance—understanding and living in harmony at various levels.'}},
+              {name:'Harmony in the Human Being', file:'../pdfs/B23HS2101_Unit2.pdf', syllabus:{topic:'Harmony in the Human Being', hours:'9 Hrs', content:'Understanding Human being as the Co-existence of the Self and the Body. Distinguishing between the Needs of the Self and the Body - Exploring the difference of Needs of Self (I) and Body (Happiness and Physical Facility). The Body as an Instrument of the Self (I) (I being the doer, seer and enjoyer). Understanding Harmony in the Self(I) - Exploring Sources of Imagination in the Self(I). Harmony of the Self (I) with the Body (characteristics and activities of \'I\' and harmony in \'I\'). Programme to ensure self-regulation(Sanyam) and Health(Swasth)- Exploring Harmony of Self (I) with the Body.'}},
+              {name:'Harmony in the Family and Society', file:'../pdfs/B23HS2101_Unit3.pdf', syllabus:{topic:'Harmony in the Family and Society', hours:'9 Hrs', content:'Harmony in the Family – the Basic Unit of Human Interaction. \'Trust\' – the Foundational Value in Relationship- Exploring the Feeling of Trust—intention and competence. \'Respect\' – as the Right Evaluation- Exploring the Feeling of Respect. Other Feelings, Justice in Human-to-Human Relationship. Understanding Harmony in the Society- (society being an extension of family). Vision for the Universal Human Order- Exploring Systems to fulfil Human Goal.'}},
               {name:'Harmony in the Nature/Existence', file:'B23HS2101_Unit4.pdf', syllabus:{topic:'Harmony in the Nature/Existence', hours:'6 Hrs', content:'Understanding the harmony in the Nature. Interconnectedness and mutual fulfillment among the four orders of nature- recyclability and self-regulation in nature. Realizing Existence as Co-existence at All Levels - Understanding Existence as Co-existence of mutually interacting units in all pervasive space. Holistic perception of harmony at all levels of existence.'}},
               {name:'Implications of Holistic Understanding – Professional Ethics', file:'B23HS2101_Unit5.pdf', syllabus:{topic:'Implications of the Holistic Understanding – a Look at Professional Ethics', hours:'9 Hrs', content:'Natural acceptance of human values. Definitiveness of (ethical) human conduct. A Basis for Humanistic Education, Humanistic Constitution and Humanistic Universal Order. Competence in professional ethics: a. Ability to utilize the professional competence for augmenting universal human order b. Ability to identify the scope and characteristics of people friendly and eco-friendly production systems, c. Ability to identify and develop appropriate technologies and management patterns for above production systems. Holistic technologies, production systems and management models- typical case studies. Strategies for transition towards value based life and profession.'}}
             ]},
@@ -1131,6 +1131,6 @@ document.getElementById('acadBackBtn').addEventListener('click', acadPop);
 document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') window.location.href = 'index.html'; });
 acadReset();
 </script>
-<script src="vfx-engine.js"></script>
+<script src="../vfx-engine.js"></script>
 </body>
 </html>
