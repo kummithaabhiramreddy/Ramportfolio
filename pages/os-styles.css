@@ -1,0 +1,913 @@
+/* ==========================================================================
+   RAM OS PLATFORM STYLES — DUAL MODE (PC & MOBILE OS), PLAY STORE, COGNISPHERE AI
+   ========================================================================== */
+
+:root {
+  --os-bg: #09090e;
+  --os-surface: #12121c;
+  --os-surface-glass: rgba(18, 18, 28, 0.75);
+  --os-border: rgba(232, 230, 240, 0.12);
+  --os-accent-lime: #00e676;
+  --os-accent-violet: #7b61ff;
+  --os-accent-cyan: #00f0ff;
+  --os-accent-ember: #ff5e3a;
+  --os-accent-teal: #00d4aa;
+  --os-text: #e8e6f0;
+  --os-text-muted: #888599;
+}
+
+/* ==========================================================================
+   "ASK COGNISPHERE" PILL CAPSULE WIDGET (TOP RIGHT BELOW HEADER)
+   Matches Google Gemini "Ask Gemini" Pill Design Exactly
+   ========================================================================== */
+.ask-cognisphere-pill-wrap {
+  position: fixed;
+  top: 72px;
+  right: 40px;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.ask-cognisphere-pill-btn {
+  background: rgba(36, 41, 54, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 8px 18px 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 230, 118, 0.12);
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+}
+
+.ask-cognisphere-pill-btn:hover {
+  background: rgba(46, 52, 68, 0.98);
+  border-color: rgba(0, 230, 118, 0.4);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), 0 0 25px rgba(0, 230, 118, 0.3);
+  transform: translateY(-2px);
+}
+
+.ask-cognisphere-pill-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ask-cognisphere-pill-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.ask-cognisphere-pill-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.ask-cognisphere-pill-cursor {
+  width: 2px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 1px;
+  animation: blinkCursor 1.2s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Expanded Search Dropdown for Pill Widget */
+.ask-cognisphere-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 340px;
+  background: rgba(20, 24, 34, 0.95);
+  border: 1px solid rgba(0, 230, 118, 0.3);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.75), 0 0 20px rgba(0, 230, 118, 0.15);
+  backdrop-filter: blur(20px);
+  z-index: 510;
+}
+
+.ask-cognisphere-dropdown.open {
+  display: block;
+}
+
+.ask-cognisphere-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--os-border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  outline: none;
+  margin-bottom: 8px;
+}
+
+.ask-cognisphere-input:focus {
+  border-color: var(--os-accent-lime);
+}
+
+.ask-cognisphere-results {
+  max-height: 240px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ask-cognisphere-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.ask-cognisphere-item:hover {
+  background: rgba(0, 230, 118, 0.15);
+}
+
+/* Mobile Adjustments for Top-Right Pill */
+@media (max-width: 768px) {
+  .ask-cognisphere-pill-wrap {
+    top: 64px;
+    right: 16px;
+  }
+  .ask-cognisphere-pill-btn {
+    padding: 6px 14px 6px 10px;
+  }
+  .ask-cognisphere-pill-text {
+    font-size: 12.5px;
+  }
+  .ask-cognisphere-dropdown {
+    width: calc(100vw - 32px);
+    right: 0;
+  }
+}
+
+/* ==========================================================================
+   COGNISPHERE SEARCH SECTION ON MAIN PAGE
+   ========================================================================== */
+.cognisphere-search-section {
+  padding: 50px 24px;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.cognisphere-main-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cognisphere-main-logo-img {
+  width: 76px;
+  height: 76px;
+  filter: drop-shadow(0 0 20px rgba(0, 230, 118, 0.5));
+  transition: transform 0.3s ease;
+}
+
+.cognisphere-main-logo-img:hover {
+  transform: scale(1.08) rotate(4deg);
+}
+
+.cognisphere-main-wordmark {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(34px, 5vw, 52px);
+  font-weight: 400;
+  letter-spacing: -1px;
+  color: var(--os-text);
+}
+
+.cognisphere-main-wordmark span {
+  color: var(--os-accent-lime);
+  font-style: italic;
+}
+
+.cognisphere-search-box-wrap {
+  width: 100%;
+  max-width: 680px;
+  position: relative;
+}
+
+.cognisphere-search-bar {
+  width: 100%;
+  background: rgba(18, 22, 20, 0.85);
+  border: 1.5px solid rgba(0, 230, 118, 0.4);
+  border-radius: 36px;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 230, 118, 0.15);
+  backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cognisphere-search-bar:focus-within, .cognisphere-search-bar:hover {
+  border-color: var(--os-accent-lime);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.8), 0 0 35px rgba(0, 230, 118, 0.35);
+  transform: translateY(-2px);
+}
+
+.cognisphere-bar-logo {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.cognisphere-bar-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--os-text);
+}
+
+.cognisphere-bar-input::placeholder {
+  color: var(--os-text-muted);
+}
+
+.cognisphere-action-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--os-border);
+  color: var(--os-accent-lime);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cognisphere-action-btn:hover {
+  background: var(--os-accent-lime);
+  color: #000;
+  box-shadow: 0 0 14px var(--os-accent-lime);
+}
+
+.cognisphere-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.cognisphere-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--os-border);
+  color: var(--os-text-muted);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.cognisphere-chip:hover {
+  background: rgba(0, 230, 118, 0.12);
+  border-color: var(--os-accent-lime);
+  color: var(--os-accent-lime);
+  transform: translateY(-2px);
+}
+
+.cognisphere-results-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  background: rgba(14, 18, 16, 0.95);
+  border: 1px solid var(--os-border);
+  border-radius: 20px;
+  padding: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  max-height: 340px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.cognisphere-results-dropdown.open {
+  display: block;
+}
+
+.cognisphere-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.cognisphere-result-item:hover {
+  background: rgba(0, 230, 118, 0.12);
+}
+
+/* OS MODAL STYLES */
+#osPlatformModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(5, 5, 10, 0.95);
+  backdrop-filter: blur(20px);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--os-text);
+}
+
+#osPlatformModal.open {
+  display: flex;
+  flex-direction: column;
+}
+
+.os-shell-header {
+  height: 52px;
+  padding: 0 20px;
+  background: rgba(12, 12, 20, 0.9);
+  border-bottom: 1px solid var(--os-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.os-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--os-accent-lime);
+  text-transform: uppercase;
+}
+
+.os-brand-logo img {
+  width: 24px;
+  height: 24px;
+}
+
+.os-mode-switcher {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--os-border);
+  border-radius: 20px;
+  padding: 3px;
+  gap: 4px;
+}
+
+.os-mode-btn {
+  background: transparent;
+  border: none;
+  color: var(--os-text-muted);
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.os-mode-btn.active {
+  background: var(--os-accent-violet);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(123, 97, 255, 0.4);
+}
+
+.os-close-btn {
+  background: rgba(255, 94, 58, 0.15);
+  border: 1px solid rgba(255, 94, 58, 0.3);
+  color: var(--os-accent-ember);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.os-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 40%, #121815 0%, #08080f 100%);
+}
+
+.pc-desktop-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.pc-desktop-screen {
+  flex: 1;
+  position: relative;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.pc-cognisphere-widget {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 580px;
+  background: rgba(18, 22, 20, 0.9);
+  border: 1.5px solid rgba(0, 230, 118, 0.35);
+  border-radius: 28px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 230, 118, 0.15);
+  backdrop-filter: blur(16px);
+  z-index: 5;
+}
+
+.pc-cognisphere-widget img {
+  width: 28px;
+  height: 28px;
+}
+
+.pc-app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 24px;
+  margin-top: 90px;
+  max-width: 1000px;
+  z-index: 4;
+  position: relative;
+}
+
+.pc-app-shortcut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+}
+
+.pc-app-shortcut:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+.pc-app-icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.pc-app-title {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--os-text);
+}
+
+.pc-taskbar {
+  height: 56px;
+  background: rgba(12, 16, 14, 0.92);
+  border-top: 1px solid var(--os-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+}
+
+.pc-taskbar-left, .pc-taskbar-center, .pc-taskbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pc-start-btn {
+  background: linear-gradient(135deg, var(--os-accent-lime), var(--os-accent-cyan));
+  border: none;
+  color: #000;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pc-taskbar-app-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(232, 230, 240, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.pc-clock {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: var(--os-text-muted);
+}
+
+.mobile-os-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.mobile-phone-frame {
+  width: 380px;
+  height: 740px;
+  max-height: 90vh;
+  background: #0d120f;
+  border: 8px solid #1c2621;
+  border-radius: 46px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 230, 118, 0.25);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-phone-notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 24px;
+  background: #000;
+  border-radius: 16px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-phone-camera {
+  width: 10px;
+  height: 10px;
+  background: #111;
+  border-radius: 50%;
+  border: 1px solid #333;
+}
+
+.mobile-status-bar {
+  height: 44px;
+  padding: 10px 24px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--os-text);
+  z-index: 40;
+}
+
+.mobile-screen-body {
+  flex: 1;
+  position: relative;
+  padding: 30px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.mobile-cognisphere-widget {
+  background: rgba(18, 22, 20, 0.9);
+  border: 1.5px solid rgba(0, 230, 118, 0.35);
+  border-radius: 22px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  margin-bottom: 24px;
+}
+
+.mobile-cognisphere-widget img {
+  width: 22px;
+  height: 22px;
+}
+
+.mobile-app-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 10px;
+  margin-bottom: auto;
+}
+
+.mobile-app-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.mobile-app-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.mobile-dock {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 26px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 14px;
+}
+
+.mobile-gesture-bar {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-home-pill {
+  width: 120px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 2px;
+}
+
+.playstore-modal {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 500;
+  background: #0b120d;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.playstore-modal.open {
+  display: flex;
+}
+
+.playstore-header {
+  padding: 16px 20px;
+  background: rgba(18, 24, 20, 0.95);
+  border-bottom: 1px solid var(--os-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.playstore-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--os-accent-lime);
+}
+
+.playstore-search {
+  flex: 1;
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--os-border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  color: var(--os-text);
+  font-size: 12px;
+  outline: none;
+}
+
+.playstore-categories {
+  display: flex;
+  gap: 8px;
+  padding: 12px 20px;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--os-border);
+}
+
+.playstore-cat-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--os-border);
+  color: var(--os-text-muted);
+  padding: 6px 14px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-family: 'DM Mono', monospace;
+  cursor: pointer;
+}
+
+.playstore-cat-pill.active {
+  background: var(--os-accent-lime);
+  color: #000;
+  font-weight: 600;
+}
+
+.playstore-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.store-app-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--os-border);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.store-card-head {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.store-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+}
+
+.store-install-btn {
+  background: var(--os-accent-lime);
+  color: #000;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}
+
+.store-install-btn.installed {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--os-accent-cyan);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+.os-window {
+  position: absolute;
+  top: 80px;
+  left: 100px;
+  width: 760px;
+  height: 520px;
+  background: #0a0e0c;
+  border: 1px solid var(--os-border);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 230, 118, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.os-window-header {
+  height: 38px;
+  background: rgba(18, 24, 20, 0.95);
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--os-border);
+  cursor: move;
+}
+
+.os-window-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11.5px;
+  color: var(--os-text);
+}
+
+.os-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.win-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.win-close { background: #ff5f56; }
+.win-min { background: #ffbd2e; }
+.win-max { background: #27c93f; }
+
+.os-window-body {
+  flex: 1;
+  position: relative;
+  background: #050806;
+}
+
+.os-window-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verified Credentials &amp; Records · Kummitha Abhiram Reddy</title>
+<meta name="description" content="Explore verified academic certifications, semester mark memos, examination hall tickets, and personal identification records of Kummitha Abhiram Reddy.">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../vfx-styles.css">
+<link rel="stylesheet" href="cognisphere-pill.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    window.pdfjsReady = Promise.resolve(true);
+  } else {
+    window.pdfjsReady = Promise.resolve(false);
+  }
+</script>
+<style>
+:root {
+  --bg-dark: #040508;
+  --bg-card: rgba(13, 16, 26, 0.75);
+  --bg-card-hover: rgba(18, 22, 38, 0.95);
+  --border-glass: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(0, 229, 185, 0.45);
+  --text-main: #f1f5f9;
+  --text-muted: #8e9aaf;
+  --text-dim: #475569;
+  --accent-cyan: #00e5b9;
+  --accent-purple: #8b5cf6;
+  --accent-lime: #a3e635;
+  --accent-amber: #f59e0b;
+  --accent-blue: #3b82f6;
+  --glass-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  --glow-cyan: 0 0 18px rgba(0, 229, 185, 0.2);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hide Vertical & Horizontal Browser Scrollbars Completely */
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+html, body, div, main, nav, section, article {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(0, 229, 185, 0.07) 0%, transparent 40%),
+    radial-gradient(circle at 85% 45%, rgba(139, 92, 246, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(163, 230, 53, 0.04) 0%, transparent 50%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--accent-cyan);
+  color: #040508;
+}
+
+/* Base Wrapper */
+.vault-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 16px 14px 80px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Header Navbar Model - Clean Profile Avatar without edge border/glow */
+.vault-header {
+  background: rgba(10, 13, 22, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+}
+
+.vault-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.vault-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vault-brand:hover .vault-avatar {
+  transform: scale(1.08);
+}
+.vault-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.vault-title-group h1 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vault-badge-status {
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-cyan);
+  background: rgba(0, 229, 185, 0.12);
+  border: 1px solid rgba(0, 229, 185, 0.3);
+  padding: 1px 6px;
+  border-radius: 12px;
+  letter-spacing: 0.4px;
+}
+
+.vault-title-group p {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.vault-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vault-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.vault-search-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.vault-search-toggle-btn:hover {
+  background: rgba(0, 229, 185, 0.15);
+  border-color: var(--accent-cyan);
+}
+.vault-search-box input {
+  background: rgba(4, 5, 8, 0.8);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  padding: 6px 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  color: #fff;
+  outline: none;
+  width: 0;
+  opacity: 0;
+  border-width: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vault-search-box.expanded input,
+.vault-search-box input:focus {
+  width: 170px;
+  opacity: 1;
+  padding: 6px 12px;
+  border-width: 1px;
+  pointer-events: auto;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 229, 185, 0.2);
+}
+.vault-search-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.vault-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.vault-home-btn:hover {
+  background: rgba(0, 229, 185, 0.15);
+  border-color: var(--accent-cyan);
+  color: var(--accent-cyan);
+}
+
+/* Category Filter Navigation Bar */
+.vault-filter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.vault-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 2px;
+}
+
+.vault-tab-btn {
+  background: rgba(13, 16, 26, 0.6);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.vault-tab-btn .tab-count {
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1px 5px;
+  border-radius: 6px;
+  color: var(--text-muted);
+}
+.vault-tab-btn:hover {
+  background: rgba(20, 25, 40, 0.8);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.vault-tab-btn.active {
+  background: linear-gradient(135deg, rgba(0, 229, 185, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border-color: var(--accent-cyan);
+  color: #fff;
+  box-shadow: 0 2px 14px rgba(0, 229, 185, 0.15);
+}
+.vault-tab-btn.active .tab-count {
+  background: var(--accent-cyan);
+  color: #040508;
+  font-weight: 700;
+}
+
+/* View Mode Switcher */
+.view-mode-toggle {
+  display: flex;
+  align-items: center;
+  background: rgba(13, 16, 26, 0.8);
+  border: 1px solid var(--border-glass);
+  padding: 2px;
+  border-radius: 10px;
+  gap: 3px;
+}
+.mode-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.mode-btn.active {
+  background: rgba(0, 229, 185, 0.15);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 229, 185, 0.3);
+}
+
+.anim-badge-btn {
+  background: rgba(139, 92, 246, 0.15) !important;
+  color: var(--accent-purple) !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 10px !important;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.anim-badge-btn:hover {
+  background: rgba(139, 92, 246, 0.3) !important;
+  color: #fff !important;
+  border-color: var(--accent-purple) !important;
+  box-shadow: 0 0 14px rgba(139, 92, 246, 0.3);
+}
+
+/* Horizontal Slider Wrapper & Micro Arrow Controls */
+.cards-slider-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.slider-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(10, 13, 22, 0.9);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6), var(--glow-cyan);
+  transition: all 0.2s ease;
+  opacity: 0.9;
+}
+.slider-nav-btn:hover {
+  background: var(--accent-cyan);
+  color: #040508;
+  transform: translateY(-50%) scale(1.1);
+  opacity: 1;
+}
+.slider-nav-btn.prev-btn {
+  left: -12px;
+}
+.slider-nav-btn.next-btn {
+  right: -12px;
+}
+
+/* Cards Grid / Slider Track Container */
+.vault-grid {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 16px;
+  padding: 16px 4px 24px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* When in Micro Grid Mode */
+.vault-grid.grid-mode {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  overflow-x: visible;
+  padding-bottom: 0;
+}
+
+/* Hearthstone & Cyberpunk Hologram 3D Gaming Card Arena Matrix */
+.vault-grid.arena-mode {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  perspective: 1000px;
+  perspective-origin: 50% 30%;
+  padding: 16px 6px 40px;
+  overflow: visible !important;
+}
+
+.vault-grid.arena-mode .doc-card {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+/* Clean Gaming Card Arena Matrix - Flat & Aligned */
+.vault-grid.arena-mode .doc-card:nth-child(4n+1),
+.vault-grid.arena-mode .doc-card:nth-child(4n+2),
+.vault-grid.arena-mode .doc-card:nth-child(4n+3),
+.vault-grid.arena-mode .doc-card:nth-child(4n+0) {
+  transform: none !important;
+}
+
+/* Clean Hover Elevation */
+.vault-grid.arena-mode .doc-card:hover {
+  transform: translateY(-6px) !important;
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 229, 185, 0.3) !important;
+  z-index: 40 !important;
+}
+
+/* 3D Book Page Stack Animation Mode (Cards Layered One Inside Another) */
+.vault-grid.book-stack-mode {
+  display: block !important;
+  position: relative;
+  height: 340px;
+  min-height: 340px;
+  overflow: visible !important;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  padding: 10px 0 30px;
+  margin: 0 auto;
+}
+
+.vault-grid.book-stack-mode .doc-card {
+  position: absolute !important;
+  top: 10px;
+  left: 50%;
+  width: 260px;
+  margin-left: -130px;
+  transform-origin: left center !important;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
+  box-shadow: -10px 14px 32px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.vault-grid.book-stack-mode .doc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--accent-cyan), var(--accent-purple));
+  z-index: 20;
+  border-radius: 14px 0 0 14px;
+  box-shadow: 2px 0 8px rgba(0, 229, 185, 0.5);
+}
+
+.vault-grid.book-stack-mode .doc-card.book-active-page {
+  border-color: var(--accent-cyan) !important;
+  box-shadow: -12px 18px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 229, 185, 0.3) !important;
+}
+
+/* Keyframe Animations for Entrance & Shimmer Sweep */
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+/* Static Cards - Moving Floating Wave Removed */
+.vault-grid:not(.grid-mode) .doc-card:nth-child(odd),
+.vault-grid:not(.grid-mode) .doc-card:nth-child(even) {
+  animation: cardEntrance 0.3s ease-out both;
+}
+
+/* Micro Mini Card Component */
+.doc-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  box-shadow: var(--glass-shadow);
+}
+
+.vault-grid.grid-mode .doc-card {
+  flex: initial;
+  animation: cardEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) both !important;
+  transform: none !important;
+}
+
+/* Holographic Shimmer Sweep Light Ray on Hover */
+.doc-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 50px;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.doc-card:hover::after {
+  opacity: 1;
+  animation: shimmerSweep 0.75s ease-in-out;
+}
+
+.doc-card:hover {
+  transform: translateY(-12px) scale(1.03) rotate(0deg) !important;
+  border-color: var(--border-hover);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), var(--glow-cyan);
+  background: var(--bg-card-hover);
+  z-index: 10;
+}
+
+/* Top Accent Glow Stripe */
+.doc-card-stripe {
+  height: 2.5px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+  opacity: 0.75;
+  transition: opacity 0.25s;
+}
+.doc-card[data-subtype="personal"] .doc-card-stripe {
+  background: linear-gradient(90deg, var(--accent-amber) 0%, #f43f5e 100%);
+}
+.doc-card[data-subtype="hallticket"] .doc-card-stripe {
+  background: linear-gradient(90deg, var(--accent-lime) 0%, var(--accent-cyan) 100%);
+}
+.doc-card:hover .doc-card-stripe {
+  opacity: 1;
+}
+
+/* Micro Card Header Tag Row */
+.doc-card-header {
+  padding: 10px 12px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.doc-type-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  background: rgba(0, 229, 185, 0.1);
+  border: 1px solid rgba(0, 229, 185, 0.25);
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+.doc-card[data-subtype="personal"] .doc-type-tag {
+  color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.1);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+.doc-card[data-subtype="hallticket"] .doc-type-tag {
+  color: var(--accent-lime);
+  background: rgba(163, 230, 53, 0.1);
+  border-color: rgba(163, 230, 53, 0.25);
+}
+
+.doc-status-dot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.doc-status-dot::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
+}
+
+/* Micro Document Thumbnail Frame */
+.doc-thumb-frame {
+  height: 125px;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  border-radius: 10px;
+  background: rgba(4, 5, 8, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.doc-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.doc-card:hover .doc-thumb-img {
+  transform: scale(1.06);
+}
+
+/* PDF Canvas Thumb */
+.doc-pdf-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.doc-pdf-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+.doc-pdf-fallback span {
+  font-size: 22px;
+}
+
+/* Hover Quick Inspect Overlay */
+.doc-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 8, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.doc-card:hover .doc-thumb-overlay {
+  opacity: 1;
+}
+.quick-inspect-pill {
+  background: rgba(0, 229, 185, 0.9);
+  color: #040508;
+  font-weight: 700;
+  font-size: 10px;
+  padding: 6px 14px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 14px rgba(0, 229, 185, 0.35);
+}
+
+/* Micro Card Main Details */
+.doc-card-body {
+  padding: 10px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.doc-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 4px;
+}
+
+.doc-card-issuer {
+  font-size: 10.5px;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.doc-card[data-subtype="personal"] .doc-card-issuer {
+  color: var(--accent-amber);
+}
+
+.doc-card-desc {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+/* Micro Card Action Bar Footer */
+.doc-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-doc-view {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+.doc-card:hover .btn-doc-view {
+  background: var(--accent-cyan);
+  border-color: var(--accent-cyan);
+  color: #040508;
+  box-shadow: 0 2px 12px rgba(0, 229, 185, 0.3);
+}
+
+.btn-doc-download {
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  transition: all 0.2s ease;
+}
+.btn-doc-download:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Fullscreen Lightbox Modal */
+.doc-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(3, 4, 8, 0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.doc-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.doc-modal-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(10, 13, 22, 0.9);
+  border-bottom: 1px solid var(--border-glass);
+}
+.doc-modal-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.doc-modal-ctrls {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+.modal-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s;
+}
+.modal-btn:hover {
+  background: var(--accent-cyan);
+  color: #040508;
+  border-color: var(--accent-cyan);
+}
+.modal-btn-close {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+.modal-btn-close:hover {
+  background: #ef4444;
+  color: #fff;
+  border-color: #ef4444;
+}
+
+.doc-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.doc-modal-body img {
+  max-width: 92%;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  margin: auto 0;
+}
+
+/* PDF Modal Header & Page Controls */
+.doc-modal-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pdf-modal-nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.modal-nav-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.modal-nav-btn:hover:not(:disabled) {
+  background: #00e5b9;
+  color: #040508;
+  border-color: #00e5b9;
+  box-shadow: 0 0 12px rgba(0, 229, 185, 0.3);
+}
+
+.modal-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pdf-page-indicator {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #00e5b9;
+  padding: 4px 10px;
+  background: rgba(0, 229, 185, 0.1);
+  border: 1px solid rgba(0, 229, 185, 0.25);
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.pdf-page-select {
+  background: #0d111c;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.pdf-page-select option {
+  background: #0d111c;
+  color: #ffffff;
+}
+
+.doc-modal-pdf-container {
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.pdf-single-page-card,
+.pdf-scroll-page-item {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 16px;
+}
+
+.pdf-page-top-bar,
+.pdf-page-item-header {
+  background: #121824;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #00e5b9;
+}
+
+.pdf-page-quick-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.pdf-page-quick-nav button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pdf-page-quick-nav button:hover:not(:disabled) {
+  background: #00e5b9;
+  color: #040508;
+}
+
+.pdf-page-quick-nav button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.doc-modal-pdf-container canvas {
+  width: 100%;
+  max-width: 100%;
+  height: auto !important;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+/* Empty search state */
+.no-results {
+  grid-column: 1 / -1;
+  width: 100%;
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--text-muted);
+  display: none;
+}
+.no-results h3 {
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+/* Mobile Micro Responsive Styling */
+@media (max-width: 768px) {
+  .vault-header {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 8px 12px !important;
+    margin-bottom: 14px !important;
+  }
+  .vault-brand {
+    gap: 8px;
+    min-width: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+  }
+  .vault-title-group h1 {
+    font-size: 12px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .vault-title-group p {
+    display: none !important;
+  }
+  .vault-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 6px !important;
+    flex-shrink: 0;
+  }
+  .vault-search-box input {
+    width: 100%;
+  }
+  .vault-search-box input:focus {
+    width: 100%;
+  }
+  .slider-nav-btn {
+    display: none;
+  }
+  /* Micro Card Size for Mobile */
+  .doc-card {
+    flex: 0 0 210px !important;
+    border-radius: 12px;
+  }
+  .doc-thumb-frame {
+    height: 110px !important;
+    width: calc(100% - 16px) !important;
+  }
+  .doc-card-body {
+    padding: 8px 10px !important;
+  }
+  .doc-card-title {
+    font-size: 12px !important;
+  }
+  .doc-card-issuer {
+    font-size: 10px !important;
+  }
+  .doc-card-desc {
+    font-size: 10px !important;
+  }
+  .btn-doc-view {
+    padding: 5px 8px !important;
+    font-size: 10px !important;
+  }
+  .btn-doc-download {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 10px !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="vault-container">
+
+  <!-- Micro Header Navbar Model - Clicking Logo Refreshes Current Page -->
+  <header class="vault-header">
+    <a href="javascript:location.reload()" class="vault-brand" title="Click to refresh certificates vault">
+      <div class="vault-avatar">
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCADIAMgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDWsNf0PxPFfyeIbEeJdGWGV3hgjd7dZDKGhVM4KSgMy5XjGM15JY6Jbz2l5NoMlzqtlfSK1h58LQuYoUBeMK3IAkDqM8kAHvXDazY6xHc3K3GuFboIZYUt5Am0k4bC9MAdvavWdN8RXvhTTNGvrK3WaSCWOwQ3MRaFo1GHLqOduC7Ejvz2ry8S/cR8th8Q6kG3sjH8Y+EL/QF1O7Ect/qd0TZ2sSk7pI5pWjZsf3lIz+Ga5X4m2n/CIa9Dp2nWUV1dRWtstxcTuweRWLMUWRTwFC7C3vXp3x1mvdT0y7s5reXQr9LeW6tY0bLxH5FCrIp+ZWLSOrd1XPHNcBoV5ZalrejQwQ/axNZC1eFgD5jgs3nRnonPODwelRhqbnHmqLQ4cRKMotI63wfoGi6xY2w/4RK50DxA5W8N7dO62wwQV8qdCABxkAg4968u+J8lpf276pqVzd2cU8YFhbtIHcov3t4J4zu4bnivT9SuFnc6RDNHIlsXjvHnYRKzZ/dLgnDLtycjrkYFct8WvC9hFpo1TXLjVDps6YtUs0jaCKUDa6CVgcHC7toXIHXPFdNKm4zvc5YUpON1pY5q40q4iurCWZ2knks4ntmViw8sKqoB7YFdHofh+S+0u9eRJIUkjbzpcgDJ4+Yn73Jxycc03xz4gbQY/Ccmn2iXUUGi/aIvOkwcKqAZwO6n0HT61T+FFr8QPiTY2ttpGo20Fppbvd6rcSnyvLQPkLJIFLZfLYVeyAnFdmIl7FXlsefhac61/wADzmGSe0neKfzm8hgCJAcqvQcHpxgY7Ct+5dZ9Jnv4gLi8EoJgKnLg53HI47ciu18f/DnV7i71nVbPTxFpYnaWW6ZsRCNH8sSFmOQXbnaxySCe9ecaN4g0678P6wA+Lm1uZGjQOUbysABgfu54PXPSuaFRVEpRM1h6im1UWiNDwBrlz4u0u4hs7KLzLWOIzSXGdu15CrAqvLdvpmu/8C6D4bPxG07Tbq5068ubSSG7mhto2aUNCUKvGchUVncAKeuemK8F0bWTo11e+TAL20n3bracbiwxwcrjaw5+YV678JPhteW2qXWuXFxPNptza6ZPJLCvKSNdwP5Rz/spgnthhXRKmormeh9Rg+R20sfSnxIjsrt5mso5rVJ5xcNBIoBjLYLH5eOe4HGRXh3jSRI/CXiu9uZ7Voh5ca2kyfvbt3L4VHxlSoy35Zr1jxx4a1PV7ua403+0Wj+1FQYbNnjwoAIJU46ivCfilGlrrml6NeSrDcMWuPKLJncGAzjJ/hyMH16VnOPKtD38RK1Kxxel6/eeHppf7PG+2kjihuoAFb7RJsG6YBsgZKjOQRkEd6yZ9T0GK81+4i2W91AqrHZMpHnszKH29lx83B6A8dKteKtN0zWoruXRr2aC9eGJo7KZVj2oJdpUEMc8ncBnOBWj4U1LQJZtP0C8s0/tByZZL+eIqslwGLMobow2hss+AMjbVp8tPm3Pl40k5amEPDl1qHiOw0u0vlM+rRgx3OOHEsqxKnfaV2nd7fWufu7L+wL82+rxu0MYkSOEEFgCzKSp9mB69jXVeHLW1m1a6jvWure6u43Cw2YB3SBw3Xqo2kspBz8vU1qeIPhvpOsTRajZ6oNRN0sjSs96slxGEHLMuATlRkYGRjmuuLSdmPlTdkd78KdAu9JubHTpI0ubS8ggvMzTZjgd2bEjxq/JwvGT/PntvDfxQ1TxBrsdhPBFJpuoJHHIkwCpYoF2RRodoGWf5zxnnbnBri/2V/hVrPinX7uaW3ksdGETwtq0sgVULxuIwHOQRlXyMEZI6HFejRfsqaxb+IrZraG8srG4sxbgfbTe7JVkQfaS6YZAzFGUEHaOuOccdeFN3T1Zvh6dVOLT0uc7rbvaLcQ7srwhPYkZHP5Vs/skeLpfAd/Yakkfm/2zrtxp48rcWjiEwAUoR87b8ldpxh2zzT9b1y7gsXt9UsrbWZYgqPPcgx3BOTyZE+8fdg2a98/Yo8P+F/Fvwttr86P5l3oHiDUBb3F4AWjmdllYqeM7fMwDgeuM5rxMOrqSR9viItwiup7ppXjOfxH50K6e1taTT/Zre6WYfviCA4wRw33uM9MV5F8QfFP/AAhGm3+i2sc5Ecl0ZVlmO65Xc7MVIJK7QFGGxw4x6H2Sy8Kf2ZoeoabBIIrS5uHmQQKEaFGC4XaflbbgDJ5xXmfxB0fUPB9tqVtaRS69p5gW7umnI+0xx5AlJOMsCIwDjkblPNViI+7zHFVjOcbJnKweMdE+IXgbTLO1u0t7iK9tmfRioLbRIrN8wAZkcsir0yWA60V574v8Jalq2pL4q8HRiCadreGGJzg74MsUBJy5Aizu4B3DGDwCuaMPaayVzzW6kfdaPkXxH4Kl8J+JIo5BHI2lyJNK024pKhxJHwcEBuQQfQ19HxazpU3hRNVv7YarBZRXN3OLSZfKlRoiSVYZXcrKq7eo3e1Wzqqz6c+s6hpFtqtlPalIrvT1+1LOu4kCaJzvKg5xjlcnipbu0+HunWN7DbabdaZIIJXSGGMbL7cjmVAoH71QrHjtnjBFehiailJc62PNqwhTor2E9+5zOuahaar4W0TU721m1rQ7hpNJhgJaG609XUmaOYg4/doGZWzjbMSOK4rxXpP/AAgsd3d+A79Lq6tx/Z7QxSpIrowRiyHqrhWx1PXPBFdfq/w3hutC8Uz+GtT1LVI5GsxHoU1wht7oxKiQmF1wT90pJ0ON4PY15pB8CptXvo9T8V382h6hcSfvbVIlE8kgQkmFVJGOAB0+6Rxg104aUd76Hj1KDUlK92ctZeK7jynN/bXMNzbkySkszFVJIG7OTxkLknmul8bahp+ueBtGe3vb3TLWayCwuYmEZvAD53AyFwDH8/8AFuPTFb3h/wABaJodpJqJXxFIkkQumhvWiEt3bIclVUE8ncGwTzt4Fd/rfwWPjDXU0cW8S6Rp86m0EE5jR7eZVlnLYOd6lkODjgsAeldM8RS9oom1OjUjCTW5554tto5tR0ixRWaNPDLQhmXksVTbnHcCuz+GPgnWLb4WrqFxpaS+FtOv5765hso/MudQKB0EMics6FxEfl4Ajbuc1fsPA9prv7Qug+F7mUzWVvotzIbhRh28oqoGc45Ayf8A61ey+LvDFg3w8j0FNQk0gJB5NrLCRFKvzKQrgEZGA2SM9SO9VioqtLktcyynB1HH2remq/E+W9X8daZ4x8GXXhxtbXS9R1GO81zU47diI45YQwW0ZGbCl12nAJ5XoSSa8t+Ej3djrca2EVjNd6hatYyWl6m+L94D5buGUhQOn4+9fQOsfszeCVgbVNN8RS22pTFpIyF3jPms4YK2cEZQc5BC+9Hm3miA6jDBp9/rd0v+lX87RCSfaVU5RVwpOSdq9BjiurC5dKMeWOx6s6PvJyZ5T4X+Ehh1gX+u2aiW8jZ4rdXNvbD5CqqdrBipcgnBHCkdxX0Z8GPBSeDPDGrNa6m51tp7aSaSVlZJI45GKmMDoxDEnI4JHoK8xufHqXNkmo6kLe8hbMgjEXzHB5Csefy6UsvxQs9W8KatcaJfRpG0aG2EChZYHA+eNz95jnaQeeCa9Opl0ZpJy1RvCUYP4Ttvi+0+sFVv9Qku2diIFmkWVNwGSx3cdf5V5L8SdFEZ0S707R1u72GJ5ft5ISKP5wNoUMAWILY4PSr9h8b103SrTTdXvPPu2y0ryBQQnDZx7AgH1Ir0Gw1PT/Eei31/G0EthLD+/t5ACqgL3yMY5/zg1bwS2RvKrzqzR4h4U8LTax8QPBdvd2dvp0mtrFaQx30e6O2m+6ZGG4YLYExyw74zmu/+O/7MPibwdLfa5feHLyTwpazPm4bbPNgRHE7IhOASGZicBRgVL4i1/S/h9qellbISahaAX1oqzFPLKn5XG0YG3pk4HOPUV634Q/axb4otN4Zv9ZDyX9s8M9tGY3SUMmHi6EZ2k98GuGvh50ndbGUaNKd77nwqqDTvHNxa3OsQWWnG8t7NpmnaSKO3aRTK6uuR5YTOD1wRivS/GfhTUPEMjah4P0W4v4g1/eu9orTWs0NtN9naeOVeq7djMePmbaM5q14H/Zr1XxZ4/uPD85l0K5l1CGO4t4UWdorWf5t4IOCfmAKgEDa2TxX2HffDnxD8HvAtloFhfWkUS6e+nySWdqF2KXVmaPdkruKq+DnDZxkYFcFarGnaRvToc6tbY5b9jr4caZfa94x0B9Y1q6tLeNJ9MhvY2hhltmWLe6rx5ciyGQEYz84PG2vru0+G2maRClzFI63VvGzmUKoDEIw5AHv3/pXy34O+KnjbwhpVvaPqlvq5hklY3V3ZRiRmdy5yVHUbiPoB6V2v/DT3ieK3nE+m6ddfIwJVWQjg89cV4lSrCcuY9XDKFNKLWp8++MbP7Q9xINyou1zhvukIM/rX0X+w1p11B8CGlt4YJTca7qEjrJKUYMHVPQjoo/DFfOnjW4sfGGgsdT0oQSm48wT6XceSflbgsp3ITjrtIFej/sg/tEaJ4YTxb4HbS9XuHs7iXWhMyxlVQoiSIMNkkFA49QW9K5aD5U2mexWkrK6Prz7dMl9JZtaO08cXmyJDMj7V6c5I/WvOfFfiTVtXksZtLFxoUhmW2F1dRLOGt5HXeRGAQcqrHLfd2jHWuS8Q/tOw6TrjaxpunzanZ3NuLaWJIzG6EPlHKncH4ZgOV5+uQ3xj8evC/wAStPs9KXTbl9Cu54zFcgSQznaCJWCrymwsME5VvfitJ4mMVqzy/awm3FM4n4vX9/4V0vRIb/VHnu5HuNOttMe3ETtE0UiGbAQByAQwcgYAYc5zRWx4utrLxne+FLXUNXgsdHMGoXuqS3jKbu+mVFiSNFbPlIUZvukE+gzRQudt8r0PJxWkz5YsNa1v4aQ3mrQ6xE1rgyLPLYutpcQlM7WSIbd47cA5DYzxXofh7406NeapEBpOnwmyiL2u5mFsjuA4dJMAqWD9DkAnFfP018mm6xY6hpVkLu4WKGHVLUvttxKuFDgHj94rEFSMEvkEGtPSbqXxJcS2jLBo+oWrEyW16/lR3NtymSTjDoNoPZlHqDn2J01NanzlNuCtHU97uPGd1Y3Vs506ya1nlLwT2ToYo2KgOhI4jkHXqNyk1zXjSLTdT02/F9dnVCJgqXtrG/mWw5CsVXPI37c5/ung5zmajqz6RcSyPLd6XqCw28k8LJsEuz5XkjKkq6uGDKckZVhxWff6RZeKLiWLStOvhdzPHZXEckObdzuG6RD/AAngORuOOww1ZQpKD0e5bbku52WueHR4s8J3kHh69S5vtOmto44xMMoBFhox3BYDcQMkHjvWPo2jjVtBs7hHOoa5atDdGAuUmdBG24k9m2xrHjHJ553ca9x4TvPhxoKZgS8v7W4QWckxZtzsybmUgggEKTg5xjOMiqZUWGn+JL60K2eoSyPcBYsBoIFwSqEDPL9MnnqOtdFHCupUR1yhJra10axvG8GfEuw8Z3N7bWC2ugSWf+kkYWaQqfmXv3BA9a86+P8A8e1nvraLULe8WExtKFiTCFw+EBP8Py5OM5I+tUvE3ifzbYRCVdYeWDdNHeSZkgfKkbeQRjk7lIIxXmHxGtpNJ0hvMjimNzHtRZJGk3P8uQynvkk8n3r6Z4eEPe6muHj9Xp+zWxoX3xmubu/ngSVlSMeZEijbsjbA49l/mKsax45j8P2FpqLTNdebcqbZSu5ncJtY8dQQMEeqZryXxV4hSe7JSR5LlI8Sb1+RQcHA+nPT1rLg8Tf22tjYXsnl29uQYmjODGcscj/vo0vbuOlzqVJNJnpNzNPZCHVNTgM1vqW6OXTyzErJzjyxn5Q2Og+7zTV0W38PWCa5od2sZW5MF1a3fL48vPBB+bBUnrnjnrXG+K/GF1caRHpplZljLNFcOxLnLPnB6j7wPHfNc/aa45tdPgE6xQWc2/7OAcNuI3sfUkDH0p+3inZE+ye57hHo198Q9Kv5NU0ppFjBFnrNqAhADYCHONzHp6Z71P4F1Pxbpv8AaFha6LMt1ZhA/wBqQlJsf+O9Dnof1rntG+K7abommaXYStGALp5uyqGcFFHpnkn610vjzWl1O4t0sp3N9PYrOYoHKuuwAMF7gjaSfUCutSi1dMzaa0Z2ljqtr4vt1l13TQl+oKMcsEfYxwJEz0ye3f2rifgt4Gg8M/Elb/WJlivLSVJ7e6iYYX7272AIIHI6ZrlJfiYk6qSz3N1bqEa4BwzfKNxz6+metbvgzxjDmZL68juIXiM8RI2llBHT3BxwfWsZOFR2Zqk1qfVOs/ETT9M13S9Vtry40PxBY5WHUbODzm8sg7ojlSChJBKkdhXXa7+1VpeqabbPrMlmonZoxKsM8ZZ1VS3GDjhgfxr518I+JdI8RQK0Mq3K7hDPuOCu7uc9MA8euMV6tqX7O9h4n0u0ii1G9jSB5JlkSFSCXCjG3IGAEXFeJiMLTTvLY6Izkl7pck+KHhR7RLhL2L7LdyNsbY3LJ1AJXturp7PRReRRzRoXjdA6+4PI/Q1xg/Z1kTTbGwj1OULbeYu6S1ySXbOfvccYHfpX0JY+G1iaGFWKJGAN2BgKBjA9STgCvErUacYtxRvRnOUtTwTxVov2Jbu1hhHCAqpxtJOf/rVzPwFtrS01rxZJcXG2/vNRZI7eIESOBbcHd3UF2PbjPXNew/Ed9Eikv7uW8bRriJ/JSSVWkt5X5wCVBaPPupA9a8f+BGk6pJrOu6pJYR3ElpNBBBuuVY3Mj5QGNlOzoMFuowcjg14k+aEJWR7OIqJUlLqd1LZrbX6W8sbQFSu1pBwTgsWX124HvVyLQ7G3s2uYpjJZ2iSRqkS8HGQVHYAso/So72zvtenW4m8+4tbJhaX9uDzEzuykoeQ2w7N5yOMjGaxPAtnfXnxB02fT75bjSJHeSPTFjcCMrGpuWm6L8u0ADOMleM5rhpuc5Xex89Ks4T5UtzJ8T+JjIrwXCI8FvbsLS5jtuFD/AN4dSfYDoPXFFc14oZryzlvr3VLr7fI06zW5I8uS3LMVKrgAHhcMTxkcmivUweFk4ya1uz4/N8dUhXUdrI8j8I6Hc634w0uLUtRjurfV5JbC8uI8IrWrRuxb0IXyifUMCMdK6Dwzpja95iXcy39vf3iP5jRgSR3MQHmN844R1KkrghgTg81aT4e6fqmhy2WmNdWrQXNwz388qMsJA+RoSmAAz53B8YBfuec+TWtRsvFNvqdzbpbiDylvoIZceb5cYRXYYwGRWjGB12Zr2pVY1H7o/rFOOiZ0WieDra8tr221xpGjmRo7drW7SJEfcrfIpyq8ENjpnOa7XSrzUvDctjplvFcWzGW2uDDesN7x7fuhkDK/DEDGCAcH7orA02Q6vbwaNrdn5d/HrDFCLcSwO7JIUWQKcZZVXnplRnrmuk+1mG80u6h8RC61fTRFutJdOyJB5bK6pLvLDIfGGyBgAVhJSlY7ZP2iTp6HU/E7xo8Gn6HFPpghubuR5GM0yutu0eAM465aRcfhXzb44+KWPBdzPbM08+pK0ss+7aVIfBVcduP09hXTfGr4iXE8i6RpxihgtIUS7ViN7zOVdgvYBSRluhxyRXzbe30iWEaXJ32N1NIsRHRTnLA+nLfpX0+Hbp07dT3aac4psavjK9iAkiP2mWPhLnZuZPXIyMnpWk/i3WvGd3aabLMhuLqVYI3ljG0FiACR2GOuK5ix0e3feI7uILwXyfmA459DWpbSRaZq0eoQyKlrBIJIg2TKcdWx2A/WtVOb3Zq4o5zUtJvLq9v32My25KOUHQBtmfbmtbRvhbcavZrJ9oEdxNaNdwIBkbVfYVY+pIP0x70X3jEajPeLMsYkmZiJ1/jzyQfUEgH6/WshfGl/pnmRWs7RjYYgT1CE5I/Os7wT1HaXQp2tjc3Orw6feYAedYi5JyADgkH0rX8S6Tb+HvEflIvmWR5QAclcZHPrgj2zXOwX8y3EUu8lkJKvnkZrcublb6yeS4YyXZYujE5UJ94j8cAVCatoGtyHxFaf8I/q80AnW6WNsb1GAT9PyNOsfFs1vfxXbSP+5DeWN3zcjBAPocmsbVp49QvJZo1NvGzZRCSx6dKpRxFJF35x6kVPM+haSe5taprDzTlomW3EgDPHGOOeNvvUujR3SQy3UEjGTTx5jKuflQ9Wx6A4z9azEuooDEWhQlDluMk/jWnJrMNvPctYJ5KXEBhdSSchsZ/PFCYHoXwg1uCbWbixJ8o6jE+0s3ypKoO1/blia+k9Le68R6Xp2h6hqFzb39lGkH2yC5kjEoVs4JUrk8kY9AK+MdBV9N8Q2Q80RRyKHEucYBGT+IIwa9i8b/Ekw6TaGOXy7+VRL8n3vMHQj+6vXrnNbv8AeUmnujnmtbdz7Y8N6LKtvbJBqMmof2awnjjhu3QMh2sYyGclvutkuSR8vQZr0rxH8QLK8kaDR52lfduMluwzKgycp7ZBG7tivnzw54otdf8AD2n61NJFZ2Bt452lkVd6hwAF64ySwX8aui38QeDE0a+t4bGbUEiC/Z8RhREkvMU+5srgA7ccncT0GK/OvrWIblCatZnlrG+ydlt1O38Z6E5sdRt7u/S/tZSXt5PvEkYxlu4znB7g15H8LdC8Rv4+8T/2RI0dvosEGtXCRIGSMJ8jccFmZC44IPy5r2eW1nj8HCZLD7VkM6Q2khnEe+QkISoJ2rnGdvRelcL4PtPEWm3XxQOj6NHd6hq1hCgtBcqLeSONGWRDvUEv842nC9DyDVxleVj66tVhUw10dt8D/Cmk+OvGt3qVlrrTadBEtzPoyxvFulbBjl3KeEBL4GeWBJzjNc38TPC0HhXx7ctbTX91aavcCzvI9IlkhhF6ZlbO3JJcqRuVeCWAPU12HwO8XaX8JvD0OgXkF1q/ipLC2e5XTHNxJKqwo+24fBjVk8wRr8xZlAx3rgfj78UNP+KWr6JFpF65+yBZ7PU9LMiJNqSuV8uONwrMyMvzN0ChhyQK6PZWha2p4NZ040YzfxI9U+OPwli8XaJBqOkSWthLFbsz2N4yxW/kNEFU9M5XGQO+OnFFfPnxn8Y33jfUSuu3saahDIZILOxdjDAWRlLhQAVQKpPzA5IJ4or3ME5OnpE/OeIMRQrYpSs1p3a/QxtPudFfQ7XdY/ajauTfmSV28iXYWWYxjrmQLlecZBrjvF39n2IvL6O6ZmmkRw8xIc4C53g4+b5sYx1X0NcnNruo6Z/aT3gmt9Pvj58k4cLICy74kTafmGen0OelM0bxHZXemGbUojcq0Tf2gNiyuQCio0YONoO4hm5OR06VyQw/s7yNvq9WbUYI7/TdVvdb1d5gXnl1C6tpAUYq6BCXk3A452jkjoTivQtB8V/2o4njuIE0QuUt714VaSUhQx/1Y3NjPUdM4NeOvrFrq5s5orsWc13H9n060fcEjjjZsgshUrkgHJHQc16fpTp4U0a00qa1sNOtttxM9xDcnzWgcKIDGcHczbtp2AEfNzRUfsrHo4arKD5ZbM8C+KmsRWHjPxPd21xGb2VfKETBgdkkYZuo7cHB55ry/Q/F2yyktHt0kXcZUJB+Vsc/oK7T4/8Ahebwx4itdWnimNtdyPETI2cSoqgcjr8uB+Bryu71GdbVMAxwNuKhfukn3r34VOaKaPtKTXs00Xptbm86QpBbxI3G2NME+nPaolu5tTK2saBWk+83cjrgH0/wrHtbe81S6jgtI3nmc4VEGSTX1b8K/wBl281zS7T7XYGdXZDvOFXcSCTnqRjI4rlxOLjh43kevg8FPFS02Rxnwt+CeneK/DF1f39hdXoiR3zbZBRQOvB5A79a861jwfp819NZWEbC8QsBuY4ZQcZx+Ffqz4e+EWm6X4TtNHgtVtraGPYPJGwgHqMjnnv615R45/Y88OeIbbyxDLbTwkvb3ltJ5c0eeSMjqPY14FPMZKTc3oz6arl1NwUYJXR+adzoklndfZJIy0xPGzkHnHHrXYeH/AF9qF8YPskzeWpyYULlvYACvsvwZ+xbYabKJ7tXv7lZFKzTksQAfu8+1e6+HvgppXhx0lgsoklzkuV5+gHpWlXNbaQRhRyeK96q/kfAkP7KetDSGunjZbqIeY+5TtC4yMDru/wrxrxTor6JqK2ro0LoOElXBxnqDX686poix20qLErb+cMvt6V8qfHr9mu8+Jd1Yz6asVpd27EM+AN0ZOSv19M1nhs0bny1dmXi8phKlegtUfCMkYZiX6jtTEAQEkgE/lXZ/EP4d6n4K1m7s5rWZVt2w5kUjjsfoeK4pn8vIZCxPrwBX00JxqK8Xc+TnTnSfLNWZailluZE+ZiIgQvHTiu8TWYdL8GRb4IpLyWXLNLGsi+URtGcnPbgY964lItsayIVkyuSoHAPp71Jqty9xPEsoChEAwowAMZx9a1jLluYNXPp34XfE271HwAthcRwaLcaTcJZJcQplrpVYOFO7OSoXbjpyDXWal4j0fxBcX86rdXFnHChjjMm5WaQsrM6hflZ24GTwMV5N8PdIvbi/wBN017e5CSYtpjFiM2szxljK/B+RQpY5xkA4Nb1nc6RHZXurvbCLVLWN0YecFRctti8pCQzKwwcgHaQxPUV4NanTc27anxdSCliZSsuVvY9o0mM+LPA2kzELmFMKDjep3MQDgDBGe1c1b+KJPDGs37HUbg2l1ZvY3UCKJ2mQMW2BZQwwGC5PHGeR1r134XeFtTl+H2izpYqtu9pF57ouJIyq7f3qH5lPH3jwRzXj/xRjFnrup2NoFEiRSW7TBG+Tfw21geOCcnntwa8qmmqmqP0HFJQwKadtClonxE1/wALWcbWNq1toaR7LiVGz9tjB8pWVQAE2ruXjgs+R0GI9FTT9V8facf+Eme3ttCsjNbTazbiSeR3QpCTGF27iCCTndl88kZrRb4da9qfwq07VvDptbzQsW8l5Civb3mmBZHL4DEmZCI+o/vfWuA1t5bKz1G8fTZl1K6jSSG1KEtFlcMXI+YDYCwGR98Yr1rpaLdnydSsqXLGT32O6+HnhK41Ky1TWtSv7XRG0eNXl83dLLcXFxuVUjCnAKohXHOM/jRXP+AtaubnRrTTjqWoW1jDcKkFlbFpI8kBkErNjCfIVx8xwKK93Awfs2j8z4lxFNYmEeXZd/M8/wDEU9hdWq38IlnkvbtJoYHVid48xJMDtllB28Y3D2rF8PwXWp6veWBUo91DJHInlnKsACFBHTLAcn+6a6LXLbUIPATwWsbQ263qXLeQ3/Hwjb083Gc4zGMnj+EnrVfwHIdC8R2RKLFElpdrOuTgMbaUqT6fMQK8tSvSdj9LhTsudEeo3uhL4Qt9Ut7y9e/uH8o+WuFgyvzxsc5bIDcDAAIFetaBBDf/AA9tmiSb+z2njlhkJYRPvHzYLElcANwcgH3NeC6H4cuvFmpW1hCfIhXahmmVxEjAZyxUHGSeuO9fTvw3+Hmi6XpjWkOtG5WaT70OLgxsocmJRgoNoZCWPXaygivMxsoxiu557oxjNKLszzLxLpNx4l8CzafqdukdpfyP9hvRGHlLRtIsRbLfIM4BPGVBIzmvm20kke3OmyrtbLbVYZCuM8fpivv/AFvQvDs3hmRNNllsbG686cWN9EjSb7hdiorMRjyikThf4VLc818l/tH+GW0D4parLFZRWsF3J9pja1cNCW2gShCBjAfPT1ruwVdP3D38FKXLyyPRf2Hvg5a/EjVdX1TUoTPY2hSBEORmQ8k59QB+tfo54P8ABVr4dsIoLZf3cSgBsk/hzX56fs56h408DfBN9a8MGS3hvtXukldIvMZtqRquODxncO3Peuo039uXxz4Hu3sdbjivgTgw3Fv5TAY7Hgj9a5sRhpVpuSd2feYTERw9KMXoj9FobeMnYuOmfwpsulxkbtoI65Pavgay/wCCiNzc3aQJpscEbEK+WPTv8xP4flXv/wAK/wBqKw8aNBDdbLe4klhiRAd3mbl3Fh7cgD6GvHrxdD41Y9qhUjW+B3PeF0pVIAHJp7aYAAMDnpXjfxh/as8N/CZriG4c3uoxqrLZxH5iWbaoz0Hrz2FeCz/8FIrezYrdaPtueWZVBCqf7v8A9epp0pVleKuVUrwpO03Y+y7vTV5ON3HSub1jR90DERAZBwe9fNth/wAFFPD95ZsPsM0EpAJC/OCcc4yBT7L9vW1uJWt5PDt5rau22M2biNsfQjk/SqeDqRTbRnHF05tJMd8Z/hbJr9rLNZRxzXAQgxyjIkXuufXng1+evjzRotB126syGUo2MEYIPpX6raX4mt/F/h231VbO401LwuEtrwKJVxjnAJ45r89v2uNMh0v4qBQuwSwrK2RjdyRmurKaso1nSexxZxSU6Cqpapnilg/kTkBtwIOKspEbvU7WD/WFnVST3BPP86pLOhmYqAg7CvRPgXplnfeJ7rUrwPJJYRh7e3UDEsrEqASchQBk5IwMc19XUkoRbZ8POXLFs9ZKR21jqEFws0uhMi3f9q21y4a6RmRWe3dh0iMgRlxgg8jg1z/i3VNOexza2C2sIRobWTaZZZkKqxdpMkZV1UZ6jcQciuvXUIdV+H0o+0Gbzr95LaRD5bPAJEjAzgA8qQAoAJTnpx5v4ha3sfF99Bp0gu40ufsuyOR8IUI3iMk8ocbTkYOM+leNQkqkpN9Dz5Zb7PlqN7n6KeBdN0+4+FvhXWNHEmjrf6ZBPBB9pZ5YCIwrL5gxnkE9vpXh3xKsYtS8T6hbX95EtzNEi7zDzKzEHLbRtbb5fJkBGH5r6b07TLSw+FHhKCxtgLVNMt3hUHjaUD8f99frXy58TvEMemeM9YX7JLMy20TrIsRkWAguyucA8DuevboTXmR0q6HvZrengJOK10OdsvHmpaT4f1MeH820EcKyXFp9mEkVswJEaq+CNpDhQD0IArzfxPdr4hEcUV80Fw0hguZpZfLTLKfnYrzjamMc5C4B5xXVXE8lt8PPEF3DpRdLh/OtpmuWWJNgVRL5HIc5LH5hwcYznjy7wNoX/CY+JTZXDfZ7B2Y3ly+7bCiRvJlyOhPlsB3Jr0KHLJud9j4CjhcRJwq1+x67N4i09PFOneH9N0S1tIFSGaO7t7hpd0axsQ7Ar8jPkZGTy3rxRW/fa7Y6xe6YmiWq2NlBbWdrNDLJGZ2WJGjTdg54Kk4A/jJPTNFfT5XLmotyXU/LuKaieOSj0SPMdRa/1bxVpulSiTTIZJJrC3Kx4IRgSY8DAIZn69s+1bXh7wW/9keJ3ubuySXUbSM2kly48sqMkkv0UMTsz7HOK+259GXVJVN7oFhdRR4MargSIQQVIBGB65zXhHj3S9N0PTQ1pILZ5bKHT1i2KUAa4EUjHIIP3XbGO2OtfGTrPkUVof0PicBCGHtSepyXhDRdJ8N6nqOkWcM9usqW140YlUbJY0iZgmCHUt5bEgbgdme9dxP4k03wPLbvpo8tpJvKutSlUF2bcomLHuF/ecZ4yMgjArnr1NHu72+0iHWLjU9QjtvNim/d2zbWjIUvGrq4Kh3xuH49Kj1HT28RQyadHNc3V1Kv2eCEpjdM4QLJzwACCD1/I150+b2ilNnxcoVFV5XrIzLTw9B4muF1OOK1msZGgMFxegyROpdvmwCMEDYG9xntXo2v/DDw1q1nqngS48OW8sUtm90+sQqzXNjeNHuQRAk7YwMBk75JNZfgTQNV8I6iun3liLnSLJxKbhpI/MAIVihQjlCxcBx6DNe923hy90/Xl1KC1hvbfV9YltrsSEIbeNnBEq88kKFXHvWNWpUVaDoytrr6dj9R4fw1D2FR1YptKyOR8E/DPXPgl+zX4W0jTNGk1TxDDbtc3UUCB/30rmR8gsvTdjqOlfLH7RUPirWvh9onjDXLTS4NJvtQexkj+yJd3llhWIMpUoEJKkBAT9a/UW8tY723KSdGGDXlPiz4IQa19o23KJFMAHjltllVwOmQ3B/EV6Dq+xqe0Suz3I0FVpezvY/Ifw98Otd1jQZvEo0h5fD8N2bOW5hO3Y2ASSoyQoBGTyATgmvrj9mn9nzWdYlTWIpWjgtSHjibjZIqkL830NfTdr+zfotlYtbyWttLCylTGtpHGhB6jaoA5r2b4d+CrHwfoS2VrGqx4ycdOnaufE1qmKklayOrDYang4tp3kfmZ+0X8AfFUPi291GXfPC26QyqSxC9ensc4PpXgV/4PsYZoTcm6mlmbCoODI2cYXgljn0zX7TeMvCVpryOk0SyAgocjtXgt7+zJY6J4nfxDZQSLqeAkN7FcSJ5SDogUHAH4YPes6GKq0pcjei7GtXCUay5mveZ+fnhe++G3g/WXh8U6Fq4mgmME0Vw5XynXqGQAMMd/lr6Y8I6/wDC7Vbq3g0axjsJyQEkAWVM46ZGSp9nCnNd94g/Za0rxb4tn8Q6x4aXUNauJEluLuS4kVJnUABmjU7G4UZ45xyDXq/hT9nrw/Bqza3qHhnTX1aQgyXksO+Z29cmtq9VYhWhKSfmY4ei8O3zqNvIytK0RorCAqi+QQRuHJBOOfxr4c/bq8LgfEDSZoQRJLCE56AZ/wA/nX6fapodtZ6WI4olQKQQqqAMV8Jft4+GBdav4LuELNFcyy2szJ95BgMT/wB8g1WXRdCtzTZhmH76g4RR8v8AwV/Z18XfGf7feacNP0LQrKJnvNd1d/KtYFX7wB5JP0/Ovozwv8IdB+D/AIbTSRLY+KLnU2ivf7YgRZY7lVDK6Rt1RCzBecH5efb374G/DuP4pfBHR4tUktk0m607bFpluQv79cgSSAfxAqvynoc15l4x8Fz6T8O5YFQLcaNeyTWcj5CR+bCM5/4Ei8ere9cGY5nWq1I0V7sX19DCWU0aODnUveVvzOX1r4Z+F/DPwz8Nz391dXSm3BtbYMZH8yZt6MFJ+8pkVsDqWNccvgNrPwB4f1dvDdrb2kN1JJeRojC8u03zSeWQTjaEWPnrulUDA69V+1Lq17a+J/7MsYVgkN7Hb26D/Vxjah7kYHAGcjHXIrX8YG50uLwZ4eXTD5um/YJdStlcYt3kuo1YsMnOGDHAJ+4O1bUK9eCjJaub/A+FliJzpqk46pn114be9n+Fvg0a9YI+oNpFp9qxiGaGQxjcpX7p29MYB4618bftFNdWer62+nXAbS7iaC0aARbH4yzK2TgD5R3xgnmvvHxi3lm48yMlllYcjjANfAnjJ7fXPEGujU4rmzvZ5A8dtAqzxjy2JcuGI3AjZ+B/A+lF/vG2j0c0i3gnZmXbeILea1TQdRthp+iWtvNd3EnnMrSq7YQFwcrhRyMgEEACix8ZaS+j3mmaP4dXT7R/NkeGO63NIjhEET4Y5U7S4VScEkADk1yPiXU4H0ae30UiLT7yaKWa1ZzM0xhRQHk7NH6KDy5Y4AFcj4o8RW95NNFotn5tlYeXDJdLEyFpCAGYs33dxBI7j8a2pYWNRue1z4fEVsRXoxpwloj1Lw1qNpd+MJBprI9hNM9y8iRbdzkgbQP4FUEAL6DPeiuS+Cmrz3WuT6XJFGkFiJJlwi7lJEa4LDlhhR17/U0V9pgVy0bH43xHTlDHtS1dkfphJpKlSod13DA4wwPavnP4/wD2DSfBdxpwkV9R+3200kDxt5ex53QEsMYIIMg6fMijo1ehT/ErxLo8yQo0d1K8cexNStvOycDJD8EjHP3jya8v8ZXdv8Q/ibp82r3h0yC40xIpW0ySSGNHNwxSRiWyF2RsOcjLV+eVq8ZJSuf1DiqEa0bQ1Zzuk+GdR8Oa3pNjcBobHSoZrm7lvkLyXA8iIKu4sq/Od3J3FcDpmpX8D+INDFjdJZyxSzhHWGzKl1XeCXLHOQAqsAPfsRjotL1y0uPDb2V5ql5eQXVxLPd3E6gFZg7siq65O1Y4grDAz5ma7D4h6noNr4R1K607VrfULHR4RNInm75AgUDCrxwemD05rCf718y6Hkxy2UbVJb9Dz/x0NcstV0y/mWG8S7kkR5NSZUaAISzEqg67MkDHO3rX0u4l8Q+EPBniGy3JaRm21CZOcusiKQTj0zzXwH4zS/8ADPg6z1eRWGra/b3jXFquQxnmkaIKuONoTaFz6V+gHhS0n8J/Bjw9ockm6707Sba2kcKXXKwqOgBJGcj8q09muVyPqcuj7GTiup1eg+KFnLx796A4wTyCOCK6dLmN1zj8q8H0PWGh8uRSwSYZJYc8cc+/WvT/AA9dS3kKsHI46CsFKVz6WKTRveXLfXKiNf3QbBftn0rdgVY02hgQvU186/tAfGrxr8MpNP03w54aj1VrwnyriafyYs91zg/N7GvPn/aq1bR9Aik8RaTdaNqYU/aIFPnRcd0deGB9ODzWUsUqWtr9P6R0rDznrex9fajGwZmUZwOgrJtLlZiYXTa68Edq+UfB/wDwUBtIb5bbxB4Z1W1tnPy3JVGGCeCV3ZAr6G8KePdP+ISjVtJG6wdAVdQcFu4pqrGTS6voJ0pxWqO1js4V+bhfUZqvf6vBZKQSCRWbqWrC2jyTg4zXm/ijxooJQH5u5BpTrcq0FGnzPU7DW/EMc8UgDhABwK+bPib4bsfin8VvBPh++uJYLC2a7v7trdgJPL8vywATnqWx+ddTfeLpZizbiRjpnrXJfDh5dd+IOt6vDGs01ksVsoOcKp3ls45wSR+VY0603FzQToxUkmbvhH4NT/AXxPY3Wi3clxo+oSshjZstv3enqRtOfXNdv8QL3RPh1pfiPxp4jiSXStKmkuorN8EXd59y2hA7/Mu8+mM9BXf+HbCOHS4UvLqO9vhmRblUwkJ9IweRj1PJr5U/a31e38Y6j4G8J20ySaSmoy3dwWZgu1nS3TcehyDM241zUsLS9o5Tejd7HlZ5jWsLybPY5r43QJp/jz4fQa/ciHV54bSW58ltpe5m8sy7T0BUKoz1+Y1lavbPqPxB1lrFEup9Q1/T7WFZTvZRHfAFwSc8bH+b/b966z44/EHTPEvxdl1jRpbO+0K0Ci1klTzDfTwkupt0A3NlsICOMKzE4xni/hO1z8SfjamqSFNJh0+8sr4wPkqA1zGrA9xkkuD3JFdvP7PlcPs/5n5tGrONeNPlPtrxl4jhtLWVL5pL0SSybMsVmXBJxvA6D/aB7V8Ta9rNnc67rl7FIyG4ITTvOAdnuGYxqNn8eCjZ2jsOMV9cfFTSBcxag6TSWzMrplFBIDY3Yz0zXyf4J8LnVfF1293qEOm6F4cmN/cTzD5sBXO0Z/2l3Z+vXNdzna7bPpcxpuWEcV2PDdYtNRXRdJtbK81FJmu5I4dO27leBo4ypTAzuwGJB7YIxk1ydjrN7cHS9Cv5pYNKTUInZkIKqjE72YAfMcMMZb5efXj3iWzHhLQ/hLrE0scsmqLdXVjDMPliUW8sQMp6swIRuRgFgvQVxd5o82pWVz4s1qwit2vbbzLASBVSZF8tPNSNeSUEe4kADJ5xnFezQrvls0fGUqHJG71LfwksbfSdV1xYbd0jiiZlnlYByrZJRl67lK4JJ6hhRUvwzhmtLLxZcyI6wb32O4UljtbJ3Ac9QfTmivqsNL2dGPmfkObUnicwq6fDZfhc/QG4sHggeMXqm6jTOJSRu5HAPQdj3rldW8CafeXF/NfWNpfXV3biGebgNcKOFRgG+7y3Axy1ddFLHC7RpDuTbkPaADAx0KkZq3Z+IdNQ27ywncNzl5ogxKjOck+h44r8mtFtdD+jKFVt3geD2/wgfw5pWqLZaBd/ZblopFDuhUtkpIUZeVymSN3pg9RXJ3nwt1a2jt9Inmi1F7+e31a9jb5ZltIs7IZOSvzzdMHOF5619Sz69oqyvcRwW6RLEwcunzkc5A9+PwrE03T7R9UuNYtmlIuI1gZnfAUIWYDkA8HPTgk1upOK92V7nbUq/ClHY+P9a+Desw/EnT49PjL21vqEkt7dzEADE6kYz12ndwPwr2HTfjb4jjuL6yur6SeKAbIZRApCckN8wxkcA4Ney3otbyyT7VfR3MsBA8ydMkjptDHJGMdfbrWbceEfCt0sQS0jVig2MsYXyxxkA9D/APrqqdVzmlLY5vb1KDdSO5xHw01Z9T0p4Jrp7ue1upN8kgAZ1fEgbA7fMQPpXvGn+IbDwroUl7eyiOJQDg9z2FfIPw91iTw98W9Y0qaaP7NdDbCFY/ejLYxngZXPA9K6L9o+fV9d0vS9I0yRzBLIGmx0yMbenPrXZVSoys9j6PBVZYilGa6m/wDEf4l6n498WHSIZBZWa+XPC7MQGU/L0Ay2CQcit/w94Bj0+zEN54jtZVBZpWkRw2D93CEZ/L0rzf4R/BLxfqbK2pa9YWrFcWVwqvM4XGBEwONuMdcmvY9K+Afi3T7UQ33iL+0Gll3F7MCIbCfm4fJ3Y98fSueXNJ3jG571OEVGzlY8p8UfCax1DWpL1rm21VfI24kBRePZgM8V7R8DviFo114Yg0tIksWtj5EUe0R/KMc7RgDqDx61wvif4C+PtJkvZdP1y2k0Zo9sUGpy5kA/izgFeT07180+MdF+KGg6i4ubOezsbWQyRahbSgxbmABXIwSMLjpTgn9qNiKqSS5ZXPvfxhdpBbyYYEHpzXhniHUWF27MTuB6Z7Vzvws+KWr+NfDc6al8s0EhjRh3XGRnPpnFS6hOJneQtuOcc/zrzaslzNG9OLSuynf6v9ntZ2LcgcAdemc/rWV8BPirP4N8S2lnBotxrVxrEl7dXSWuHkgt4WSJG2/xFm3YA5PYE1jePddj0jSWmZtqgkt+VT/st63pMWriw1OQxz+IraTSWkTgpsDTwhSRw2RK2R3VfQV6eEoqdF+ex4+NxPsJq+p9OXnxFtvHmh6nb6M8mmBIHLzzRlCpCBiMdQMFcn/aFeG2eiad4wa98B3UpXxZb6JHqlpdyAM6T7z5sTA8FW3RkqeAH4xiu2+F1zeeFdQ+J0nl2d9qkuuW9u9wqbYm3RqGfbkhV6uw7tn2rnfhR4Tg8V/tKeM/iHLeu1tpDyx2P2c7o7jzTIvzkfwoifd/vYPavPqYTnmrv3rP/gHy+OqvFTStoYHhz4aaHZeELux1PU2stVgimsS8KeZKkJl6LjO0kthj2VSB3rc+DGZ/Gl34du2W8ltvs5hu2UebNCssTEk9wPlwTn0qv4y0Xw0utXeltcXsd82pSte3ERE0rjy/3YWNVJUFnDFc5Yj0r1D4Q+GNN0XWdOt9L1iw1uK4MjpKGzckqpdUbvjg/LgY9M159HCzxVRSnKyj+Z4rrONeEOT5nRfEhyLC7dm3fMxyT2618jaNeImmfEdGeBJr5Us4HuCfKDO8oLNj+EKGY+yk19UfFC9jtNGv3lw6oDmMnBPt6+lfMvwStYdY16bT7+zgvdPjb+07iG4ZUjk8reoRyVOAxkHGRyADwTXvVUra90fSYul7ag4X3PAvFmtahq1/4fimuvO0/SNIEOnqoKrEPOfzSAcHJb154HpWjbabq3jy40qx0+4s9Gu7GwntElnmdIZLZUlecuzZ5Ebc+pYAdK+qPir8U/hv4o13VYf7Ci8RanqNpZ6dDp0NiqzOoLyEI4GVZiQhI4HzN0Wrdp8B/BXirTbzVLzQma6mPk2en6dK0cUZ5ZxHz+9ZWLZf5UwqhQQCT6tPEcnLp0PnI4NL4Xex8sfDeyn0nwP4kEsE9vCEAgEyMh27WJwGx/eweOtFep/HDwrpvw50XVLTTtSu9VnawaW6a7uluGglzjyt46kADOe5or61VI+yhddD8nlhJ4rHYqVtpW+5I+p4JwI8RwzExjcJACGA6Yxjn60v9tQXrSpe2qSGI7fNlba0mTxgjJB4Ge1PtR/ZrN5VpDBIvOGlZTjPbrxVy8FldzRiXThDNjDtEWKkA98YOeh/CvzJStufq3seXWnOxXS4jtYjHDbAsCXzGyyH1OSecnpjFQzxtJKXfSfkbbwQUAU9TnHBz2HNaMMOmxJiVJE+9kbi657Egk9u3vWlpdrpowYIVWRRjfFK8TOcHGSCBmtY8knq7G6WInop3OSEVsDHILKO3ScCOQSTfPEucZK/xA/Q4zUUlikzyIkn2EMiuJEZD2JyPlz+Brs47G8eXzhDBE7OQVkhEnyj/bRlPbPQ0+y0OC1LXEKBpJYSJIJnIiDg8bQQSGOOPXnrWnK07xkjeFOpLSadj4y+Jej6p4T8cw65vcLZf6SRNGc3ADFSVxwCVY9scV7h4S1fTPGumWd7DJHMZUDKc9M81yH7W2naX4I8Err2qX14d8zxfYzcBvNml6LHlR8vGSOwBr5w+EXxku/h/PZx3aytpEyiZCQTtU8/L9K9Oth54miqq3PZy/ERwz9jI+49W8Ja7Fa/bPDsiG7jGfs7/wCrnx0B9PqK8i8R/tX/ABM8DM1tqnw61MywnBaCbzIwM4yWA6elez+BvjXoep6bb3CXCNG0QfKtk49609Y+OvhRXNrdywmOTghsZPoK8mmlT0v8j6r2jktvmeDaZ8e/iz8TbqCO28D3tjbFgRLeNhEH0xgn613dzoWr3ulFdefznPWHGFr17RviBoc1khhuEaIgkEHg+9ed+P8A4kaTYxyyzToqjO3cQOlcdePtHdSfodcKnKkuX5nkc2jr4dmeK1QW8TEkhR/Oub1vxTDpyNJNMoCjoe9cl8Qf2htLW5lS1bzdv+1g9a+cPGPxEvvFV+2yZlgyQqKeua6cFlVau7z0XmcWNzSjQVo6s7/4q/EQeLPENhodixnj8wbwnc4J5+legeGYZvBXh+w1ae5ltpYLnzxdxn/VymMABSOh23ePoprzj4feEYvBngHX/G2qxhbgWrwaer9XnkHlx7c9TubP/Aa9D8B3Esvwl0bw/LqcV7fXUjTW1lcKJD5kaIVhww+6QUb6uBxzXu4ukqdGMKeydj5aUKuLqPm3evofQPgnxzcR2XjBb2xijjf7Rd/aIQQ8zJOyID1yARJz1AUVkfAvxrZW3j3xFYTXFw63Maafo1lGrNbuI43Mk0mPusdz4yOmOcnFZPgSO51G2VblHAtvDEst8fuYuriUEpj+8FZs+m8VR+BGgXvhD4l6zFeTLdwW6QxtcpnYlwsywTwg4/hkbqDyDmvCUZc0pN+S+Z3PBOM+ax1HxB8QaTr2h6lo9hpSXPiGy1C1uhdxFoQJnuAU885B2bUdSwPQDGM13Xws8MW3/DQeqahEICi6a19MLCPED3Um6Fpck5AxEwwP4iT7n558E3Vx4tn8T69by2n2rU0WJbZ5MNveZBHlD95Vyufcj1r339mrVlvfHnj8wzSyWlhbWdpBI67VdAH6e2S3X696wpQlCcacunU82GG5K0m9b/gdX8ZdSL6dIt8HurbzCsnlBRcY29mP38HB2sefUV8eaJqWmWMmoTPZ6tfxx3UMNnd2qMiRyNI+ySdVyAhHO1m6gYz1H1n8XJ/MinhXaGC53dTngn+lfJXg3XV0rRdeszGztfC2lRCCVzDK0nOOBkMRz616PMpXi1c6MZCSwzcDS+COv+F/C3xO8X3finUrLRNMtLC3hhlvHBlVnw0kUQ5di3zA7RwOOM17x8MfjH4E8Y6i3h/wpL4j8SKgzJPLYMttbJwQzvIFC8jgYyeODivm34MeGPh/4v8AFmq6h4/ZvPgRpJze3bRQXNy8uFQBMHaAGJycHco7V9veH9O0/QtIj0zw7p9lbWMJVzb6WgSNMjIJwD19Tya9qlTpuEU+h8/RhUp77Hyf8ctBXw5ceIrIom+5kUkxhhkSOCGBLElivXpzniirX7S+pf2l4kuJIy0Ze5sYiu4NtIZcgY+tFe1XqqmoRt0PzrKqKnVxUk/+Xkv0PrOMPc75I9yoFJ5PT2H51YtrLzGLvMUkBIwrlnUjgg8e9Z63At5hA4bb2ygIGOoPNJ9rT7Q5Enk4yC0cgTdjpyOp6V+f2SXc+4hXiviRpS6RHPI//ExeFcfNmPKLz0z17UqaPttY0WS2UCUYljzvAyDuCn0xmqtrrssAVI2YlsANLJuK+vQDOc1YXXYnXZJZpIMbjKJCuGPbrz9aVtNjupYnD3u2WtMuLxjJ+4xIm4IZQMHI6E845zzWpFJqUkyRNbwzW77h8rL8nHBIznJ9Oa52LU7O5SGWG3X5WIyszYY55ABB6+ua534r+Ok8B/Czxb4kVmtbzTtPlngRHLbZcbYx1wfnZa1oxnUmo9ztjjKS+GR+eH7b3xpuPip8WrnSoLh30Hw1JJYWqB8o8oOJpeOOWG0Y7KPU16P4B+BFv8Vf2Y/Cer2c81vrUdrcwgpgo2y6lABB9h29q+NLmR5ZHeRi8rMSzk5LEnJJ96/SL9h7UBc/s5aVZuwLQ3t3tz2BlJ/rX2GKf1WhHk0tYeCj9YrS5uqPi691vxb8L9Wn0q58/TrqEbZLeTO0r2I9Qfasef4hazczeY9zI7bt2WbOPpX6E/F34SaL48tfMu7WJriNSElKjP0ye1fIXin9no6XeTiKZooQ2VXrj8a5KeNwj+NWZ31Mvxq/hSujB0P9oPxTo1o8MV4SrHOH5wfb/Cuc8U/FLXfFEm68v5nPIUB8DFWLj4ZXEUxTcTGO9aOlfCn7W2wK7H1xV+0wFJ+0Vifq+ZVf3bvY80kea8bHzMT+OfrXufwJ+Dx1S9i1DVIC0SndFEy8E54J9q7bwD8BbOOWG5u4Q+3BwwzXUfGLxta/CrwW9hpTIurXi+RbjH+rz1b8Bn9K455osVUVDDrfqd1LKVg4PEYp7Hjf7RPj+LXdYt/DGjsi6To7tvdD8st1tIz9EHH1J9K918HeI/C/i/T7L+x9Hmd9MhEawR6jDHKgAAziSIHJ2jnJ6Cvio5dxt+c8kluST1JPvXoNrqrQXkF7aH7PLIBkp0JxzxX0EsvVej7Nbo+bWOmqzm21fsfZ2j20WkjVIF0bWIpdSSES+aIJGeJDwFdZAMEnByM+3Sol+IUqy/ZmtLRNSfTJjcyxbYkmniSQqdoJAeScxDPfaWOM1d/Z11LQ/il4J1u21GwsG1S0kSIskMv2qAMuUeLa4TZ8pwpXAIOc5Feiy/DrwhDMLiG0le9WLyWlmyfMIHDsq4QkA5IxyVr4HExeFq8k910PrsLiacqbbk36ngfw6+Dd/FoI1ya6uLUfuruK0kDMsfltlgUAHzgoh6kEBea9F/Zh83wf4c8ZzXiXt7fXsts225UKqRLG6qCRxu4JPrkV6fb61atoz6eoh0f7BEZJp/KxEsZONwU8HrjHqe9Ymo3CXGm3dnbTiTS4olZkaFozGhGeBjoSCTgcVzvEtLmb3BuLjZIyfF+opqKzPI6q0qsx3HHG0cfgAa+Zfh/FFdatcW8139mzBMsfygiRmPl7eTzxIW4/u19MzxrfpcRXLR28uwtH5isN+4YXHHAPPPavL774RW+nTG8EcvnbhOF8xSsT8biCOikkjHIx3NOlXSu31FUqU3GyaPLfCWv2ej318PstzDJNfTMJ0kijVFbKgfOwOflB4BPpXaX+p6rJp/8AxKLq/sXSZJJ2MjLM2FCiTevLcKB1IxToPhLf6hqepRaZcmxiuZMvFANyNhc7h7dB+JrRn+G+haI1z513c3awP5/2mC0AkYkfKjZy7FirYPygZxjtXtrFYd2u7Hg1I1Vzezs1Y43xbrE3jnUNEurtVkn1LVrUOIVP7wqVGcHn5tuce9FdB4PGn/8AC4PAA1u1aSyXVmmltokYnKW7vGm3GeHC5z6HNFfVVa0ItJ9kfl2RYdujVk3vOX5n2BPpt3b24cQhPLAZ5JASCDk4x1B6VVa3E8ZkltDLIWzzHu/ya8K+JP7Ythos09v4Rsfts2dp1a83BD7pEevJ6tgcdK8C8QftE+NvE9w73Gr3ABbcUDHb+WcfhivCwfD1etHmqvlPpKtr+6fdF1c6XpVs0t3c2umqBljezKgH6/0rhtT+NXgbS4nhbXUvJScNFYqXzjsGyo69818Lajr9/dM0l/emYcnEoByT6cUy08STaesUtusCz8+SFhXcx/vHjoPbrXv0uHMPF3qTbMuVtH1z4t/aq0bw1ZzC30xp5Zo2CRXku+QKeh2pwueOS3foa+ZvjT8bfFfjvwZqdrq6f2bYymIrYQyttC7sguuFHOMgEE9+OKwbrVItCtZNYvgb/VXO23jnO4ea38Z9Tnt0XHriuU8XWt1F4XlnvJHeW4mQneSWdzyzn/PQCvWWBw2Gi/ZRtY2hHVNnnGnaRc6w10YEJjtYDcTSdkUEKM/VmVR7mv0R/ZQ0ybwj8MPDlhONnno8rZ9Xdm/rXhXwc+Bt9qH7Mmp+KFg/eeJPFNlpEBxkm1gEskjZ7AyqB77K+xPDXgyXSfC9jEiBZbTYQB1IHb8q+Gziu240Y+p+gZLhkoOvProaPiiB4YnfG9MdMdK8V8WtDKWDKrE9ga+hNUj3W5JXdkV5h4h8P6XqMzGa0w/dkbaa+JxU2pan2uGS5TwHULC385iY8t6Vu+GNNijdXENd/H4A0PzQ5tp5COQGl4qa8sbLSkzbWMaH35rjliOdcqud0YcuqMu61hdPtWbAUqp4zwK+Mfil4zk8ZeKp7wOzWseYbYE/wZ+9/wACP6Yr2f4/+O20zS/7KhlMVzej94sfGyEdc/73T6bq+a0VriYsRgZ4FfoOQYD2VP28lq9j864hx/tZ/VoPRbluzhJTP8R44rrHhCQQsvzbU6DjmufsbckrnoDmtkTtHJGueG6D0r7yi+U+Ka6npPwm+I+s/DnWpNS0W6+y3UiJHKGQPHKhPKup6jIB9RX2j8LfiW3xV0aRoymmapZvm7gjUOBno4zyUbHU9CPz/P6HVo9DtfPuoDJbsVDNGCzDBz07ivSvAvj+C31O11fw5q5t7m2yw2HDAHqrKeoPcHiuXH5ZRx8NNJip150ndbH3Tqtva2trbOJhcsqq0vnQsNuTwFboQD9OvSsy8KWUklxbW0yzht0pLNgvuwFAznHUnsc1yPhL9onR9WsoItfk/su8j4a5teInHOdwHI7evf1r0WygtPENtBc6Nf297aZD29zBNuMpGc5PQ9SSuM8c1+bY7Lq2Fl70PmepHFSqqykcldItwSyQxxyQbw8+HQN7E9+p6Dms3UprG4jvpV01l83yRIvmYQSEjY698Z6D3JNepS6GtzNNGbdZIRKriVyVwQc/KV6g9eahXQHmaWWJUZI2jieJnBEZBBbBHTgdD7V5bgzJxqa2Z5nHpMdjb+dBDdS3D42ToHjQHbwp46Zzwe2PWk0awuj4bW4t5oIb0szXbuPIVX+8W+Yn5cHHf7zHFdzqmgXdsL6WztWB2kPGP+egGVwDkDAbrXL3PhC9v7a6/tG03W3ltI1zGFGT07DdnAOfyoSftI32N6TtTkuqR89QeH5Na+I2iWt7d+ctvNc3NzcNu/egKV528kEsMjuMjvRW/wCE/DN3B8SLC0VhaQm0uGjyAMxAqwOD3HykD2NFfUZpVft0oaqyPl+F4Ro4FqvFqTlJ/ifNd3dC7ncEgk9AB1/z/SqvmCNsHqozn0oor9Sb6m6SuZV3qBmuQuPMAOAe2PStbQ4h5ktzK37tfl3Ht9P5UUVlTbk9TeSsirbN/a3iGOW5Qta2C+aUz/y0b7gP0AzUfxEvmvtNtIwpZjKzDHUhQOAP6UUVlU/htjgrysfr98Cvgbb6J+zN4Z8CzqqXdpYxTNKy8Ld581m/FmYH2Jqm2hyWDS2d3bmGeDKPC/VT/Ud/cUUV8JmtKL9+2p9tltWS9zoUToiyRlTjHb6VmyeCrK7kzJEuc9TRRXx8qUW9T6mM5JaMbL4Dt4ogsMCAE5DY/rXD+MfB2meH9Kv9X1e4EWnWML3M8h/hRRk4HrxgD1NFFa0cNSq1IqSJq4mpTptxZ+ZfxA8Uz+N/FV9qUiCMXEhZYh0ij/gT8Fx+OaqWViVUADHFFFfqVKnGCUVsj8sqTlUm5y3ZrJEsS9M1Naw+fdqoJUYzRRXeuhBvypGI1XaGXr8vTB/rWLPoOn3E3nvC8E4IIlt22sP6GiiupxTV2Qux02mazPp1ukIuzcKMYedcOPqRwa7LwN8WPEPgq+MulXz2wL72XAkhf/eXODnp2PvRRTlThWjyVFdHNJcr0Pp/wR8eNI8emKLVoBpWoyLtRY3zFKf9luoPseO2a9JuNZu4jaLH5o8tdpG0cgDABAwBzRRX5lneCo4WqvZaXM5VppuzMy/8d6lqjGJbeRY9gKMVOxTnBGfc4xntWjZaxd3FgzNIUulwiDG1OQeePT29KKK+YTd7mdOtUctWU7PRVnv4tQkFtLeRKI45jGDLtwQ8al84BBPbPfNFFFU5y7nrwqNKyP/Z" alt="Kummitha Abhiram Reddy">
+      </div>
+      <div class="vault-title-group">
+        <h1>Kummitha Abhiram Reddy</h1>
+        <p>B.Tech Information Technology · Official Records &amp; Academic Credentials</p>
+      </div>
+    </a>
+    <div class="vault-actions">
+      <div class="vault-search-box" id="vaultSearchBox">
+        <button class="vault-search-toggle-btn" id="vaultSearchToggleBtn" title="Search certificates">🔍</button>
+        <input type="text" id="vaultSearchInput" placeholder="Search certificates or ID..." autocomplete="off">
+      </div>
+      <button class="vault-home-btn open-portfolio-settings-btn" title="Global Portfolio Settings">
+        <span>⚙️</span>
+      </button>
+      <a href="index.html" class="vault-home-btn">
+        <span>🏠</span> Home
+      </a>
+    </div>
+  </header>
+
+  <!-- Micro Category Filter Bar -->
+  <div class="vault-filter-row">
+    <nav class="vault-filter-bar" id="vaultFilterBar">
+      <button class="vault-tab-btn active" data-filter="all">
+        <span>✨ All Records</span>
+        <span class="tab-count">13</span>
+      </button>
+      <button class="vault-tab-btn" data-filter="certificate">
+        <span>📜 Certifications</span>
+        <span class="tab-count">4</span>
+      </button>
+      <button class="vault-tab-btn" data-filter="academic">
+        <span>📊 Grade Memos</span>
+        <span class="tab-count">2</span>
+      </button>
+      <button class="vault-tab-btn" data-filter="hallticket">
+        <span>🎟️ Hall Tickets</span>
+        <span class="tab-count">4</span>
+      </button>
+      <button class="vault-tab-btn" data-filter="personal">
+        <span>🔒 Identity &amp; Personal</span>
+        <span class="tab-count">3</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Cards Track Container -->
+  <div class="cards-slider-wrapper">
+    <button class="slider-nav-btn prev-btn" id="prevSlideBtn" style="display:none;" title="Previous Page">‹</button>
+    <button class="slider-nav-btn next-btn" id="nextSlideBtn" style="display:none;" title="Next Page">›</button>
+
+    <main class="vault-grid arena-mode" id="vaultGrid">
+
+      <!-- 1. Udbhav Hackathon -->
+      <article class="doc-card" data-cat="certificate" data-subtype="certificate" data-type="image" data-src="../images/udbhav.png" data-title="Udbhav 2K24 Hackathon Merit Certificate">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">HACKATHON CERTIFICATE</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/udbhav.png" alt="Udbhav 2K24 Certificate" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Udbhav 2K24 Hackathon Certificate</h3>
+          <div class="doc-card-issuer">🏛️ SRKR Engineering College · March 2024</div>
+          <p class="doc-card-desc">Official Merit Certificate awarded for participation and innovative project build in Udbhav 2K24 National Level Hackathon.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/udbhav.png" data-title="Udbhav_2K24_Certificate.png" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. HTML Essentials -->
+      <article class="doc-card" data-cat="certificate" data-subtype="certificate" data-type="image" data-src="../images/html_essentials_certificate.png" data-title="HTML Essentials Certification">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">TECHNICAL CERTIFICATION</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/html_essentials_certificate.png" alt="HTML Essentials Certificate" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">HTML Essentials Certification</h3>
+          <div class="doc-card-issuer">🌐 Cisco Networking Academy / SkillUp · 2024</div>
+          <p class="doc-card-desc">Professional technical qualification covering HTML5 semantic standards, Web Accessibility, and modern DOM structure.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/html_essentials_certificate.png" data-title="HTML_Essentials_Certificate.png" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. C Essentials 1 -->
+      <article class="doc-card" data-cat="certificate" data-subtype="certificate" data-type="image" data-src="../images/c_essentials_1.jpg" data-title="C Essentials Certification (Part 1)">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">PROGRAMMING CERTIFICATION</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/c_essentials_1.jpg" alt="C Essentials Part 1" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">C Essentials Certification (Part 1)</h3>
+          <div class="doc-card-issuer">⚡ Cisco Networking Academy / CLA · 2024</div>
+          <p class="doc-card-desc">Foundational programming qualification in C language covering data types, control flow, functions, and memory basics.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/c_essentials_1.jpg" data-title="C_Essentials_Part1.jpg" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. C Essentials 2 -->
+      <article class="doc-card" data-cat="certificate" data-subtype="certificate" data-type="image" data-src="../images/c_essentials_2.jpg" data-title="C Essentials Certification (Part 2)">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">ADVANCED CERTIFICATION</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/c_essentials_2.jpg" alt="C Essentials Part 2" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">C Essentials Certification (Part 2)</h3>
+          <div class="doc-card-issuer">⚡ Cisco Networking Academy / CLA · 2024</div>
+          <p class="doc-card-desc">Advanced qualification in pointers, dynamic memory management, structures, file I/O operations, and data structures.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/c_essentials_2.jpg" data-title="C_Essentials_Part2.jpg" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Sem 1 Grade Memo -->
+      <article class="doc-card" data-cat="academic" data-subtype="academic" data-type="image" data-src="../images/sem1_results.jpg" data-title="B.Tech 1st Year Sem-1 Grade Memo">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">SEMESTER MARKS MEMO</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/sem1_results.jpg" alt="Sem 1 Results" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">B.Tech 1st Year Sem-1 Grade Memo</h3>
+          <div class="doc-card-issuer">🎓 SRKR Engineering College (Autonomous)</div>
+          <p class="doc-card-desc">Official Grade Sheet showing course credits, grades, and SGPA for B.Tech Information Technology Semester-1.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/sem1_results.jpg" data-title="Sem1_Grade_Memo.jpg" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Sem 2 Grade Memo -->
+      <article class="doc-card" data-cat="academic" data-subtype="academic" data-type="image" data-src="../images/sem2_results.png" data-title="B.Tech 1st Year Sem-2 Grade Memo">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">SEMESTER MARKS MEMO</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/sem2_results.png" alt="Sem 2 Results" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">B.Tech 1st Year Sem-2 Grade Memo</h3>
+          <div class="doc-card-issuer">🎓 SRKR Engineering College (Autonomous)</div>
+          <p class="doc-card-desc">Official Grade Sheet showing course performance, SGPA &amp; cumulative academic standing for Semester-2.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/sem2_results.png" data-title="Sem2_Grade_Memo.png" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. Sem 1 Hall Ticket -->
+      <article class="doc-card" data-cat="hallticket" data-subtype="hallticket" data-type="image" data-src="../images/firstyear_sem1_hallticket.png" data-title="B.Tech Sem-1 Examination Hall Ticket">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">EXAM HALL TICKET</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/firstyear_sem1_hallticket.png" alt="Sem 1 Hall Ticket" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Sem-1 Examination Hall Ticket</h3>
+          <div class="doc-card-issuer">🎟️ JNTUK / SRKR Examination Cell</div>
+          <p class="doc-card-desc">Official Examination Hall Ticket with Registration Number, Subject Codes &amp; Examination Center details.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/firstyear_sem1_hallticket.png" data-title="Sem1_Hall_Ticket.png" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. Sem 2 Hall Ticket -->
+      <article class="doc-card" data-cat="hallticket" data-subtype="hallticket" data-type="image" data-src="../images/firstyear_sem2_hallticket.png" data-title="B.Tech Sem-2 Examination Hall Ticket">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">EXAM HALL TICKET</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/firstyear_sem2_hallticket.png" alt="Sem 2 Hall Ticket" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Sem-2 Examination Hall Ticket</h3>
+          <div class="doc-card-issuer">🎟️ JNTUK / SRKR Examination Cell</div>
+          <p class="doc-card-desc">Official Hall Ticket for B.Tech 1st Year Semester-2 End Examinations.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/firstyear_sem2_hallticket.png" data-title="Sem2_Hall_Ticket.png" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9. Study Certificates PDF -->
+      <article class="doc-card" data-cat="certificate" data-subtype="certificate" data-type="pdf" data-src="../pdfs/study_certificates.pdf" data-title="Study &amp; Conduct Certificates (PDF)">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">OFFICIAL PDF DOCUMENT</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <canvas class="doc-pdf-canvas"></canvas>
+          <div class="doc-pdf-fallback">
+            <span>📄</span> PDF Document
+          </div>
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Study &amp; Conduct Certificates</h3>
+          <div class="doc-card-issuer">📑 SRKR Engineering College &amp; BIE</div>
+          <p class="doc-card-desc">Consolidated PDF containing official institutional Study Certificates, Conduct Certificates &amp; Bonafide records.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../pdfs/study_certificates.pdf" data-title="Study_Certificates.pdf" title="Download PDF">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. Consolidated Hall Tickets PDF -->
+      <article class="doc-card" data-cat="hallticket" data-subtype="hallticket" data-type="pdf" data-src="../pdfs/hall_tickets.pdf" data-title="Consolidated B.Tech Hall Tickets (PDF)">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">OFFICIAL PDF DOCUMENT</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <canvas class="doc-pdf-canvas"></canvas>
+          <div class="doc-pdf-fallback">
+            <span>📑</span> PDF Document
+          </div>
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Consolidated B.Tech Hall Tickets</h3>
+          <div class="doc-card-issuer">🎟️ JNTUK / SRKR Examination Cell</div>
+          <p class="doc-card-desc">Complete PDF binder containing all semester examination hall tickets and timetable schedules.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../pdfs/hall_tickets.pdf" data-title="Consolidated_Hall_Tickets.pdf" title="Download PDF">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. Aadhaar Card -->
+      <article class="doc-card" data-cat="personal" data-subtype="personal" data-type="image" data-src="../images/Abhi_aadhaar_card.jpg" data-title="Aadhaar Government Identity Card">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">GOVT IDENTITY CARD</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/Abhi_aadhaar_card.jpg" alt="Aadhaar Card" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Aadhaar Identity Card</h3>
+          <div class="doc-card-issuer">🇮🇳 UIDAI / Govt. of India</div>
+          <p class="doc-card-desc">Official Government of India National Identification Aadhaar Card record.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/Abhi_aadhaar_card.jpg" data-title="Aadhaar_Card.jpg" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12. Bank Account Record -->
+      <article class="doc-card" data-cat="personal" data-subtype="personal" data-type="image" data-src="../images/bank_document.png" data-title="Bank Passbook Record">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">FINANCIAL RECORD</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <img src="../images/bank_document.png" alt="Bank Account Record" class="doc-thumb-img" loading="lazy">
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Bank Passbook Record</h3>
+          <div class="doc-card-issuer">🏦 Indian Banking Institution</div>
+          <p class="doc-card-desc">Verified Bank Account Passbook document showing account details and IFSC code.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../images/bank_document.png" data-title="Bank_Document.png" title="Download Image">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 13. Digital E-Aadhaar PDF -->
+      <article class="doc-card" data-cat="personal" data-subtype="personal" data-type="pdf" data-src="../pdfs/AADHAAR_CARDS.pdf" data-title="Digital E-Aadhaar Document (PDF)">
+        <div class="doc-card-stripe"></div>
+        <div class="doc-card-header">
+          <span class="doc-type-tag">OFFICIAL GOVT PDF</span>
+          <span class="doc-status-dot">Verified</span>
+        </div>
+        <div class="doc-thumb-frame">
+          <canvas class="doc-pdf-canvas"></canvas>
+          <div class="doc-pdf-fallback">
+            <span>🇮🇳</span> PDF Document
+          </div>
+          <div class="doc-thumb-overlay">
+            <span class="quick-inspect-pill">👁️ Quick View</span>
+          </div>
+        </div>
+        <div class="doc-card-body">
+          <h3 class="doc-card-title">Digital E-Aadhaar Document</h3>
+          <div class="doc-card-issuer">🇮🇳 UIDAI (Govt. of India)</div>
+          <p class="doc-card-desc">Official digitally signed E-Aadhaar document copy issued by Unique Identification Authority of India.</p>
+          <div class="doc-card-footer">
+            <button class="btn-doc-view"><span>👁️</span> View Document</button>
+            <button class="btn-doc-download" data-src="../pdfs/AADHAAR_CARDS.pdf" data-title="Digital_E_Aadhaar.pdf" title="Download PDF">⬇️</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Empty Search State -->
+      <div class="no-results" id="noResultsMsg">
+        <h3>No documents match your search</h3>
+        <p>Try searching with another keyword or selecting "All Records".</p>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Fullscreen Lightbox Modal Viewer -->
+<div class="doc-modal" id="docModal">
+  <div class="doc-modal-top">
+    <div class="doc-modal-title-group">
+      <div class="doc-modal-title" id="docModalTitle">Document Preview</div>
+      <div class="pdf-modal-nav-bar" id="pdfModalNavBar" style="display:none;">
+        <span class="pdf-page-indicator" id="pdfPageIndicator">Page 1 of 1</span>
+        <select class="pdf-page-select" id="pdfPageSelect" title="Select Page Number"></select>
+        <button class="modal-nav-btn" id="pdfPageDownloadBtn" title="Download Current Page as Image PNG">
+          <span>💾</span> Page Image
+        </button>
+        <button class="modal-nav-btn" id="pdfModeToggleBtn" title="Toggle Single Page vs Scroll All View">
+          <span id="pdfModeIcon">📜</span> <span id="pdfModeLabel">Scroll All</span>
+        </button>
+      </div>
+    </div>
+    <div class="doc-modal-ctrls">
+      <button class="modal-btn" id="docModalDownloadBtn"><span>⬇️</span> Download</button>
+      <button class="modal-btn modal-btn-close" id="docModalCloseBtn"><span>✕</span> Close</button>
+    </div>
+  </div>
+  <div class="doc-modal-body" id="docModalBody">
+    <!-- Dynamic Content Image/PDF Rendered Here -->
+  </div>
+</div>
+
+<script>
+// Filter Tab Navigation Logic
+const filterBtns = document.querySelectorAll('.vault-tab-btn');
+const docCards = document.querySelectorAll('.doc-card');
+const searchInput = document.getElementById('vaultSearchInput');
+const btnModeArena = document.getElementById('btnModeArena');
+const btnModeBook = document.getElementById('btnModeBook');
+const btnModeSlider = document.getElementById('btnModeSlider');
+const prevSlideBtn = document.getElementById('prevSlideBtn');
+const nextSlideBtn = document.getElementById('nextSlideBtn');
+
+let activeFilter = 'all';
+
+// 3D Book Page Stack Animation Engine
+let activeBookIndex = 0;
+let bookAutoTimer = null;
+
+function renderBookStack() {
+  if (!vaultGrid || !vaultGrid.classList.contains('book-stack-mode')) return;
+
+  const allCards = Array.from(vaultGrid.querySelectorAll('.doc-card'));
+  const visibleCards = allCards.filter(card => card.style.display !== 'none');
+  if (visibleCards.length === 0) return;
+
+  if (activeBookIndex >= visibleCards.length) activeBookIndex = 0;
+  if (activeBookIndex < 0) activeBookIndex = visibleCards.length - 1;
+
+  visibleCards.forEach((card, idx) => {
+    card.style.animation = 'none';
+
+    let rel = (idx - activeBookIndex + visibleCards.length) % visibleCards.length;
+
+    if (rel === 0) {
+      // Active Top Page
+      card.style.zIndex = '50';
+      card.style.opacity = '1';
+      card.style.pointerEvents = 'auto';
+      card.style.transform = 'translate3d(0, 0, 0) scale(1) rotateY(0deg)';
+      card.classList.add('book-active-page');
+    } else if (rel <= 4) {
+      // Pages stacked inside/behind active card
+      const shiftX = rel * 28;
+      const shiftY = rel * 10;
+      const shiftZ = -rel * 45;
+      const scaleVal = 1 - rel * 0.07;
+      const rotY = -rel * 5;
+      const opacityVal = 1 - rel * 0.16;
+
+      card.style.zIndex = String(50 - rel * 10);
+      card.style.opacity = String(opacityVal);
+      card.style.pointerEvents = 'auto';
+      card.style.transform = `translate3d(${shiftX}px, ${shiftY}px, ${shiftZ}px) scale(${scaleVal}) rotateY(${rotY}deg)`;
+      card.classList.remove('book-active-page');
+    } else if (rel === visibleCards.length - 1) {
+      // Page flipping open around left spine axis
+      card.style.zIndex = '60';
+      card.style.opacity = '0';
+      card.style.pointerEvents = 'none';
+      card.style.transform = 'translate3d(-190px, -10px, 80px) scale(0.85) rotateY(-115deg)';
+      card.classList.remove('book-active-page');
+    } else {
+      // Deep hidden stack depth
+      card.style.zIndex = '0';
+      card.style.opacity = '0';
+      card.style.pointerEvents = 'none';
+      card.style.transform = 'translate3d(140px, 50px, -250px) scale(0.65) rotateY(-25deg)';
+      card.classList.remove('book-active-page');
+    }
+  });
+}
+
+function nextBookPage() {
+  const visibleCards = Array.from(vaultGrid.querySelectorAll('.doc-card')).filter(card => card.style.display !== 'none');
+  if (visibleCards.length === 0) return;
+  activeBookIndex = (activeBookIndex + 1) % visibleCards.length;
+  renderBookStack();
+}
+
+function prevBookPage() {
+  const visibleCards = Array.from(vaultGrid.querySelectorAll('.doc-card')).filter(card => card.style.display !== 'none');
+  if (visibleCards.length === 0) return;
+  activeBookIndex = (activeBookIndex - 1 + visibleCards.length) % visibleCards.length;
+  renderBookStack();
+}
+
+function startBookAutoSlide() {
+  stopBookAutoSlide();
+  bookAutoTimer = setInterval(() => {
+    if (vaultGrid && vaultGrid.classList.contains('book-stack-mode')) {
+      nextBookPage();
+    }
+  }, 2500);
+}
+
+function stopBookAutoSlide() {
+  if (bookAutoTimer) {
+    clearInterval(bookAutoTimer);
+    bookAutoTimer = null;
+  }
+}
+
+function clearCardBookInlineStyles() {
+  const cards = vaultGrid.querySelectorAll('.doc-card');
+  cards.forEach(card => {
+    card.style.zIndex = '';
+    card.style.opacity = '';
+    card.style.pointerEvents = '';
+    card.style.transform = '';
+    card.style.animation = '';
+    card.classList.remove('book-active-page');
+  });
+}
+
+// Mode Switching (Hearthstone Gaming Arena vs 3D Deck Stack vs Slide Track)
+if (btnModeArena && btnModeBook && btnModeSlider) {
+  btnModeArena.addEventListener('click', () => setCertificatesViewMode('arena'));
+  btnModeBook.addEventListener('click', () => setCertificatesViewMode('book'));
+  btnModeSlider.addEventListener('click', () => setCertificatesViewMode('slider'));
+}
+
+let autoSlideInterval = null;
+let scrollDirection = 1;
+
+function startAutoSlide() {
+  stopAutoSlide();
+}
+
+function stopAutoSlide() {
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = null;
+  }
+}
+
+function startBookAutoSlide() {
+  stopBookAutoSlide();
+}
+
+function stopBookAutoSlide() {
+  if (bookAutoTimer) {
+    clearInterval(bookAutoTimer);
+    bookAutoTimer = null;
+  }
+}
+
+// View Mode Handler (Callable from Settings Modal)
+window.setCertificatesViewMode = function(mode) {
+  if (!vaultGrid) return;
+  if (mode === 'book') {
+    if (prevSlideBtn) prevSlideBtn.style.display = 'flex';
+    if (nextSlideBtn) nextSlideBtn.style.display = 'flex';
+    vaultGrid.className = 'vault-grid book-stack-mode';
+    stopAutoSlide();
+    renderBookStack();
+  } else if (mode === 'slider') {
+    if (prevSlideBtn) prevSlideBtn.style.display = 'flex';
+    if (nextSlideBtn) nextSlideBtn.style.display = 'flex';
+    vaultGrid.className = 'vault-grid';
+    stopBookAutoSlide();
+    clearCardBookInlineStyles();
+  } else {
+    // Default: 'arena'
+    if (prevSlideBtn) prevSlideBtn.style.display = 'none';
+    if (nextSlideBtn) nextSlideBtn.style.display = 'none';
+    vaultGrid.className = 'vault-grid arena-mode';
+    stopBookAutoSlide();
+    stopAutoSlide();
+    clearCardBookInlineStyles();
+  }
+};
+
+// Initial View Mode Restore
+const savedViewMode = localStorage.getItem('ram_portfolio_viewmode') || 'arena';
+window.setCertificatesViewMode(savedViewMode);
+
+// Initial Book Stack Activation
+renderBookStack();
+
+function updateScrollWaveTransforms() {
+  // Motion disabled so cards remain flat and stable
+}
+
+vaultGrid.addEventListener('scroll', updateScrollWaveTransforms, { passive: true });
+updateScrollWaveTransforms();
+
+// Mouse Drag Scroll for Horizontal Slider
+let isDown = false;
+let startX;
+let scrollLeft;
+
+vaultGrid.addEventListener('mouseenter', () => {
+  stopBookAutoSlide();
+  stopAutoSlide();
+});
+vaultGrid.addEventListener('mouseleave', () => {
+  if (vaultGrid.classList.contains('book-stack-mode')) {
+    startBookAutoSlide();
+  } else if (!vaultGrid.classList.contains('grid-mode')) {
+    if (!isDown) startAutoSlide();
+  }
+});
+vaultGrid.addEventListener('touchstart', () => {
+  stopBookAutoSlide();
+  stopAutoSlide();
+}, { passive: true });
+vaultGrid.addEventListener('touchend', () => {
+  if (vaultGrid.classList.contains('book-stack-mode')) {
+    setTimeout(startBookAutoSlide, 3000);
+  } else {
+    setTimeout(startAutoSlide, 2000);
+  }
+}, { passive: true });
+
+vaultGrid.addEventListener('mousedown', (e) => {
+  if (vaultGrid.classList.contains('grid-mode') || vaultGrid.classList.contains('book-stack-mode')) return;
+  stopAutoSlide();
+  isDown = true;
+  startX = e.pageX - vaultGrid.offsetLeft;
+  scrollLeft = vaultGrid.scrollLeft;
+});
+
+vaultGrid.addEventListener('mouseup', () => {
+  isDown = false;
+  if (!vaultGrid.classList.contains('book-stack-mode')) startAutoSlide();
+});
+
+vaultGrid.addEventListener('mousemove', (e) => {
+  if (!isDown || vaultGrid.classList.contains('grid-mode') || vaultGrid.classList.contains('book-stack-mode')) return;
+  e.preventDefault();
+  const x = e.pageX - vaultGrid.offsetLeft;
+  const walk = (x - startX) * 1.5;
+  vaultGrid.scrollLeft = scrollLeft - walk;
+});
+
+function applyFilters() {
+  const query = searchInput.value.toLowerCase().trim();
+  let visibleCount = 0;
+
+  docCards.forEach(card => {
+    const cat = card.dataset.cat;
+    const subtype = card.dataset.subtype;
+    const title = card.dataset.title.toLowerCase();
+    const issuer = card.querySelector('.doc-card-issuer').textContent.toLowerCase();
+    const desc = card.querySelector('.doc-card-desc').textContent.toLowerCase();
+
+    const matchesCategory = (activeFilter === 'all') || (cat === activeFilter) || (subtype === activeFilter);
+    const matchesSearch = !query || title.includes(query) || issuer.includes(query) || desc.includes(query);
+
+    if (matchesCategory && matchesSearch) {
+      card.style.display = 'flex';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  if (noResultsMsg) {
+    noResultsMsg.style.display = (visibleCount === 0) ? 'block' : 'none';
+  }
+
+  if (vaultGrid.classList.contains('book-stack-mode')) {
+    activeBookIndex = 0;
+    renderBookStack();
+  } else if (!vaultGrid.classList.contains('grid-mode')) {
+    setTimeout(updateScrollWaveTransforms, 50);
+  }
+}
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = btn.dataset.filter;
+    applyFilters();
+  });
+});
+
+if (searchInput) {
+  searchInput.addEventListener('input', applyFilters);
+}
+
+const vaultSearchBox = document.getElementById('vaultSearchBox');
+const vaultSearchToggleBtn = document.getElementById('vaultSearchToggleBtn');
+if (vaultSearchToggleBtn && vaultSearchBox && searchInput) {
+  vaultSearchToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isExp = vaultSearchBox.classList.toggle('expanded');
+    if (isExp) {
+      searchInput.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (!vaultSearchBox.contains(e.target) && !searchInput.value.trim()) {
+      vaultSearchBox.classList.remove('expanded');
+    }
+  });
+}
+
+// Download Helper
+function downloadFile(src, filename) {
+  if (!src) return;
+  const a = document.createElement('a');
+  a.href = src;
+  a.download = filename || 'document';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+// PDF Rendering Engine for Thumbnails & Lightbox
+const pdfCache = new Map();
+function loadPdfDocument(src) {
+  if (!pdfCache.has(src)) {
+    pdfCache.set(src, pdfjsLib.getDocument(src).promise);
+  }
+  return pdfCache.get(src);
+}
+
+async function renderPdfThumbnail(card) {
+  const canvas = card.querySelector('.doc-pdf-canvas');
+  if (!canvas) return;
+  const ready = await window.pdfjsReady;
+  if (!ready) return;
+
+  try {
+    const pdf = await loadPdfDocument(card.dataset.src);
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 0.7 });
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    const fallback = card.querySelector('.doc-pdf-fallback');
+    if (fallback) fallback.style.display = 'none';
+  } catch (err) {
+    console.error('Failed to render PDF thumbnail:', card.dataset.src, err);
+  }
+}
+
+document.querySelectorAll('.doc-card[data-type="pdf"]').forEach(renderPdfThumbnail);
+
+// Fullscreen Lightbox Modal Controls
+const docModal = document.getElementById('docModal');
+const docModalTitle = document.getElementById('docModalTitle');
+const docModalBody = document.getElementById('docModalBody');
+const docModalCloseBtn = document.getElementById('docModalCloseBtn');
+const docModalDownloadBtn = document.getElementById('docModalDownloadBtn');
+
+let currentModalSrc = '';
+let currentModalTitle = '';
+
+// PDF Modal Navigation & Rendering Engine
+const pdfModalNavBar = document.getElementById('pdfModalNavBar');
+const pdfPageIndicator = document.getElementById('pdfPageIndicator');
+const pdfPageSelect = document.getElementById('pdfPageSelect');
+const pdfPageDownloadBtn = document.getElementById('pdfPageDownloadBtn');
+const pdfModeToggleBtn = document.getElementById('pdfModeToggleBtn');
+const pdfModeIcon = document.getElementById('pdfModeIcon');
+const pdfModeLabel = document.getElementById('pdfModeLabel');
+
+let currentPdf = null;
+let currentPdfPage = 1;
+let totalPdfPages = 1;
+let pdfViewMode = 'single'; // 'single' (one by one) or 'scroll' (scroll all)
+
+if (pdfPageSelect) {
+  pdfPageSelect.addEventListener('change', (e) => goToPdfPage(parseInt(e.target.value, 10)));
+}
+if (pdfPageDownloadBtn) {
+  pdfPageDownloadBtn.addEventListener('click', async () => {
+    if (!currentPdf) return;
+    try {
+      const page = await currentPdf.getPage(currentPdfPage);
+      const viewport = page.getViewport({ scale: 2.0 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      const imgData = canvas.toDataURL('image/png');
+      const downloadName = (currentModalTitle || 'document').replace(/\s+/g, '_') + `_Page_${currentPdfPage}.png`;
+      const a = document.createElement('a');
+      a.href = imgData;
+      a.download = downloadName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (err) {
+      console.error('Failed to download individual PDF page:', err);
+    }
+  });
+}
+if (pdfModeToggleBtn) {
+  pdfModeToggleBtn.addEventListener('click', () => {
+    pdfViewMode = (pdfViewMode === 'single') ? 'scroll' : 'single';
+    renderCurrentPdfMode();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (!docModal || !docModal.classList.contains('open') || !currentPdf) return;
+  if (e.key === 'ArrowLeft') {
+    goToPdfPage(currentPdfPage - 1);
+  } else if (e.key === 'ArrowRight') {
+    goToPdfPage(currentPdfPage + 1);
+  }
+});
+
+async function renderPdfInModal(src) {
+  docModalBody.innerHTML = '<div class="doc-modal-pdf-container" id="modalPdfWrap"><p style="color:#8e9aaf;padding:30px;">Loading PDF document...</p></div>';
+  docModalBody.scrollTop = 0;
+  const ready = await window.pdfjsReady;
+  
+  if (!ready) {
+    if (pdfModalNavBar) pdfModalNavBar.style.display = 'none';
+    const wrap = document.getElementById('modalPdfWrap');
+    if (wrap) wrap.innerHTML = `<p style="color:#fff;padding:30px;">Direct PDF Link: <a href="${src}" target="_blank" style="color:var(--accent-cyan);text-decoration:underline;">Open PDF Document ↗</a></p>`;
+    return;
+  }
+  
+  try {
+    currentPdf = await loadPdfDocument(src);
+    totalPdfPages = currentPdf.numPages;
+    currentPdfPage = 1;
+    pdfViewMode = 'single';
+
+    if (pdfModalNavBar) pdfModalNavBar.style.display = 'flex';
+    renderCurrentPdfMode();
+  } catch (err) {
+    if (pdfModalNavBar) pdfModalNavBar.style.display = 'none';
+    const wrap = document.getElementById('modalPdfWrap');
+    if (wrap) wrap.innerHTML = `<p style="color:#fff;padding:30px;">Unable to render PDF preview. <a href="${src}" target="_blank" style="color:var(--accent-cyan);text-decoration:underline;">Open File Directly ↗</a></p>`;
+  }
+}
+
+async function renderCurrentPdfMode() {
+  const wrap = document.getElementById('modalPdfWrap');
+  if (!wrap || !currentPdf) return;
+
+  wrap.innerHTML = '<p style="color:#8e9aaf;padding:20px;">Rendering page...</p>';
+  docModalBody.scrollTop = 0;
+  updatePdfPageControls();
+
+  if (pdfViewMode === 'single') {
+    // Single page mode (one by one at a time - clean canvas without internal card bars)
+    const page = await currentPdf.getPage(currentPdfPage);
+    const viewport = page.getViewport({ scale: 1.6 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    canvas.style.width = '100%';
+    canvas.style.height = 'auto';
+
+    wrap.innerHTML = '';
+
+    const pageCard = document.createElement('div');
+    pageCard.className = 'pdf-single-page-card';
+    pageCard.appendChild(canvas);
+    wrap.appendChild(pageCard);
+
+    await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+  } else {
+    // Scroll All mode
+    wrap.innerHTML = '';
+    for (let i = 1; i <= totalPdfPages; i++) {
+      const page = await currentPdf.getPage(i);
+      const viewport = page.getViewport({ scale: 1.5 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvas.style.width = '100%';
+      canvas.style.height = 'auto';
+      canvas.id = `pdf-page-canvas-${i}`;
+
+      const pageWrap = document.createElement('div');
+      pageWrap.className = 'pdf-scroll-page-item';
+      pageWrap.appendChild(canvas);
+
+      pageWrap.addEventListener('click', () => {
+        currentPdfPage = i;
+        updatePdfPageControls();
+      });
+
+      wrap.appendChild(pageWrap);
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    }
+  }
+
+  updatePdfPageControls();
+  docModalBody.scrollTop = 0;
+}
+
+function updatePdfPageControls() {
+  if (pdfPageIndicator) {
+    pdfPageIndicator.textContent = `Page ${currentPdfPage} of ${totalPdfPages}`;
+  }
+  if (pdfPageSelect) {
+    pdfPageSelect.innerHTML = '';
+    for (let i = 1; i <= totalPdfPages; i++) {
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = `Page ${i}`;
+      if (i === currentPdfPage) opt.selected = true;
+      pdfPageSelect.appendChild(opt);
+    }
+  }
+  if (pdfModeLabel && pdfModeIcon) {
+    if (pdfViewMode === 'single') {
+      pdfModeIcon.textContent = '📜';
+      pdfModeLabel.textContent = 'Scroll All';
+    } else {
+      pdfModeIcon.textContent = '📄';
+      pdfModeLabel.textContent = 'One by One';
+    }
+  }
+}
+
+function goToPdfPage(pageNo) {
+  if (!currentPdf || pageNo < 1 || pageNo > totalPdfPages) return;
+  currentPdfPage = pageNo;
+  updatePdfPageControls();
+  if (pdfViewMode === 'single') {
+    renderCurrentPdfMode();
+  } else {
+    const canvasEl = document.getElementById(`pdf-page-canvas-${pageNo}`);
+    if (canvasEl) {
+      canvasEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+}
+
+function openModal(card) {
+  const type = card.dataset.type;
+  const src = card.dataset.src;
+  const title = card.dataset.title;
+
+  currentModalSrc = src;
+  currentModalTitle = title;
+  docModalTitle.textContent = title;
+  docModal.classList.add('open');
+
+  if (type === 'pdf') {
+    renderPdfInModal(src);
+  } else {
+    docModalBody.innerHTML = `<img src="${src}" alt="${title}">`;
+  }
+}
+
+function closeModal() {
+  docModal.classList.remove('open');
+  docModalBody.innerHTML = '';
+  currentModalSrc = '';
+  currentModalTitle = '';
+}
+
+docCards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('.btn-doc-download')) {
+      e.stopPropagation();
+      const btn = e.target.closest('.btn-doc-download');
+      downloadFile(btn.dataset.src, btn.dataset.title);
+      return;
+    }
+    if (vaultGrid.classList.contains('book-stack-mode')) {
+      const visibleCards = Array.from(vaultGrid.querySelectorAll('.doc-card')).filter(c => c.style.display !== 'none');
+      const clickedIdx = visibleCards.indexOf(card);
+      if (clickedIdx !== -1 && clickedIdx !== activeBookIndex) {
+        stopBookAutoSlide();
+        activeBookIndex = clickedIdx;
+        renderBookStack();
+        setTimeout(startBookAutoSlide, 4000);
+        return;
+      }
+    }
+    openModal(card);
+  });
+});
+
+if (docModalCloseBtn) docModalCloseBtn.addEventListener('click', closeModal);
+if (docModalDownloadBtn) docModalDownloadBtn.addEventListener('click', () => downloadFile(currentModalSrc, currentModalTitle));
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && docModal.classList.contains('open')) {
+    closeModal();
+  }
+});
+</script>
+<script src="../vfx-engine.js"></script>
+<script src="cognisphere-pill.js"></script>
+<script src="portfolio-settings.js"></script>
+</body>
+</html>
