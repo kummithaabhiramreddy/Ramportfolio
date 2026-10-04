@@ -1633,13 +1633,16 @@ function prevBookPage() {
   renderBookStack();
 }
 
+window.nextBookPage = nextBookPage;
+window.prevBookPage = prevBookPage;
+
 function startBookAutoSlide() {
   stopBookAutoSlide();
   bookAutoTimer = setInterval(() => {
     if (vaultGrid && vaultGrid.classList.contains('book-stack-mode')) {
       nextBookPage();
     }
-  }, 2500);
+  }, 3200);
 }
 
 function stopBookAutoSlide() {
@@ -1649,8 +1652,34 @@ function stopBookAutoSlide() {
   }
 }
 
+if (prevSlideBtn) {
+  prevSlideBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    stopBookAutoSlide();
+    if (vaultGrid && vaultGrid.classList.contains('book-stack-mode')) {
+      prevBookPage();
+    } else if (vaultGrid) {
+      vaultGrid.scrollBy({ left: -340, behavior: 'smooth' });
+    }
+    setTimeout(startBookAutoSlide, 4000);
+  });
+}
+
+if (nextSlideBtn) {
+  nextSlideBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    stopBookAutoSlide();
+    if (vaultGrid && vaultGrid.classList.contains('book-stack-mode')) {
+      nextBookPage();
+    } else if (vaultGrid) {
+      vaultGrid.scrollBy({ left: 340, behavior: 'smooth' });
+    }
+    setTimeout(startBookAutoSlide, 4000);
+  });
+}
+
 function clearCardBookInlineStyles() {
-  const cards = vaultGrid.querySelectorAll('.doc-card');
+  const cards = vaultGrid ? vaultGrid.querySelectorAll('.doc-card') : [];
   cards.forEach(card => {
     card.style.zIndex = '';
     card.style.opacity = '';
@@ -1669,7 +1698,6 @@ if (btnModeArena && btnModeBook && btnModeSlider) {
 }
 
 let autoSlideInterval = null;
-let scrollDirection = 1;
 
 function startAutoSlide() {
   stopAutoSlide();
@@ -1682,17 +1710,6 @@ function stopAutoSlide() {
   }
 }
 
-function startBookAutoSlide() {
-  stopBookAutoSlide();
-}
-
-function stopBookAutoSlide() {
-  if (bookAutoTimer) {
-    clearInterval(bookAutoTimer);
-    bookAutoTimer = null;
-  }
-}
-
 // View Mode Handler (Callable from Settings Modal)
 window.setCertificatesViewMode = function(mode) {
   if (!vaultGrid) return;
@@ -1702,6 +1719,7 @@ window.setCertificatesViewMode = function(mode) {
     vaultGrid.className = 'vault-grid book-stack-mode';
     stopAutoSlide();
     renderBookStack();
+    startBookAutoSlide();
   } else if (mode === 'slider') {
     if (prevSlideBtn) prevSlideBtn.style.display = 'flex';
     if (nextSlideBtn) nextSlideBtn.style.display = 'flex';
@@ -1739,7 +1757,6 @@ let startX;
 let scrollLeft;
 
 vaultGrid.addEventListener('mouseenter', () => {
-  stopBookAutoSlide();
   stopAutoSlide();
 });
 vaultGrid.addEventListener('mouseleave', () => {
@@ -1750,12 +1767,11 @@ vaultGrid.addEventListener('mouseleave', () => {
   }
 });
 vaultGrid.addEventListener('touchstart', () => {
-  stopBookAutoSlide();
   stopAutoSlide();
 }, { passive: true });
 vaultGrid.addEventListener('touchend', () => {
   if (vaultGrid.classList.contains('book-stack-mode')) {
-    setTimeout(startBookAutoSlide, 3000);
+    setTimeout(startBookAutoSlide, 2000);
   } else {
     setTimeout(startAutoSlide, 2000);
   }
@@ -1861,7 +1877,14 @@ function downloadFile(src, filename) {
 const pdfCache = new Map();
 function loadPdfDocument(src) {
   if (!pdfCache.has(src)) {
-    pdfCache.set(src, pdfjsLib.getDocument(src).promise);
+    try {
+      if (window.location.protocol === 'file:') {
+        return Promise.reject(new Error('CORS file:// protocol restriction'));
+      }
+      pdfCache.set(src, pdfjsLib.getDocument(src).promise);
+    } catch (e) {
+      return Promise.reject(e);
+    }
   }
   return pdfCache.get(src);
 }
@@ -1884,7 +1907,9 @@ async function renderPdfThumbnail(card) {
     const fallback = card.querySelector('.doc-pdf-fallback');
     if (fallback) fallback.style.display = 'none';
   } catch (err) {
-    console.error('Failed to render PDF thumbnail:', card.dataset.src, err);
+    // Graceful silent fallback for local file:// CORS restrictions
+    const fallback = card.querySelector('.doc-pdf-fallback');
+    if (fallback) fallback.style.display = 'flex';
   }
 }
 
@@ -1960,12 +1985,19 @@ document.addEventListener('keydown', (e) => {
 async function renderPdfInModal(src) {
   docModalBody.innerHTML = '<div class="doc-modal-pdf-container" id="modalPdfWrap"><p style="color:#8e9aaf;padding:30px;">Loading PDF document...</p></div>';
   docModalBody.scrollTop = 0;
-  const ready = await window.pdfjsReady;
-  
-  if (!ready) {
+
+  function renderDirectEmbed() {
     if (pdfModalNavBar) pdfModalNavBar.style.display = 'none';
     const wrap = document.getElementById('modalPdfWrap');
-    if (wrap) wrap.innerHTML = `<p style="color:#fff;padding:30px;">Direct PDF Link: <a href="${src}" target="_blank" style="color:var(--accent-cyan);text-decoration:underline;">Open PDF Document ↗</a></p>`;
+    if (wrap) {
+      wrap.innerHTML = `<iframe src="${src}" style="width:100%; height:100%; min-height:550px; border:none; background:#0d1117; border-radius:8px;" title="PDF Preview"></iframe>`;
+    }
+  }
+
+  const ready = await window.pdfjsReady;
+  
+  if (!ready || window.location.protocol === 'file:') {
+    renderDirectEmbed();
     return;
   }
   
@@ -1978,9 +2010,7 @@ async function renderPdfInModal(src) {
     if (pdfModalNavBar) pdfModalNavBar.style.display = 'flex';
     renderCurrentPdfMode();
   } catch (err) {
-    if (pdfModalNavBar) pdfModalNavBar.style.display = 'none';
-    const wrap = document.getElementById('modalPdfWrap');
-    if (wrap) wrap.innerHTML = `<p style="color:#fff;padding:30px;">Unable to render PDF preview. <a href="${src}" target="_blank" style="color:var(--accent-cyan);text-decoration:underline;">Open File Directly ↗</a></p>`;
+    renderDirectEmbed();
   }
 }
 

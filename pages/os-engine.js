@@ -5,6 +5,10 @@
 (function () {
   'use strict';
 
+  if (window.self !== window.top) {
+    return; // Prevent duplicate OS / AI elements inside iframe slide view
+  }
+
   // State Management
   const OSState = {
     mode: localStorage.getItem('ramOS_mode') || window.OS_CONFIG.system.defaultMode || 'pc',
@@ -31,21 +35,21 @@
 
   // Create the "Ask Cognisphere" Top-Right Pill Capsule Widget
   function createAskCognispherePill() {
-    if (document.getElementById('askCognispherePillWrap')) return;
+    if (document.getElementById('askCognispherePillWrap') || document.getElementById('osAskCognispherePillWrap')) return;
 
     const pillHTML = `
-      <div class="ask-cognisphere-pill-wrap" id="askCognispherePillWrap">
-        <div class="ask-cognisphere-pill-btn" id="askCognispherePillBtn" title="Ask Cognisphere AI">
-          <div class="ask-cognisphere-pill-icon">
+      <div class="os-ask-cognisphere-pill-wrap" id="osAskCognispherePillWrap">
+        <div class="os-ask-cognisphere-pill-btn" id="osAskCognispherePillBtn" title="Ask Cognisphere AI">
+          <div class="os-ask-cognisphere-pill-icon">
             <img src="../images/cognisphere-icon-trimmed.svg" alt="Cognisphere Logo" onerror="this.src='../images/cognisphere-icon-trimmed.svg'">
           </div>
-          <span class="ask-cognisphere-pill-text">Ask Cognisphere</span>
-          <span class="ask-cognisphere-pill-cursor"></span>
+          <span class="os-ask-cognisphere-pill-text">Ask Cognisphere</span>
+          <span class="os-ask-cognisphere-pill-cursor"></span>
         </div>
 
-        <div class="ask-cognisphere-dropdown" id="askCognispherePillDropdown">
-          <input type="text" class="ask-cognisphere-input" id="askCognispherePillInput" placeholder="Ask Cognisphere AI or search apps..." autocomplete="off" />
-          <div class="ask-cognisphere-results" id="askCognispherePillResults"></div>
+        <div class="os-ask-cognisphere-dropdown" id="osAskCognispherePillDropdown">
+          <input type="text" class="os-ask-cognisphere-input" id="osAskCognispherePillInput" placeholder="Ask Cognisphere AI or search apps..." autocomplete="off" />
+          <div class="os-ask-cognisphere-results" id="osAskCognispherePillResults"></div>
         </div>
       </div>
     `;
@@ -56,41 +60,50 @@
 
   // Bind Ask Cognisphere Pill Widget Events
   function bindAskCognispherePillEvents() {
-    const pillBtn = document.getElementById('askCognispherePillBtn');
-    const dropdown = document.getElementById('askCognispherePillDropdown');
-    const input = document.getElementById('askCognispherePillInput');
-    const results = document.getElementById('askCognispherePillResults');
+    const pillBtn = document.getElementById('osAskCognispherePillBtn') || document.getElementById('askCognispherePillBtn');
+    const dropdown = document.getElementById('osAskCognispherePillDropdown') || document.getElementById('askCognispherePillDropdown');
+    const input = document.getElementById('osAskCognispherePillInput') || document.getElementById('askCognispherePillInput');
+    const results = document.getElementById('osAskCognispherePillResults') || document.getElementById('askCognispherePillResults');
 
     if (!pillBtn) return;
 
     pillBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      dropdown.classList.toggle('open');
-      if (dropdown.classList.contains('open')) {
-        input.focus();
-        renderPillResults('');
+      if (typeof window.openCognisphereAI === 'function') {
+        window.openCognisphereAI();
+        return;
+      }
+      if (dropdown) {
+        dropdown.classList.toggle('open');
+        if (dropdown.classList.contains('open') && input) {
+          input.focus();
+          renderPillResults('');
+        }
       }
     });
 
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('#askCognispherePillWrap')) {
+      if (dropdown && !e.target.closest('#osAskCognispherePillWrap') && !e.target.closest('#askCognispherePillWrap')) {
         dropdown.classList.remove('open');
       }
     });
 
-    input.addEventListener('input', (e) => {
-      renderPillResults(e.target.value.toLowerCase().trim());
-    });
+    if (input) {
+      input.addEventListener('input', (e) => {
+        renderPillResults(e.target.value.toLowerCase().trim());
+      });
 
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        const query = input.value.trim();
-        dropdown.classList.remove('open');
-        handleCognisphereSearch(query);
-      }
-    });
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const query = input.value.trim();
+          if (dropdown) dropdown.classList.remove('open');
+          handleCognisphereSearch(query);
+        }
+      });
+    }
 
     function renderPillResults(val) {
+      if (!results) return;
       let matches = window.OS_CONFIG.apps;
       if (val) {
         matches = matches.filter(a => a.name.toLowerCase().includes(val) || a.description.toLowerCase().includes(val));
@@ -100,7 +113,7 @@
 
       if (matches.length > 0) {
         results.innerHTML = matches.map(app => `
-          <div class="ask-cognisphere-item" data-id="${app.id}">
+          <div class="os-ask-cognisphere-item" data-id="${app.id}">
             <span style="font-size:18px;">${app.icon}</span>
             <div style="flex:1; min-width:0;">
               <div style="font-size:12.5px; font-weight:600; color:#fff;">${app.name}</div>
@@ -109,10 +122,10 @@
           </div>
         `).join('');
 
-        results.querySelectorAll('.ask-cognisphere-item').forEach(item => {
+        results.querySelectorAll('.os-ask-cognisphere-item').forEach(item => {
           item.addEventListener('click', () => {
             const id = item.getAttribute('data-id');
-            dropdown.classList.remove('open');
+            if (dropdown) dropdown.classList.remove('open');
             window.showOSPlatform('pc');
             launchApp(id);
           });
@@ -533,25 +546,47 @@
     }
   }
 
+  function bringToFront(winEl) {
+    if (!winEl) return;
+    OSState.activeWindowZIndex += 1;
+    winEl.style.zIndex = OSState.activeWindowZIndex;
+    winEl.classList.remove('minimized');
+    
+    // Update taskbar active state
+    const windowId = winEl.id;
+    if (elements.pcTaskbarList) {
+      elements.pcTaskbarList.querySelectorAll('.pc-taskbar-app-icon').forEach(btn => {
+        btn.classList.toggle('active', btn.id === `tb_${windowId}`);
+      });
+    }
+  }
+
   function createPCWindow(app) {
+    // Check if app window already exists
+    const existingWin = document.querySelector(`.os-window[data-app-id="${app.id}"]`);
+    if (existingWin) {
+      bringToFront(existingWin);
+      return;
+    }
+
     const windowId = `win_${app.id}_${Date.now()}`;
     OSState.activeWindowZIndex += 1;
 
     const windowHTML = `
-      <div class="os-window" id="${windowId}" style="z-index: ${OSState.activeWindowZIndex};">
+      <div class="os-window" id="${windowId}" data-app-id="${app.id}" style="z-index: ${OSState.activeWindowZIndex};">
         <div class="os-window-header">
           <div class="os-window-title">
             <span>${app.icon}</span>
             <span>${app.name}</span>
           </div>
           <div class="os-window-controls">
-            <button class="win-btn win-min" title="Minimize"></button>
-            <button class="win-btn win-max" title="Maximize"></button>
+            <button class="win-btn win-min" id="min_${windowId}" title="Minimize"></button>
+            <button class="win-btn win-max" id="max_${windowId}" title="Maximize"></button>
             <button class="win-btn win-close" id="close_${windowId}" title="Close"></button>
           </div>
         </div>
         <div class="os-window-body">
-          <iframe src="${app.url}" class="os-window-iframe"></iframe>
+          <iframe src="${app.url}" class="os-window-iframe" loading="lazy"></iframe>
         </div>
       </div>
     `;
@@ -559,13 +594,51 @@
     elements.pcLayout.querySelector('.pc-desktop-screen').insertAdjacentHTML('beforeend', windowHTML);
     const winEl = document.getElementById(windowId);
 
-    document.getElementById(`close_${windowId}`).addEventListener('click', () => {
+    // Create taskbar button
+    let tbBtn = null;
+    if (elements.pcTaskbarList) {
+      tbBtn = document.createElement('button');
+      tbBtn.className = 'pc-taskbar-app-icon active';
+      tbBtn.id = `tb_${windowId}`;
+      tbBtn.title = app.name;
+      tbBtn.innerHTML = `<span>${app.icon}</span>`;
+      elements.pcTaskbarList.appendChild(tbBtn);
+
+      tbBtn.addEventListener('click', () => {
+        if (winEl.classList.contains('minimized')) {
+          bringToFront(winEl);
+        } else if (winEl.style.zIndex == OSState.activeWindowZIndex) {
+          winEl.classList.add('minimized');
+          tbBtn.classList.remove('active');
+        } else {
+          bringToFront(winEl);
+        }
+      });
+    }
+
+    // Close button
+    document.getElementById(`close_${windowId}`).addEventListener('click', (e) => {
+      e.stopPropagation();
       winEl.remove();
+      if (tbBtn) tbBtn.remove();
+    });
+
+    // Minimize button
+    document.getElementById(`min_${windowId}`).addEventListener('click', (e) => {
+      e.stopPropagation();
+      winEl.classList.add('minimized');
+      if (tbBtn) tbBtn.classList.remove('active');
+    });
+
+    // Maximize button
+    document.getElementById(`max_${windowId}`).addEventListener('click', (e) => {
+      e.stopPropagation();
+      winEl.classList.toggle('maximized');
+      bringToFront(winEl);
     });
 
     winEl.addEventListener('mousedown', () => {
-      OSState.activeWindowZIndex += 1;
-      winEl.style.zIndex = OSState.activeWindowZIndex;
+      bringToFront(winEl);
     });
 
     makeDraggable(winEl);
@@ -573,25 +646,58 @@
 
   function makeDraggable(winEl) {
     const header = winEl.querySelector('.os-window-header');
+    const iframe = winEl.querySelector('.os-window-iframe');
     let isDragging = false;
     let offsetX = 0, offsetY = 0;
 
-    header.addEventListener('mousedown', (e) => {
+    function onPointerDown(e) {
+      if (e.target.closest('.os-window-controls')) return;
+      if (winEl.classList.contains('maximized')) return;
+      
       isDragging = true;
-      offsetX = e.clientX - winEl.offsetLeft;
-      offsetY = e.clientY - winEl.offsetTop;
-    });
+      winEl.classList.add('is-dragging');
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      offsetX = clientX - winEl.offsetLeft;
+      offsetY = clientY - winEl.offsetTop;
 
-    document.addEventListener('mousemove', (e) => {
+      if (iframe) iframe.style.pointerEvents = 'none';
+      bringToFront(winEl);
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      let left = clientX - offsetX;
+      let top = clientY - offsetY;
+
+      // Clamp within desktop viewport
+      const maxLeft = window.innerWidth - 80;
+      const maxTop = window.innerHeight - 80;
+      left = Math.max(-100, Math.min(left, maxLeft));
+      top = Math.max(0, Math.min(top, maxTop));
+
+      winEl.style.left = `${left}px`;
+      winEl.style.top = `${top}px`;
+    }
+
+    function onPointerUp() {
       if (isDragging) {
-        winEl.style.left = `${e.clientX - offsetX}px`;
-        winEl.style.top = `${e.clientY - offsetY}px`;
+        isDragging = false;
+        winEl.classList.remove('is-dragging');
+        if (iframe) iframe.style.pointerEvents = 'auto';
       }
-    });
+    }
 
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-    });
+    header.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('mousemove', onPointerMove);
+    document.addEventListener('mouseup', onPointerUp);
+
+    header.addEventListener('touchstart', onPointerDown, { passive: true });
+    document.addEventListener('touchmove', onPointerMove, { passive: true });
+    document.addEventListener('touchend', onPointerUp);
   }
 
   function createMobileAppView(app) {

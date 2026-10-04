@@ -24,48 +24,12 @@
   opacity: 0.9;
 }
 
-/* High-Tech Custom Cursor */
-.vfx-cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  background: #00f0ff;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 14px #00f0ff, 0 0 28px #00f0ff;
-  transition: transform 0.08s ease, width 0.2s ease, height 0.2s ease, background 0.2s;
-}
-
+/* High-Tech Custom Cursor (Disabled to remove unwanted cyan cursor ring and elliptical scrub animations) */
+.vfx-cursor-dot,
 .vfx-cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(0, 240, 255, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: transform 0.18s cubic-bezier(0.25, 1, 0.5, 1), width 0.25s ease, height 0.25s ease, border-color 0.25s;
-}
-
-.vfx-cursor-ring.active {
-  width: 54px;
-  height: 54px;
-  border-color: rgba(0, 240, 255, 0.85);
-  background: rgba(0, 240, 255, 0.06);
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
-}
-
-.vfx-cursor-dot.active {
-  background: #00f0ff;
-  box-shadow: 0 0 18px #00f0ff;
-  transform: translate(-50%, -50%) scale(1.4);
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Particle Spark Trails */

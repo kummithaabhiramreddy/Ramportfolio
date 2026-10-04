@@ -58,9 +58,10 @@
     /* ===== Academics overlay — compact style with smooth transitions ===== */
     .acad-shell {
       width: 100%;
-      max-width: 640px;
+      max-width: 1080px;
       min-height: 100vh;
       margin: 0 auto;
+      padding: 0 20px 60px;
       background: transparent;
       position: relative;
     }
@@ -336,9 +337,9 @@
 
     .acad-hub-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      margin-bottom: 4px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
     }
 
     .acad-hub-card {
@@ -1770,8 +1771,96 @@
       }).join('');
     }
 
-    // Units screen: 5 fixed unit slots for a single subject. Tapping a unit opens
-    // its note page (the link card) or, if nothing's uploaded yet, an empty state.
+    function acadToggleInlinePdf(fileHref, elemId) {
+      const el = document.getElementById(elemId);
+      if (!el) return;
+      const container = el.querySelector('.acad-iframe-container');
+      const isHidden = el.style.display === 'none';
+      if (isHidden) {
+        el.style.display = 'block';
+        if (container) {
+          container.innerHTML = `<iframe src="${escapeHtml(fileHref)}" style="width:100%;height:640px;border:none;background:#ffffff;border-radius:0 0 12px 12px;" title="Document Viewer" loading="eager"></iframe>`;
+        }
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        acadCloseInlinePdf(elemId);
+      }
+    }
+
+    function acadCloseInlinePdf(elemId) {
+      const el = document.getElementById(elemId);
+      if (!el) return;
+      el.style.display = 'none';
+      const container = el.querySelector('.acad-iframe-container');
+      if (container) {
+        container.innerHTML = '';
+      }
+    }
+    window.acadToggleInlinePdf = acadToggleInlinePdf;
+    function acadUnitFiles(unit) {
+      if (!unit) return [];
+      if (Array.isArray(unit.files)) return unit.files.filter(Boolean);
+      if (unit.file) return [unit.file];
+      return [];
+    }
+
+    function acadResolveRawFileHref(file) {
+      if (!file) return '';
+      const filePath = typeof file === 'object' ? (file.file || file.href || '') : file;
+      if (!filePath) return '';
+      if (/^https?:\/\//i.test(filePath)) return filePath;
+      let clean = String(filePath).replace(/^(\.\.\/|\.\/|\/)+/, '');
+      const ext = (clean.split('?')[0].split('.').pop() || '').toLowerCase();
+      if (!/^(pdfs|docx|images)\//i.test(clean)) {
+        if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(ext)) {
+          clean = 'docx/' + clean;
+        } else {
+          clean = 'pdfs/' + clean;
+        }
+      }
+      return '../' + clean;
+    }
+
+    function acadResolveFileHref(file) {
+      if (!file) return '';
+      const rawHref = acadResolveRawFileHref(file);
+      const ext = (rawHref.split('?')[0].split('.').pop() || '').toLowerCase();
+      if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(ext)) {
+        if (/^https?:\/\//i.test(rawHref)) {
+          return 'https://docs.google.com/viewer?url=' + encodeURIComponent(rawHref) + '&embedded=true';
+        }
+        const absUrl = 'https://kummithaabhiramreddy.github.io/Ramportfolio/' + rawHref.replace(/^\.\.\//, '');
+        return 'https://docs.google.com/viewer?url=' + encodeURIComponent(absUrl) + '&embedded=true';
+      }
+      return rawHref;
+    }
+
+    function acadRenderFileCard(f) {
+      const href = acadResolveFileHref(f);
+      const rawHref = acadResolveRawFileHref(f);
+      const label = typeof f === 'object' ? (f.label || f.file || f.name) : f;
+      const fileUrl = typeof f === 'object' ? (f.file || f.href || f.name || 'doc') : f;
+      const uniqueId = 'acadPdfViewer_' + String(fileUrl).replace(/[^a-zA-Z0-9]/g, '_');
+
+      return `<div class="notes-file-item" style="margin-bottom:12px;">
+        <div class="wps-link-card" style="cursor:pointer;" onclick="acadToggleInlinePdf('${escapeHtml(href)}', '${uniqueId}')">
+          <span class="wps-link-icon">📄</span>
+          <span class="wps-link-text">${escapeHtml(label)}</span>
+          <span class="wps-link-arrow">👁️ View PDF On-Screen</span>
+        </div>
+        <div id="${uniqueId}" style="display:none;margin-top:8px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.18);background:#09090e;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:#111118;border-bottom:1px solid rgba(255,255,255,0.12);">
+            <span style="font-size:11.5px;color:#c8f135;font-weight:600;">📄 ${escapeHtml(label)}</span>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <a href="${escapeHtml(rawHref)}" target="_blank" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:3px 10px;border-radius:6px;text-decoration:none;font-size:11px;font-weight:500;">↗ Open in New Tab</a>
+              <button type="button" onclick="acadCloseInlinePdf('${uniqueId}')" style="background:rgba(255,94,58,0.2);border:1px solid rgba(255,94,58,0.4);color:#ff5e3a;padding:3px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;">✕ Close</button>
+            </div>
+          </div>
+          <div class="acad-iframe-container" style="width:100%;min-height:540px;background:#09090e;display:flex;align-items:center;justify-content:center;"></div>
+        </div>
+      </div>`;
+    }
+
     function acadRenderUnits(yearId, semId, subCode) {
       const s = acadFindSem(yearId, semId);
       const sub = s && s.subjects ? s.subjects.find(x => x.code === subCode) : null;
@@ -1793,62 +1882,16 @@
       </div>
       <span class="unit-row-arrow">›</span>
     </div>`).join('');
-      // Extra/combined materials that don't belong to a single unit (e.g. one PDF
-      // covering multiple units) are listed separately below the 5 fixed unit rows,
-      // each as its own direct-link card rather than nested inside a unit.
+
       const extras = (sub.extraMaterials || []).filter(m => m && m.file);
+
       if (extras.length) {
         html += `<div class="syllabus-box-title" style="margin-top:16px;margin-bottom:9px;">Additional Material</div>`;
-        html += `<div class="notes-file-list">${extras.map(m => `<a class="wps-link-card" href="${escapeHtml(acadResolveFileHref(m.file))}" target="_blank" rel="noopener">
-           <span class="wps-link-icon">🔗</span>
-           <span class="wps-link-text">${escapeHtml(m.label || m.file)}</span>
-           <span class="wps-link-arrow">↗</span>
-         </a>`).join('')}</div>`;
+        html += `<div class="notes-file-list">${extras.map(m => acadRenderFileCard(m)).join('')}</div>`;
       }
       return html;
     }
 
-    // Unit note screen: shows the uploaded note as a single rounded link card
-    // (🔗 + URL + ↗), or an empty state if this unit has nothing uploaded yet.
-    // Browsers render PDFs and images natively, but Office formats (docx/xlsx/pptx)
-    // just trigger a download instead of opening in the tab. Route those through
-    // Google's document viewer so clicking always opens the document directly.
-    // Returns the list of material links for a unit, supporting both the legacy
-    // single `file` field and the newer `files` array (a unit can now carry more
-    // than one uploaded material, e.g. a separate combined-units PDF).
-    function acadUnitFiles(unit) {
-      if (!unit) return [];
-      if (Array.isArray(unit.files)) return unit.files.filter(Boolean);
-      if (unit.file) return [unit.file];
-      return [];
-    }
-    // Every document link is opened relative to pages/ so it works seamlessly
-    // both on local dev server (localhost) and on live GitHub Pages.
-    function acadResolveFileHref(file) {
-      if (!file) return '';
-      if (/^https?:\/\//i.test(file)) {
-        const ext = (file.split('?')[0].split('.').pop() || '').toLowerCase();
-        if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(ext)) {
-          return 'https://docs.google.com/viewer?url=' + encodeURIComponent(file) + '&embedded=false';
-        }
-        return file;
-      }
-      let clean = String(file).replace(/^(\.\.\/|\.\/|\/)+/, '');
-      const ext = (clean.split('?')[0].split('.').pop() || '').toLowerCase();
-      if (!/^(pdfs|docx|images)\//i.test(clean)) {
-        if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(ext)) {
-          clean = 'docx/' + clean;
-        } else {
-          clean = 'pdfs/' + clean;
-        }
-      }
-      const relPath = '../' + clean;
-      if (['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx'].includes(ext)) {
-        const absUrl = 'https://kummithaabhiramreddy.github.io/Ramportfolio/' + clean;
-        return 'https://docs.google.com/viewer?url=' + encodeURIComponent(absUrl) + '&embedded=false';
-      }
-      return relPath;
-    }
     function acadRenderUnitNote(yearId, semId, subCode, unitIdx) {
       const s = acadFindSem(yearId, semId);
       const sub = s && s.subjects ? s.subjects.find(x => x.code === subCode) : null;
@@ -1863,11 +1906,7 @@
       if (kind === 'theory') {
         const unitFiles = acadUnitFiles(unit);
         html += unitFiles.length
-          ? `<div class="notes-file-list">${unitFiles.map(f => `<a class="wps-link-card" href="${escapeHtml(acadResolveFileHref(f))}" target="_blank" rel="noopener">
-           <span class="wps-link-icon">🔗</span>
-           <span class="wps-link-text">${escapeHtml(f)}</span>
-           <span class="wps-link-arrow">↗</span>
-         </a>`).join('')}</div>`
+          ? `<div class="notes-file-list">${unitFiles.map(f => acadRenderFileCard(f)).join('')}</div>`
           : `<div class="notes-empty-hint">No notes uploaded yet for Unit ${unitIdx + 1}.</div>`;
       }
       if (unit && unit.syllabus) {

@@ -104,6 +104,7 @@ footer{border-top:1px solid var(--dim);padding:28px 64px;display:flex;justify-co
   .demo-head{flex-direction:column;align-items:flex-start;}
 }
 </style>
+  <link rel="stylesheet" href="cognisphere-pill.css">
 </head>
 <body>
 <nav>
@@ -254,5 +255,6 @@ const obs=new IntersectionObserver((e)=>{e.forEach(i=>{if(i.isIntersecting){i.ta
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 <script src="../vfx-engine.js"></script>
+  <script src="cognisphere-pill.js"></script>
 </body>
 </html>

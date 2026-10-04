@@ -216,6 +216,7 @@
   // --- High-Tech Cyber Laser Cursor & Sparkle Particles ---
   class CyberCursor {
     constructor() {
+      return; // Disabled cursor ring and dots to remove cyan elliptical scrubbing on scroll/move
       if (window.innerWidth < 768) return; // Touch screens skip custom cursor
 
       this.dot = document.createElement('div');
@@ -444,13 +445,27 @@
         }
       }
 
+      let transitionSafetyTimer = null;
+
       if (fillEl) {
         fillEl.style.width = '0%';
         setTimeout(() => { fillEl.style.width = '65%'; }, 30);
         setTimeout(() => { fillEl.style.width = '95%'; }, 180);
       }
       overlay.classList.add('active');
+
+      if (transitionSafetyTimer) clearTimeout(transitionSafetyTimer);
+      transitionSafetyTimer = setTimeout(() => {
+        if (overlay) overlay.classList.remove('active');
+        if (fillEl) fillEl.style.width = '0%';
+      }, 2200);
     };
+
+    // Ensure overlay is hidden on page load / DOMReady
+    if (overlay) {
+      overlay.classList.remove('active');
+      if (fillEl) fillEl.style.width = '0%';
+    }
 
     // Intercept internal page link transitions
     document.addEventListener('click', (e) => {
@@ -467,11 +482,35 @@
         !link.getAttribute('target') &&
         !e.ctrlKey && !e.metaKey
       ) {
+        // If Ask Cos AI Chatbox is open or split mode active, load target page inside Left Slide iframe!
+        const dropdown = document.getElementById('askCognispherePillDropdown');
+        const isChatOpen = (dropdown && dropdown.classList.contains('open')) || document.body.classList.contains('cogni-split-mode') || document.body.classList.contains('ai-card-open');
+
+        if (isChatOpen && typeof window.loadPageInLeftSlide === 'function') {
+          e.preventDefault();
+          e.stopPropagation();
+          window.loadPageInLeftSlide(href);
+          return;
+        }
+
         e.preventDefault();
-        window.triggerPageTransition(href);
-        setTimeout(() => {
+        
+        try {
+          const targetUrl = new URL(href, window.location.href);
+          const currentUrl = new URL(window.location.href);
+
+          window.triggerPageTransition(href);
+
+          setTimeout(() => {
+            if (targetUrl.origin === currentUrl.origin && targetUrl.pathname === currentUrl.pathname && targetUrl.search === currentUrl.search) {
+              window.location.reload();
+            } else {
+              window.location.href = href;
+            }
+          }, 320);
+        } catch(err) {
           window.location.href = href;
-        }, 320);
+        }
       }
     });
 
@@ -485,7 +524,7 @@
     });
 
     window.addEventListener('popstate', () => {
-      window.triggerPageTransition(window.location.pathname, 'Returning to Previous Page...');
+      if (overlay) overlay.classList.remove('active');
     });
   }
 
