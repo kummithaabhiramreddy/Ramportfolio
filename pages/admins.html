@@ -53,8 +53,18 @@
       background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
     }
 
-    /* HEADER */
-    .header { position: sticky; top: 0; z-index: 100; background: rgba(7, 7, 11, 0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 14px 24px; }
+    /* HEADER — 100% TRANSPARENT */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: none;
+      box-shadow: none;
+      padding: 14px 24px;
+    }
     .header-container { max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     .header-left { display: flex; align-items: center; gap: 16px; }
     .header-logo {
@@ -160,6 +170,8 @@
     .diagram-scroll.grabbing { cursor: grabbing; }
 
     #wiringSvg { display: block; width: 100%; min-width: 1000px; height: auto; }
+    #wiringSvg a, #wiringSvg text { cursor: pointer; pointer-events: all; }
+    #wiringSvg a:hover text { text-decoration: underline; }
     #wiringSvg text { font-family: 'DM Sans', sans-serif; }
     #wiringSvg .mono { font-family: 'DM Mono', monospace; }
     #wiringSvg .serif { font-family: 'Instrument Serif', serif; }
@@ -397,15 +409,30 @@
       const A = COL.admin, S = COL.server, D = COL.db, P = COL.page;
       const sx = S.x + S.w / 2, dx = D.x + D.w / 2;
 
-      el("rect", { x: A.x, y: r.y, width: A.w, height: ROW_H, rx: 14, fill: "#11111c", stroke: r.accent, "stroke-width": 1.8, class: "box", id: `${r.key}-box-admin`, style: `--fc:${r.accent}` }, g);
+      const adminBox = el("rect", { x: A.x, y: r.y, width: A.w, height: ROW_H, rx: 14, fill: "#11111c", stroke: r.accent, "stroke-width": 1.8, class: "box", id: `${r.key}-box-admin`, style: `--fc:${r.accent}; cursor: pointer;` }, g);
+      adminBox.addEventListener("click", (e) => {
+        if (e.target.tagName && e.target.tagName.toLowerCase() === "text") return;
+        window.open(r.adminUrl, "_blank", "noopener,noreferrer");
+      });
       el("rect", { x: A.x + 1, y: r.y + 16, width: 4, height: ROW_H - 32, rx: 2, fill: r.accent }, g);
       el("text", { x: A.x + 20, y: r.y + 26, fill: "#828099", "font-size": 10, class: "mono", "font-weight": 600 }, g, `CIRCUIT #${r.n}`);
       el("circle", { cx: A.x + 22, cy: r.y + 168, r: 4, fill: "#10b981", class: "led", style: "filter:drop-shadow(0 0 5px #10b981)" }, g);
       el("text", { x: A.x + 34, y: r.y + 172, fill: "#34d399", "font-size": 9, class: "mono", "font-weight": 700 }, g, "ACTIVE");
       el("text", { x: A.x + 20, y: r.y + 52, fill: "#f3f2f8", "font-size": 21, class: "serif" }, g, r.admin);
       el("text", { x: A.x + 20, y: r.y + 96, fill: "#828099", "font-size": 11 }, g, r.sub);
-      const la = el("a", { href: r.adminUrl, target: "_blank", rel: "noopener" }, g);
-      el("text", { x: A.x + 20, y: r.y + 142, fill: r.accent, "font-size": 10, class: "mono", "font-weight": 600 }, la, r.adminLabel + " ↗");
+      const la = el("a", { href: r.adminUrl, target: "_blank", rel: "noopener", style: "cursor: pointer;" }, g);
+      la.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", r.adminUrl);
+      const lat = el("text", { x: A.x + 20, y: r.y + 142, fill: r.accent, "font-size": 10, class: "mono", "font-weight": 600, style: "cursor: pointer;" }, la, r.adminLabel + " ↗");
+      la.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(r.adminUrl, "_blank", "noopener,noreferrer");
+      });
+      lat.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.open(r.adminUrl, "_blank", "noopener,noreferrer");
+      });
       portLabel(g, A.x + A.w - 18, yr, "end", RED, "REQ OUT ▸");
       portLabel(g, A.x + A.w - 18, yb, "end", BLUE, "◂ DATA IN");
 
@@ -436,13 +463,28 @@
       portLabel(g, dmx + dmw - 8, dyr, "end", RED, "SUBMIT");
       portLabel(g, dmx + dmw - 8, dyb, "end", BLUE, "READ");
 
-      el("rect", { x: P.x, y: r.y, width: P.w, height: ROW_H, rx: 14, fill: "#11111c", stroke: r.accent, "stroke-width": 1.8, class: "box", id: `${r.key}-box-page`, style: `--fc:${r.accent}` }, g);
+      const pageBox = el("rect", { x: P.x, y: r.y, width: P.w, height: ROW_H, rx: 14, fill: "#11111c", stroke: r.accent, "stroke-width": 1.8, class: "box", id: `${r.key}-box-page`, style: `--fc:${r.accent}; cursor: pointer;` }, g);
+      pageBox.addEventListener("click", (e) => {
+        if (e.target.tagName && e.target.tagName.toLowerCase() === "text") return;
+        window.location.href = r.pageUrl;
+      });
       el("rect", { x: P.x + P.w - 5, y: r.y + 16, width: 4, height: ROW_H - 32, rx: 2, fill: r.accent }, g);
       el("text", { x: P.x + 20, y: r.y + 26, fill: "#828099", "font-size": 10, class: "mono", "font-weight": 600 }, g, "LIVE PAGE");
       el("text", { x: P.x + 20, y: r.y + 52, fill: "#f3f2f8", "font-size": 21, class: "serif" }, g, r.page);
       el("text", { x: P.x + 20, y: r.y + 96, fill: "#828099", "font-size": 11 }, g, "Public view");
-      const lp = el("a", { href: r.pageUrl }, g);
-      el("text", { x: P.x + 20, y: r.y + 172, fill: r.accent, "font-size": 11, class: "mono", "font-weight": 600 }, lp, r.pageUrl + " ↗");
+      const lp = el("a", { href: r.pageUrl, style: "cursor: pointer;" }, g);
+      lp.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", r.pageUrl);
+      const lpt = el("text", { x: P.x + 20, y: r.y + 172, fill: r.accent, "font-size": 11, class: "mono", "font-weight": 600, style: "cursor: pointer;" }, lp, r.pageUrl + " ↗");
+      lp.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = r.pageUrl;
+      });
+      lpt.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = r.pageUrl;
+      });
       portLabel(g, P.x + 18, yr, "start", RED, "◂ SUBMIT");
       portLabel(g, P.x + 18, yb, "start", BLUE, "DATA IN ▸");
 
@@ -601,9 +643,9 @@
       if (!slider) return;
       let isDown = false, startX = 0, scrollLeft = 0;
       slider.addEventListener('mousedown', (e) => {
-        if (e.target.closest('a') || e.target.closest('button')) return;
+        const isInteractive = e.target.closest('a') || e.target.closest('button') || e.target.closest('.box') || e.target.tagName.toLowerCase() === 'a' || e.target.tagName.toLowerCase() === 'text';
+        if (isInteractive) return;
         isDown = true;
-        slider.classList.add('grabbing');
         startX = e.pageX - slider.offsetLeft;
         scrollLeft = slider.scrollLeft;
       });
@@ -613,10 +655,13 @@
       });
       window.addEventListener('mousemove', (e) => {
         if (!isDown) return;
-        e.preventDefault();
         const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        slider.scrollLeft = scrollLeft - walk;
+        const walk = x - startX;
+        if (Math.abs(walk) > 4) {
+          slider.classList.add('grabbing');
+          e.preventDefault();
+          slider.scrollLeft = scrollLeft - walk * 1.5;
+        }
       });
     }
 
