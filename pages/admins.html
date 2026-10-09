@@ -55,8 +55,7 @@
 
     /* HEADER — 100% TRANSPARENT */
     .header {
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 100;
       background: transparent;
       backdrop-filter: none;
@@ -204,6 +203,243 @@
     .step.r { --sc: var(--wire-red); --sg: rgba(255, 51, 68, .35); }
     .step.b { --sc: var(--wire-blue); --sg: rgba(0, 212, 255, .35); }
 
+    /* PROJECT TEAMS SHOWCASE */
+    .teams-section { margin-top: 36px; margin-bottom: 24px; }
+    .teams-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .teams-head h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: .3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .teams-head p {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      margin-top: 2px;
+    }
+    .teams-count-pill {
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    .project-teams-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    .team-panel-card {
+      background: rgba(13, 13, 21, 0.85);
+      border: 1px solid var(--panel-accent, var(--border));
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(var(--panel-glow), 0.08);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .team-panel-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--panel-accent);
+      box-shadow: 0 0 14px var(--panel-accent);
+    }
+    .team-panel-card.dim {
+      opacity: 0.22;
+      filter: grayscale(70%);
+      pointer-events: none;
+    }
+
+    .team-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .team-panel-title {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .team-panel-badge {
+      align-self: flex-start;
+      font-size: 9.5px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--panel-accent);
+      letter-spacing: .5px;
+    }
+    .team-panel-title h3 {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: #fff;
+    }
+    .team-panel-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.4;
+      max-width: 680px;
+    }
+    .team-panel-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .team-panel-link {
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+      color: var(--panel-accent);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .team-panel-link:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--panel-accent);
+      transform: translateY(-1px);
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 14px;
+    }
+
+    .member-profile-card {
+      background: rgba(20, 20, 32, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-md);
+      padding: 16px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: default;
+    }
+    .member-profile-card:hover {
+      background: rgba(26, 26, 42, 0.95);
+      border-color: var(--panel-accent);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(var(--panel-glow), 0.25);
+      transform: translateY(-3px);
+    }
+
+    .member-avatar-wrap {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 12px;
+    }
+    .member-avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: #141420;
+      display: block;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .member-profile-card:hover .member-avatar-img {
+      border-color: var(--panel-accent);
+      transform: scale(1.05);
+    }
+    .member-initials {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+      border: 2px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .lead-crown-badge {
+      position: absolute;
+      bottom: -3px;
+      right: -3px;
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+      color: #0b0f19;
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 1px 6px;
+      border-radius: 999px;
+      letter-spacing: .4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      border: 1px solid #fef3c7;
+    }
+
+    .member-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 6px;
+      text-align: center;
+      word-break: break-word;
+      min-height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .member-role-badge {
+      font-size: 10px;
+      font-family: 'DM Mono', monospace;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .member-profile-card:hover .member-role-badge {
+      color: var(--panel-accent);
+      border-color: rgba(var(--panel-glow), 0.4);
+      background: rgba(var(--panel-glow), 0.1);
+    }
+
     .admin-footer { margin-top: 48px; font-size: 11.5px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
     .admin-footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
     .admin-footer-links a { color: var(--muted); text-decoration: none; transition: color .2s; }
@@ -265,7 +501,10 @@
         <span><i class="red"></i>Red: request / write</span>
         <span><i class="blue"></i>Blue: data / response</span>
       </div>
-      <button class="btn-action btn-action-blue" id="runBtn" onclick="runProcess()"><span>▶</span> Run full process</button>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <a href="#teamsSection" class="btn-action" style="text-decoration:none;"><span style="font-size:13px;">👥</span> Project Teams</a>
+        <button class="btn-action btn-action-blue" id="runBtn" onclick="runProcess()"><span>▶</span> Run full process</button>
+      </div>
     </div>
 
     <section class="distribution-board">
@@ -289,6 +528,22 @@
         <span class="process-caption" id="caption">Press “Run full process” to energise the circuit.</span>
       </div>
       <div class="steps" id="steps"></div>
+    </section>
+
+    <section class="teams-section" id="teamsSection">
+      <div class="teams-head">
+        <div>
+          <h2>👥 Project Engineering Teams & Leadership</h2>
+          <p>Key architects, developers & designers behind each platform</p>
+        </div>
+        <div class="teams-count-pill">
+          <span>Active Team Members: <strong style="color:var(--ink);">11 Engineers</strong> across 3 Projects</span>
+        </div>
+      </div>
+
+      <div class="project-teams-grid" id="projectTeamsGrid">
+        <!-- Dynamically rendered via TEAMS_DATA -->
+      </div>
     </section>
 
     <footer class="admin-footer">
@@ -340,6 +595,94 @@
       { w: "dp-b", rev: false, color: BLUE, mod: "page",   t: "The live page reads the fresh data from the database (BLUE)." },
       { w: "dp-r", rev: true,  color: RED,  mod: "db",     t: "A visitor action on the live page travels back into the database (RED)." }
     ];
+
+    const TEAMS_DATA = [
+      {
+        key: "help",
+        title: "HELP — Human Emergency Life Provider",
+        accent: "#fb923c",
+        rgb: "251, 146, 60",
+        badge: "SRKR UDBHAV 2K26 · NATIONAL LEVEL",
+        desc: "Emergency alert, real-time responder dispatch & live patient care coordination system designed for 1st-year track participants.",
+        adminUrl: "https://admin-help.vercel.app/",
+        pageUrl: "help.html",
+        members: [
+          { name: "Chiru", role: "Team Lead", isHead: true, photo: "../images/team/chiru.jpg" },
+          { name: "Kummitha Abhiram Reddy", role: "Frontend", isHead: false, photo: "../images/team/kummitha_abhiram_reddy.jpg" },
+          { name: "Harish", role: "Backend", isHead: false, photo: "../images/team/harish.jpg" },
+          { name: "Bharath", role: "Page Designer", isHead: false, photo: "../images/team/bharath.jpg" },
+          { name: "Avinash", role: "Page Designer", isHead: false, photo: "../images/team/avinash.jpg" },
+          { name: "Siva", role: "Page Designer", isHead: false, photo: "../images/team/siva.jpg" }
+        ]
+      },
+      {
+        key: "geargo",
+        title: "GearGo — Student Equipment Rental",
+        accent: "#a78bfa",
+        rgb: "167, 139, 250",
+        badge: "MINI PROJECT · IT - B BRANCH",
+        desc: "Multi-vendor equipment listing, inventory rental management & automated billing platform managed by Branch MDs.",
+        adminUrl: "https://admingeargo.vercel.app/",
+        pageUrl: "geargo.html",
+        members: [
+          { name: "Kummitha Abhiram Reddy", role: "Backend", isHead: false, photo: "../images/team/kummitha_abhiram_reddy.jpg" },
+          { name: "Kolati Charan", role: "Backend", isHead: false, photo: "../images/team/kolati_charan.jpg" },
+          { name: "Kopparthi Chiru", role: "Frontend", isHead: false, photo: "../images/team/kopparthi_chiru.jpg" },
+          { name: "Pobolu Rithika", role: "Design", isHead: false, photo: "../images/team/pobolu_rithika.jpg" },
+          { name: "Mrunalini Balanagu", role: "QA Engineer", isHead: false, photo: null, initials: "MB" },
+          { name: "Tejaswi", role: "Support", isHead: false, photo: "../images/team/tejaswi.jpg" }
+        ]
+      },
+      {
+        key: "gramaseva",
+        title: "Gramaseva — Rural & Urban Worker Connect",
+        accent: "#10b981",
+        rgb: "16, 185, 129",
+        badge: "SOLO PROJECT · INDEPENDENT ARCHITECTURE",
+        desc: "Direct community employment platform connecting skilled rural/urban laborers and local artisans with service seekers.",
+        adminUrl: "https://admingramaseva.vercel.app/",
+        pageUrl: "gramaseva.html",
+        members: [
+          { name: "Kummitha Abhiram Reddy", role: "Solo Developer", isHead: true, photo: "../images/team/kummitha_abhiram_reddy.jpg" }
+        ]
+      }
+    ];
+
+    function renderTeams() {
+      const grid = document.getElementById("projectTeamsGrid");
+      if (!grid) return;
+      grid.innerHTML = TEAMS_DATA.map(p => `
+        <div class="team-panel-card" id="team-${p.key}" data-key="${p.key}" style="--panel-accent: ${p.accent}; --panel-glow: ${p.rgb};">
+          <div class="team-panel-header">
+            <div class="team-panel-title">
+              <span class="team-panel-badge">${p.badge}</span>
+              <h3>${p.title}</h3>
+              <p class="team-panel-desc">${p.desc}</p>
+            </div>
+            <div class="team-panel-actions">
+              <a href="${p.adminUrl}" target="_blank" rel="noopener" class="team-panel-link">Admin Panel ↗</a>
+              <a href="${p.pageUrl}" class="team-panel-link">Live Page ↗</a>
+            </div>
+          </div>
+
+          <div class="members-grid">
+            ${p.members.map(m => `
+              <div class="member-profile-card">
+                <div class="member-avatar-wrap">
+                  ${m.photo 
+                    ? `<img src="${m.photo}" alt="${m.name}" class="member-avatar-img">`
+                    : `<div class="member-initials">${m.initials || m.name.charAt(0)}</div>`
+                  }
+                  ${m.isHead ? `<span class="lead-crown-badge">★ LEAD</span>` : ''}
+                </div>
+                <div class="member-name" title="${m.name}">${m.name}</div>
+                <div class="member-role-badge">${m.role}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
 
     const svg = document.getElementById("wiringSvg");
     const staticLayer = document.getElementById("staticLayer");
@@ -419,7 +762,18 @@
       el("circle", { cx: A.x + 22, cy: r.y + 168, r: 4, fill: "#10b981", class: "led", style: "filter:drop-shadow(0 0 5px #10b981)" }, g);
       el("text", { x: A.x + 34, y: r.y + 172, fill: "#34d399", "font-size": 9, class: "mono", "font-weight": 700 }, g, "ACTIVE");
       el("text", { x: A.x + 20, y: r.y + 52, fill: "#f3f2f8", "font-size": 21, class: "serif" }, g, r.admin);
-      el("text", { x: A.x + 20, y: r.y + 96, fill: "#828099", "font-size": 11 }, g, r.sub);
+      el("text", { x: A.x + 20, y: r.y + 94, fill: "#828099", "font-size": 11 }, g, r.sub);
+
+      const teamLnk = el("a", { href: `#team-${r.key}`, style: "cursor: pointer;" }, g);
+      const memberCountTxt = r.key === "gramaseva" ? "👤 Solo Developer ▾" : "👥 Team (6) ▾";
+      const teamTxt = el("text", { x: A.x + 20, y: r.y + 116, fill: "#60a5fa", "font-size": 10.5, class: "mono", style: "cursor: pointer; text-decoration: underline;" }, teamLnk, memberCountTxt);
+      teamLnk.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const elTarget = document.getElementById(`team-${r.key}`);
+        if (elTarget) elTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
       const la = el("a", { href: r.adminUrl, target: "_blank", rel: "noopener", style: "cursor: pointer;" }, g);
       la.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", r.adminUrl);
       const lat = el("text", { x: A.x + 20, y: r.y + 142, fill: r.accent, "font-size": 10, class: "mono", "font-weight": 600, style: "cursor: pointer;" }, la, r.adminLabel + " ↗");
@@ -668,6 +1022,7 @@
     function init() {
       buildStatic();
       ROWS.forEach(buildRow);
+      renderTeams();
 
       const stepsEl = document.getElementById("steps");
       STEPS.forEach((s, i) => {
@@ -682,6 +1037,13 @@
           selected = btn.dataset.k;
           document.querySelectorAll("#tabs .tab").forEach(b => b.classList.toggle("active", b === btn));
           document.querySelectorAll(".row").forEach(r => r.classList.toggle("dim", selected !== "all" && r.dataset.key !== selected));
+          document.querySelectorAll(".team-panel-card").forEach(c => {
+            const match = selected === "all" || c.dataset.key === selected;
+            c.classList.toggle("dim", !match);
+            if (selected !== "all" && match) {
+              c.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          });
         });
       });
 
