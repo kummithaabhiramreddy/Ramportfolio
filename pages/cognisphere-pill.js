@@ -506,7 +506,7 @@
         blocked: blocked,
         items: cardContainers.map((c, i) => ({
           id: i + 1,
-          title: (c.querySelector('h1, h2, h3, h4, .card-title, .doc-title')?.innerText || c.innerText || `Card ${i+1}`).trim().slice(0, 30),
+          title: (c.querySelector('h1, h2, h3, h4, .card-title, .doc-title')?.innerText || c.innerText || `Card ${i + 1}`).trim().slice(0, 30),
           status: c.classList.contains('active') || c.classList.contains('expanded') ? 'opened' : 'queued'
         }))
       };
@@ -529,7 +529,7 @@
       const centerX = Math.max(5, Math.min(rect.left + (rect.width / 2), winW - 5));
       const centerY = Math.max(5, Math.min(rect.top + (rect.height / 2), winH - 5));
       let topEl = null;
-      try { topEl = document.elementFromPoint(centerX, centerY); } catch(e) {}
+      try { topEl = document.elementFromPoint(centerX, centerY); } catch (e) { }
 
       if (topEl && topEl !== targetEl && !targetEl.contains(topEl) && !topEl.contains(targetEl)) {
         if (!topEl.closest('#cogniLiveBlurOverlay, .ask-cognisphere-pill-wrap')) {
@@ -808,7 +808,7 @@
             el.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
             el.dispatchEvent(new MouseEvent('click', { bubbles: true }));
             el.click();
-          } catch(e) {}
+          } catch (e) { }
         } else if (op.op === 'wait') {
           await new Promise(r => setTimeout(r, 50));
         }
@@ -920,7 +920,7 @@
     decideNextStep(goalTree, observation, lastActionResult) {
       goalTree.stepCount++;
       const pendingSubgoal = goalTree.subgoals.find(s => s.status === 'pending' || s.status === 'running');
-      
+
       if (!pendingSubgoal) {
         return { action: { type: 'done', result: 'All subgoals completed successfully.' } };
       }
@@ -961,7 +961,7 @@
   const PinActionExecutor = {
     execute(action, observation) {
       const targetEl = action.targetElement || (observation.elements[action.index - 1] ? observation.elements[action.index - 1].element : null);
-      
+
       if (!targetEl) {
         return { success: false, reason: "Element index not resolved in DOM tree. Self-healing fallback triggered." };
       }
@@ -1172,7 +1172,7 @@
           label: 'Academics & Semester Records'
         },
         {
-          keys: ['certificate', 'certificates', 'certif', 'award', 'awards', 'hackathon', 'udbhav', 'winner', 'trophy', 'achievement', 'credential', 'verified', 'aadhaar', 'id card', 'identity', 'study certificate', 'hall tickets pdf', 'document vault', 'proof'],
+          keys: ['certificate', 'certificates', 'certif', 'award', 'awards', 'hackathon', 'udbhav', 'winner', 'trophy', 'achievement', 'credential', 'verified', 'study certificate', 'hall tickets pdf', 'document vault', 'proof'],
           pages: ['certificates.html'],
           navText: 'Certificates',
           label: 'Verified Certificates & Vault'
@@ -2464,7 +2464,7 @@
         const queryTokens = rawQ.split(/\s+/).map(t => t.replace(/[^a-z0-9]/gi, '')).filter(t => t.length >= 2 && !stopWords.has(t));
 
         const searchTarget = (targetEl && targetEl !== activeDoc.body) ? targetEl : (activeDoc.querySelector('main, article, .vault-container, .acad-shell, section, body') || activeDoc.body);
-        
+
         // Extract live title dynamically from target DOM node
         const titleEl = searchTarget.querySelector('h1, h2, h3, h4, .doc-title, .project-title, .card-title, .notes-subject-name, .hero-title, .section-title, strong, b');
         let titleText = titleEl ? titleEl.innerText.trim() : (searchTarget.getAttribute('data-title') || activeDoc.title || 'Live Viewport');
@@ -2496,7 +2496,7 @@
 
         // Filter lines matching query tokens if any token matches
         let matchingLines = scoredLines.filter(item => item.score > 0);
-        
+
         // If target element didn't yield token matches, search full active document for matching lines
         if (matchingLines.length === 0 && queryTokens.length > 0) {
           const docRawText = activeDoc.body.innerText || '';
@@ -2920,7 +2920,7 @@
                 updateScratchpadStep(scratchpadId, 3, 'checked');
                 updateScratchpadStep(scratchpadId, 4, 'checked');
                 updateBottomAgentCard("DOM Verified", `Action completed successfully!`);
-                try { PinObserver.clearSetOfMarksOverlay(); } catch(e) {}
+                try { PinObserver.clearSetOfMarksOverlay(); } catch (e) { }
                 setTimeout(() => {
                   removeLiveSpotlight();
                   hideBottomAgentCard();
